@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xlink="http://www.w3.org/1999/xlink" id="root" xml:space="preserve" width="600" height="800" onload="OnLoadEvent(evt)" onmousemove="get_coordo(evt)">
+
+<script><![CDATA[
+var compati = new Array(true,true,true,true,true,true)
+var comments = new Array(" "," "," "," "," "," ")
+var nb_comments = 6
+
+function write_compati(evt)
+{
+	svgdoc = evt.target.ownerDocument
+	for (var i = 0 ; i < nb_comments ; i ++)
+	{
+		if (compati[i])
+			svgdoc.getElementById("coche" + i.toString()).setAttributeNS(null, "stroke" , "blue")
+		else
+			svgdoc.getElementById("coche" + i.toString()).setAttributeNS(null, "stroke" , "none")
+		svgdoc.getElementById("comment" + i.toString()).firstChild.data = comments[i]
+	}
+}
+
+function get_coordo(evt)
+{
+	evt.target.ownerDocument.getElementById("cX").firstChild.data = evt.clientX
+	evt.target.ownerDocument.getElementById("cY").firstChild.data = evt.clientY
+	evt.target.ownerDocument.getElementById("sX").firstChild.data = evt.screenX
+	evt.target.ownerDocument.getElementById("sY").firstChild.data = evt.screenY
+}
+
+]]></script>
+<script xlink:href="source02.js">
+
+
+</script>
+<text x="50" fill="green" y="10">ptc 4 
+values: 10 
+prepprogrammed</text>
+<text x="50" y="150">hexagon plane</text>
+<text x="50" y="165">  adjustable area</text>
+<text x="50" y="240">Test animation</text>
+<text x="230" y="240" font-size="18" fill="red" fill-opacity="0.2">clientX : <tspan id="cX" fill="blue" fill-opacity="0.2">0</tspan></text> 
+<text x="230" y="260" font-size="18" fill="red" fill-opacity="0.2">clientY : <tspan id="cY" fill="blue" fill-opacity="0.2">0</tspan></text> 
+<text x="230" y="280" font-size="18" fill="red" fill-opacity="0.2">screenX : <tspan id="sX" fill="blue" fill-opacity="0.2">0</tspan></text> 
+<text x="230" y="300" font-size="18"  fill="red" fill-opacity="0.2">screenY : <tspan id="sY" fill="blue" fill-opacity="0.2">0</tspan></text> 
+
+<rect id="go" x="20" y="350" width="300" height="650" style="fill:green;fill-opacity:0.2"/>
+
+<g>
+<text x="20" y="480" font-size="10"></text>
+
+</g>
+
+<g>
+
+<text x="150" y="350">Test animatio2</text>
+
+
+</g>
+
+<style
+     id="style4">
+        .room{
+            fill:       lime;
+            fill-opacity:0.4;
+            stroke:     #999;
+            stroke-width:   3;
+            stroke-color:   blue;
+        }
+        .room:hover{
+            fill:       red;
+            fill-opacity:0.5;
+        }
+        .sith{
+            fill:       orange;
+            fill-opacity:0.4;
+            stroke:     #999;
+            stroke-width:   3;
+            stroke-color:   blue;
+        }
+        .wall{
+            fill:       green;
+            fill-opacity:0.4;
+            stroke:     #999;
+            stroke-width:   3;
+            stroke-color:   blue;
+        }
+        .hexa{
+            fill:       blue;
+            fill-opacity:0.4;
+            stroke:     #999;
+            stroke-width:   2;
+        }
+        .hexa:hover{
+            fill:       lightblue;
+            fill-opacity:0.4;
+        }
+    </style>
+
+  <g transform="matrix(0.2823838,0.10225553,-0.2823838,0.10225553,420.923,74.495491)" >
