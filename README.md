@@ -11,7 +11,7 @@ e.g *> Feld1_1R AVA -222 10 91 -444 0
                oD1.sh    R   VR  avatar  T    W        
 each field has two vectors and four degrees of liberty(back and forward on each axis)
 fields that are at the RAND do have three degrees of liberty
-verteces have two degrees of liberty 
+vertices have two degrees of liberty 
 
         a map 6 x 6 fields     a 6 x 6 with walls and avatar (AVA)
              VR R R R R VR    T  T  T T T T
