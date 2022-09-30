@@ -6,9 +6,9 @@ check currant position          ------------------------->  need a write/replce 
        *> grep "AVA" oD1.sh
 e.g *> Feld1_1R AVA -222 10 91 -444 0
 
-      Types: DICTIONARY,RAND,VERTEX,AVA,TYPE,WALL, 
-                |        |    |      |   |    |
-               oD1.sh    R   VR  avatar  T    W        
+      Types: DICTIONARY,RAND,VERTEX,AVA,TYPE,WALL,MOVE
+                |        |    |      |   |    |    |
+               oD1.sh    R   VR  avatar  T    W  f(mov())         
 each field has two vectors and four degrees of liberty(back and forward on each axis)
 fields that are at the RAND do have three degrees of liberty
 vertices have two degrees of liberty 
