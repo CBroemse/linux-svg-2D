@@ -1,7 +1,14 @@
 # linux-svg-2D
-a working example of the 3S3T repo that uses linux in a browser 
+## write a routine to determine where to move
+###### a working example of the 3S3T repo that uses linux in a browser
 
-write routine to determine where to move
+##### check -dictionary
+
+      *> vim oD1.sh
+      
+ The main input data file for this working example
+ '
+##### write routine to determine where to move
 check currant position          -------------------->  need a write/replce new AVA into DICTIONARY
 
      e.g *> grep "AVA" oD1.sh
