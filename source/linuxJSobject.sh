@@ -275,26 +275,46 @@ mapUniques() {
              }
            for ((i=0;i<6;++i)) # set AVa to do 6 MOVES
            insertI= expr $i + 1
-           customGrep0= grep "Feld'$adjustNuer'_'$insertI'" $6 # get another FELD depending where AVA is in fst MOVE
-           if [ "checkType" '==' '' ]
+	   customGrep0=$(grep "Feld'$adjustNuer'_'$insertI'" $6) # get another FELD depending where AVA is in fst MOVE
+	   customCheck=$(echo "$customGrep0") | awk '{print($2)}') # check TYPE
+           if [ "$customCheck" '==' 'TYPE' ]
             then
             function myCheck() {
-                 if [ "$checkType" '==' "TYPE" ]
+                 if [ "$customCheck" '==' "TYPE" ]
                  then
 
                      for ((iî=0;ii<4;++ii) # every field like this one has four degrees of freedom
                      # belowv check if input is even
                      if [ '$ii' -eq 0 ];  # source https://www.unix.com/shell-programming-and-scripting/240237-odd-even-date-bash.html
                      then
-                         foAVA=$(grep -n "AVA" oD1.sh)
-                         avaX=$(echo "$foAVA" | awk '{print($2)}') # get x value of avatar
-                         avaY=$(echo "$foAVA" | awk '{print($4)}') # get y value of avatar
                          # get neiighbouring fields
-                         fromXbar=
-                         for ((iii=0;iii<6;++iii)) # ------------------------------------------ DEFINE HOW MANY MOVES AVA takes
-                         grep "Feld2" oD1.sh # check row by row
-                     inputZ -1 or plus 1 feld)
-                      >> object.sh
+			 checkXbar= $(grep "Feld'$adjustNuer'_'$insertI'" $6)
+			 if [ "$adjustNuer" '==' "1" ]
+			 then 
+			    foExpand= expr $adjustNuer + $i # with each MOVE parse through 6 MOVES = i
+			    aBar=$(grep "Xbar" $6)
+			    getRightX= expr 5 + $foExpand
+			    xExpand=$(echo "$aBar" | awk '{print($'$getRightX')}') # get next coorinate from Xbar
+			    # adding 5 to use oD1.sh Xbar entry
+			    # Xbar -222 -444 0.00000000 -222 -317 -411.99988 -507 -602 -697
+                            # xExpand  of  Xbar => -222 
+                            #for ((iii=0;iii<6;++iii)) # ------------------------------------------ DEFINE HOW MANY MOVES AVA takes
+                            grep "Feld2" oD1.sh # check row by row
+                           # inputZ -1 or plus 1 feld)
+                           #  >> object.sh
+			elif [ "$adjustNuer" '>' "1" ]
+			then
+			    foExpand= expr $adjustNuer + $i # with each MOVE parse through 6 MOVES = i
+                            aBar=$(grep "Xbar" $6)
+                            getRightX= expr 5 + $foExpand
+                            xExpand=$(echo "$aBar" | awk '{print($'$getRightX')}') # get next coorinate from Xbar
+                        else
+			     foExpand= expr $adjustNuer + $i # with each MOVE parse through 6 MOVES = i
+                            aBar=$(grep "Xbar" $6)
+                            getRightX= expr 5 + $foExpand
+                            xExpand=$(echo "$aBar" | awk '{print($'$getRightX')}') # get next coorinate from Xbar
+
+			  
                  }
 
                rm object.svg
