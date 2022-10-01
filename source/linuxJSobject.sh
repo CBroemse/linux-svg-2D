@@ -292,27 +292,30 @@ mapUniques() {
 			 if [ "$adjustNuer" '==' "1" ]
 			 then 
 			    foExpand= expr $adjustNuer + $i # with each MOVE parse through 6 MOVES = i
-			    aBar=$(grep "Xbar" $6)
+			    aBarX=$(grep "Xbar" $6)
+                            aBarY=$(grep "Ybar" $6)
 			    getRightX= expr 5 + $foExpand
-			    xExpand=$(echo "$aBar" | awk '{print($'$getRightX')}') # get next coorinate from Xbar
+			    xExpand=$(echo "$aBarX" | awk '{print($'$getRightX')}') # get next coordinate from Xbar
+			    yExpand=$(echo "$aBarY" | awk '{print($'$getRightX')}') # get next coordinate from Ybar
 			    # adding 5 to use oD1.sh Xbar entry
 			    # Xbar -222 -444 0.00000000 -222 -317 -411.99988 -507 -602 -697
                             # xExpand  of  Xbar => -222 
                             #for ((iii=0;iii<6;++iii)) # ------------------------------------------ DEFINE HOW MANY MOVES AVA takes
-                            grep "Feld2" oD1.sh # check row by row
-                           # inputZ -1 or plus 1 feld)
-                           #  >> object.sh
-			elif [ "$adjustNuer" '>' "1" ]
+			elif [ "$adjustNuer" '==' "6" ]
 			then
 			    foExpand= expr $adjustNuer + $i # with each MOVE parse through 6 MOVES = i
-                            aBar=$(grep "Xbar" $6)
+                            aBarX=$(grep "Xbar" $6)
                             getRightX= expr 5 + $foExpand
-                            xExpand=$(echo "$aBar" | awk '{print($'$getRightX')}') # get next coorinate from Xbar
+                            xExpand=$(echo "$aBarX" | awk '{print($'$getRightX')}') # get next coordinate from Xbar
+			    xExpand                                                # export last X coordinate
+			    #driveHand= expr $adjustNuer - 1 
+                            #checkXbar= $(grep "Feld'$adjustNuer'_'$insertI'" $6)
+
                         else
-			     foExpand= expr $adjustNuer + $i # with each MOVE parse through 6 MOVES = i
-                            aBar=$(grep "Xbar" $6)
+			    foExpand= expr $adjustNuer + $i # with each MOVE parse through 6 MOVES = i
+                            aBarX=$(grep "Xbar" $6)
                             getRightX= expr 5 + $foExpand
-                            xExpand=$(echo "$aBar" | awk '{print($'$getRightX')}') # get next coorinate from Xbar
+                            xExpand=$(echo "$aBarX" | awk '{print($'$getRightX')}') # get next coorinate from Xbar
 
 			  
                  }
