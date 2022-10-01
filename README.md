@@ -3,8 +3,9 @@ a working example of the 3S3T repo that uses linux in a browser
 
 write routine to determine where to move
 check currant position          -------------------->  need a write/replce new AVA into DICTIONARY
+
        *> grep "AVA" oD1.sh
-e.g *> Feld1_1R AVA -222 10 91 -444 0
+   e.g *> Feld1_1R AVA -222 10 91 -444 0
 
 #### USAGE:
 
