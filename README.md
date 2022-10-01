@@ -9,10 +9,10 @@
  The main input data file for this working example
  '
 ##### write routine to determine where to move
-check currant position          -------------------->  need a write/replce new AVA into DICTIONARY
+check currant position   ------------------> need a write/replace new AVA into DICTIONARY
 
      e.g *> grep "AVA" oD1.sh
-     =>  *> Feld1_1R AVA -222 10 91 -444 0
+     =>  *> Feld1_1RV AVA -222 10 91 -444 0
 
 #### USAGE:
 
