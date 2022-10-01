@@ -158,7 +158,7 @@ mapUniques() {
  parS=$(echo "$poe" | awk '{print($'$zeroplus')}') #parse NAMEString one by one
  #$parS
  #search name x in file
- myGrep=$(grep -n "$parS" $edger) #get whole line from file
+ myGrep=$(grep -n "$parS" $edger) #get whole line from filedd
  takeSteps=$(echo $(grep -n "$parS" $edger | cut -d : -f1))   # just line numbers of
  bak=$(echo "$takeSteps" | wc -w)
 
@@ -201,16 +201,55 @@ mapUniques() {
 	     }
 
      <<COMMENT
+     # a MOVE is a string that looks as follows:
+     #  <animateMotion path="M 0 0 L -280 0" begin="2.1s" dur="0.3s" fill="freeze"/>
+        <animateMotion path="M -280 0 L -280 -123" begin="4.1s" dur="0.3s" fill="freeze"/>
+	<animateMotion path="M -280 -123 L -374 -123" begin="6.1s" dur="0.3s" fill="freeze"/>
+	<animateMotion path="M -374 -123 L -374 -369" begin="8.1s" dur="0.3s" fill="freeze"/>
+	<animateMotion path="M -374 -369 L 0 -369" begin="10.1s" dur="0.3s" fill="freeze"/>
+	 <animateMotion path="M 0 0 L -280 0" begin="2.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -280 0 L -280 -123" begin="4.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -280 -123 L -374 -123" begin="6.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -374 -123 L -374 -369" begin="8.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -374 -369 L 0 -369" begin="10.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M 0 -369 L 0 -482" begin="12.1s" dur="0.3s" fill="freeze"/><animateMotion path="M 0 -369 L 0 -482" begin="12.1s" dur="0.3s" fill="freeze"/>
            function stride() {
-             getIn= Rand
-	   
-	   #for ((i=0;i<$bak;++i))  
-           # if [ "$readOp" '==' 'svg' ]
-            #then
-	      #   rm object.svg
-               #  touch object.svg
-                 if [ "$i" '==' "0" ]
+	     randLine=$(grep "R" $6) # whole line of matches of 'Rand'='R' fields
+	     getRandNumber= $(grep -n "R" $6 | cut -d : f1) # line numbers of Rand 
+	     newI=$(echo "$getRandNumber" | wc -l)
+	     checkType= $(echo "$randLine" | awk '{print($2)}') # selct 2nd Column TYPE vs WALL
+             foAVA=$(grep -n "AVA" oD1.sh)
+             avaX=$(echo "$foAVA" | awk '{print($2)}') # get x value of avatar
+             avaY=$(echo "$foAVA" | awk '{print($4)}') # get y value of avatar
+	     prep= read aFELD _ <<< $(echo | grep -n "AVA" $6) # grep with -n to match with line numbers  
+             extractNumer=$(echo "$aFELD" | cut -d : f1)) # => e.g "Feld1_1 => 1
+	                                                    =>     "Feld3_3 => 15
+	     adjustNuer=$(expr $extractNumer / 6) # devide bz 6 due to 6 x6 select the right line
+	     }
+	   for ((i=0;i<6;++i)) # set AVa to do 6 MOVES
+	   insertI= expr $i + 1
+	   customGrep0= grep "Feld'$adjustNuer'_'$insertI'" $6 # get another FELD depending where AVA is in fst MOVE 
+           if [ "checkType" '==' '' ]
+            then
+            function myCheck() {
+                 if [ "$checkType" '==' "TYPE" ]
                  then
+
+                     for ((iî=0;ii<4;++ii) # every field like this one has four degrees of freedom 
+		     # belowv check if input is even
+                     if [ '$ii' -eq 0 ];  # source https://www.unix.com/shell-programming-and-scripting/240237-odd-even-date-bash.html
+		     then
+			 foAVA=$(grep -n "AVA" oD1.sh)
+			 avaX=$(echo "$foAVA" | awk '{print($2)}') # get x value of avatar
+			 avaY=$(echo "$foAVA" | awk '{print($4)}') # get y value of avatar
+			 # get neiighbouring fields 
+			 fromXbar=
+		         for ((iii=0;iii<6;++iii)) # ------------------------------------------ DEFINE HOW MANY MOVES AVA takes 
+			 grep "Feld2" oD1.sh # check row by row 
+		     inputZ -1 or plus 1 feld)
+                      >> object.sh
+                 }
+
+	       rm object.svg
+               touch object.svg
+	       if [] "" **
+               #  if [ "$i" '==' "0" ]
+               #  then
          # input1= e.g feld1_1 222 91
 	             somein=$(cat svgHeader)
                      mesReady=" <rect name = \"$i\" class= \"room wall\" width = \"94\" height=\"123\" x=\"$getInput2\" y=\"$getInput\"/>"
