@@ -11,7 +11,7 @@ USAGE
    "node" :: String ; search lines in aDict1.sh
                          and write to unique4.sh
 
-./linuxJSobject.sh "grobi" object 4 2 "node" aDict1.sh
+./linuxJSobject.sh "grobi" object 4 2 "node" oD1.sh #aDict1.sh
 
 OVERVIEW
   mapping functions to read out of file
@@ -154,12 +154,12 @@ rm object.js
 
 mapUniques() {
  for ((pm=0;pm<$lengde;++pm)) do
- zeroplus=$(echo | expr $pm + 1) # to write vim starts with lin no. 1 not 0 therfore + 1
+ zeroplus=$(echo | expr $pm + 1) # to write vim starts with lin no. 1 not 0 therefore + 1
  parS=$(echo "$poe" | awk '{print($'$zeroplus')}') #parse NAMEString one by one
  #$parS
  #search name x in file
- myGrep=$(grep -n "$parS" $edger) #get whole line from filedd
- takeSteps=$(echo $(grep -n "$parS" $edger | cut -d : -f1))   # just line numbers of
+ myGrep=$(grep -n "$parS" $edger) #get whole line(s) from DICTIONARY
+ takeSteps=$(echo $(grep -n "$parS" $edger | cut -d : -f1))   # just line numbers of search's MATCHES
  bak=$(echo "$takeSteps" | wc -w)
 
    for ((i=0;i<$bak;++i)) do  ############ change bak OR kob
@@ -178,10 +178,10 @@ mapUniques() {
       someBob=$(echo | expr $bak + 1)
       function drama() {
            #for ((i=0;i<$bak;++i))
-           # if [ "$readOp" '==' 'svg' ]
-            #then
               #   rm object.svg
                #  touch object.svg
+	    if [ "$readOp" '==' "svg" ]
+            then
                  if [ "$i" '==' "0" ]
                  then
          # input1= e.g feld1_1 222 91
@@ -197,8 +197,9 @@ mapUniques() {
                  else
                     mesReady=" <rect name = \"$i\" class= \"room wall\" width = \"94\" height=\"123\" x=\"$getInput2\" y=\"$getInput\"/>"
                     echo "$mesReady" >> object.svg
-                 fi
-	     }
+                fi
+           fi
+	   }
 
         
 	if [ "$zeroplus" '==' "1" ] && [ "$zeropl2" '==' "1" ] #&& [ "$ups" '==' "1" ]
@@ -259,7 +260,8 @@ mapUniques() {
         <animateMotion path="M -374 -123 L -374 -369" begin="8.1s" dur="0.3s" fill="freeze"/>
         <animateMotion path="M -374 -369 L 0 -369" begin="10.1s" dur="0.3s" fill="freeze"/>
          <animateMotion path="M 0 0 L -280 0" begin="2.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -280 0 L -280 -123" begin="4.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -280 -123 L -374 -123" begin="6.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -374 -123 L -374 -369" begin="8.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -374 -369 L 0 -369" begin="10.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M 0 -369 L 0 -482" begin="12.1s" dur="0.3s" fill="freeze"/><animateMotion path="M 0 -369 L 0 -482" begin="12.1s" dur="0.3s" fill="freeze"/>
-           function stride() {
+COMMENT
+            function stride() {
              randLine=$(grep "R" $6) # whole line of matches of 'Rand'='R' fields
              getRandNumber= $(grep -n "R" $6 | cut -d : f1) # line numbers of Rand
              newI=$(echo "$getRandNumber" | wc -l)
@@ -268,11 +270,12 @@ mapUniques() {
              avaX=$(echo "$foAVA" | awk '{print($2)}') # get x value of avatar
              avaY=$(echo "$foAVA" | awk '{print($4)}') # get y value of avatar
               
-            prep= read aFELD _ <<< $(echo | grep -n "AVA" $6) # grep with -n to match with line numbers
-             extractNumer=$(echo "$aFELD" | cut -d : f1)) # => e.g "Feld1_1 => 1
-                                                            =>     "Feld3_3 => 15
+             prep= read aFELD _ <<< $(echo | grep -n "AVA" $6) # grep with -n to match with line numbers
+             extractNumer=$(echo "$aFELD" | cut -d : f1) # => e.g "Feld1_1 => 1
+                                                          #  =>     "Feld3_3 => 15
              adjustNuer=$(expr $extractNumer / 6) # devide bz 6 due to 6 x6 select the right line
              }
+<<COMMENT
            for ((i=0;i<6;++i)) # set AVa to do 6 MOVES
            insertI= expr $i + 1
 	   customGrep0=$(grep "Feld'$adjustNuer'_'$insertI'" $6) # get another FELD depending where AVA is in fst MOVE
@@ -342,23 +345,23 @@ mapUniques() {
                  }
                      #fi
 COMMENT
-
+# write javascript objects or svg file
 function tk1() {
    if [ $readOp '==' "object" ] || [ "$readOp" '==' "svg" ]
    then
       rm object.sh
       rm object.js
-      rm object.svg
       touch object.js
-      touch object.svg
-      mapUniques #paste unique3.sh unique2.sh >> object.sh
-      #paste '[ ' unique3.sh ', "' unique2.sh '" ]' >> object.sh
       echo "wrote object.js"
+      rm object.svg
+      touch object.svg
+      echo "wrote object.svg"
+      mapUniques #paste unique3.sh unique2.sh >> object.sh
+
    else
-	   
       echo "did not write object.js"
    fi
-}
+   }
 # make object
 # 1. run tk1 -> write object.js
 # 2. define a [NAME] e.g 
