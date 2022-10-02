@@ -261,31 +261,40 @@ mapUniques() {
         <animateMotion path="M -374 -369 L 0 -369" begin="10.1s" dur="0.3s" fill="freeze"/>
          <animateMotion path="M 0 0 L -280 0" begin="2.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -280 0 L -280 -123" begin="4.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -280 -123 L -374 -123" begin="6.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -374 -123 L -374 -369" begin="8.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -374 -369 L 0 -369" begin="10.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M 0 -369 L 0 -482" begin="12.1s" dur="0.3s" fill="freeze"/><animateMotion path="M 0 -369 L 0 -482" begin="12.1s" dur="0.3s" fill="freeze"/>
 COMMENT
-            function stride() {
-             randLine=$(grep "R" $6) # whole line of matches of 'Rand'='R' fields
-             getRandNumber=$(grep -n "R" $6 | cut -d : f1) # line numbers of Rand
-             newI=$(echo "$getRandNumber" | wc -l)
-             checkType= $(echo "$randLine" | awk '{print($2)}') # selct 2nd Column TYPE vs WALL
-             foAVA=$(grep -n "AVA" oD1.sh)
-             avaX=$(echo "$foAVA" | awk '{print($2)}') # get x value of avatar
-             avaY=$(echo "$foAVA" | awk '{print($4)}') # get y value of avatar
-              
-             prep= read aFELD _ <<< $(echo | grep -n "AVA" $6) # grep with -n to match with line numbers
-             extractNumer=$(echo "$aFELD" | cut -d : f1) # => e.g "Feld1_1 => 1
-                                                          #  =>     "Feld3_3 => 15
-             adjustNuer=$(expr $extractNumer / 6) # devide bz 6 due to 6 x6 select the right line
-             
-             for ((i=0;i<6;++i)) do # set AVa to do 6 MOVES
-             insertI= expr $i + 1
-	     customGrep0=$(grep "Feld'$adjustNuer'_'$insertI'" $6) # get another FELD depending where AVA is in fst MOVE
-	     customCheck=$(echo "$customGrep0" | awk '{print($2)}') # check TYPE
-             
-             
+function stride() {
+             randLine=$(grep -n "R" $edger) # whole line of matches of 'Rand'='R' fields
+	     getRandNumber=$(echo $(grep -n "R" $edger | cut -d : f1))   # just line numbers of search's MATCHES
 
-            if [ "$customCheck" '==' 'TYPE' ]
-            then
-                echo "RUN TYPES"
-	       
+             newI=$(echo "$getRandNumber" | wc -w)
+             checkType=$(echo "$randLine" | awk '{print($2)}') # selct 2nd Column TYPE vs WALL
+             foAVA=$(grep -n "AVA" oD1.sh)
+             avaX=$(echo "$foAVA" | awk '{print($3)}') # get x value of avatar
+             avaY=$(echo "$foAVA" | awk '{print($5)}') # get y value of avatar
+              
+             prep=$(grep -n "AVA" $edger) # grep with -n to match with line numbers
+	     moprep=$(echo "$prep" | awk '{print($1)}')
+	     for ((i=0;i<6;++i)) do
+	        extractNumer=$(echo "$moprep" | cut -f1 -d:) # => e.g "Feld1_1 => 1
+                                                          #  =>     "Feld3_3 => 15
+        #     adjustNuer=$(expr $extractNumer / 6) # devide bz 6 due to 6 x6 select the right line
+                echo "$avaX $avaY" #"$checkType" #"$newI" #"$getRandNumber" #"$randLine"
+	        echo "$extractNumer" #"$moprep" #"$adjustNuer"
+             done
+             } 
+#             for ((i=0;i<6;++i)) do # set AVa to do 6 MOVES
+ #              insertI= expr $i + 1
+#	       customGrep0=$(grep "Feld'$adjustNuer'_'$insertI'" $6) # get another FELD depending where AVA is in fst MOVE
+#	       customCheck=$(echo "$customGrep0" | awk '{print($2)}') # check TYPE
+#
+ #              if [ "$customCheck" '==' 'TYPE' ]
+  #             then
+   #                echo "RUN TYPES"
+    #           else
+#	           echo "dat"
+ #              fi		 
+#	     done
+ #           }
+
 <<COMMENT
             function myCheck() {
                  if [ "$customCheck" '==' "TYPE" ]
@@ -296,43 +305,39 @@ COMMENT
                      if [ '$ii' -eq 0 ];  # source https://www.unix.com/shell-programming-and-scripting/240237-odd-even-date-bash.html
                      then
                          # get neiighbouring fields
-			 checkXbar= $(grep "Feld'$adjustNuer'_'$insertI'" $6)
-			 if [ "$adjustNuer" '==' "1" ]
-			 then 
-			    foExpand= expr $adjustNuer + $i # with each MOVE parse through 6 MOVES = i
-			    aBarX=$(grep "Xbar" $6)
+                         checkXbar= $(grep "Feld'$adjustNuer'_'$insertI'" $6)
+                         if [ "$adjustNuer" '==' "1" ]
+                         then
+                            foExpand= expr $adjustNuer + $i # with each MOVE parse through 6 MOVES = i
+                            aBarX=$(grep "Xbar" $6)
                             aBarY=$(grep "Ybar" $6)
-			    getRightX= expr 5 + $foExpand
-			    xExpand=$(echo "$aBarX" | awk '{print($'$getRightX')}') # get next coordinate from Xbar
-			    yExpand=$(echo "$aBarY" | awk '{print($'$getRightX')}') # get next coordinate from Ybar
-			    # adding 5 to use oD1.sh Xbar entry
-			    # Xbar -222 -444 0.00000000 -222 -317 -411.99988 -507 -602 -697
-                            # xExpand  of  Xbar => -222 
+                            getRightX= expr 5 + $foExpand
+                            xExpand=$(echo "$aBarX" | awk '{print($'$getRightX')}') # get next coordinate from Xbar
+                            yExpand=$(echo "$aBarY" | awk '{print($'$getRightX')}') # get next coordinate from Ybar
+                            # adding 5 to use oD1.sh Xbar entry
+                            # Xbar -222 -444 0.00000000 -222 -317 -411.99988 -507 -602 -697
+                            # xExpand  of  Xbar => -222
                             #for ((iii=0;iii<6;++iii)) # ------------------------------------------ DEFINE HOW MANY MOVES AVA takes
-			elif [ "$adjustNuer" '==' "6" ]
-			then
-			    foExpand= expr $adjustNuer + $i # with each MOVE parse through 6 MOVES = i
+                        elif [ "$adjustNuer" '==' "6" ]
+                        then
+                            foExpand= expr $adjustNuer + $i # with each MOVE parse through 6 MOVES = i
                             aBarX=$(grep "Xbar" $6)
                             getRightX= expr 5 + $foExpand
                             xExpand=$(echo "$aBarX" | awk '{print($'$getRightX')}') # get next coordinate from Xbar
-			    xExpand                                                # export last X coordinate
-			    #driveHand= expr $adjustNuer - 1 
+                            xExpand                                                # export last X coordinate
+                            #driveHand= expr $adjustNuer - 1
                             #checkXbar= $(grep "Feld'$adjustNuer'_'$insertI'" $6)
 
                         else
-			    foExpand= expr $adjustNuer + $i # with each MOVE parse through 6 MOVES = i
+                            foExpand= expr $adjustNuer + $i # with each MOVE parse through 6 MOVES = i
                             aBarX=$(grep "Xbar" $6)
                             getRightX= expr 5 + $foExpand
                             xExpand=$(echo "$aBarX" | awk '{print($'$getRightX')}') # get next coorinate from Xbar
 
-			  
+
                  }
 COMMENT
-            else
-		 echo "dat"
-            fi		 
-	    done
-            }
+    
 <<COMMENT
                rm object.svg
                touch object.svg
@@ -368,7 +373,7 @@ function tk1() {
       touch object.svg
       echo "wrote object.svg"
       mapUniques #paste unique3.sh unique2.sh >> object.sh
-
+      stride
    else
       echo "did not write object.js"
    fi
