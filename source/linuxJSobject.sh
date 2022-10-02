@@ -263,7 +263,7 @@ mapUniques() {
 COMMENT
             function stride() {
              randLine=$(grep "R" $6) # whole line of matches of 'Rand'='R' fields
-             getRandNumber= $(grep -n "R" $6 | cut -d : f1) # line numbers of Rand
+             getRandNumber=$(grep -n "R" $6 | cut -d : f1) # line numbers of Rand
              newI=$(echo "$getRandNumber" | wc -l)
              checkType= $(echo "$randLine" | awk '{print($2)}') # selct 2nd Column TYPE vs WALL
              foAVA=$(grep -n "AVA" oD1.sh)
@@ -274,14 +274,19 @@ COMMENT
              extractNumer=$(echo "$aFELD" | cut -d : f1) # => e.g "Feld1_1 => 1
                                                           #  =>     "Feld3_3 => 15
              adjustNuer=$(expr $extractNumer / 6) # devide bz 6 due to 6 x6 select the right line
-             }
-<<COMMENT
-           for ((i=0;i<6;++i)) # set AVa to do 6 MOVES
-           insertI= expr $i + 1
-	   customGrep0=$(grep "Feld'$adjustNuer'_'$insertI'" $6) # get another FELD depending where AVA is in fst MOVE
-	   customCheck=$(echo "$customGrep0") | awk '{print($2)}') # check TYPE
-           if [ "$customCheck" '==' 'TYPE' ]
+             
+             for ((i=0;i<6;++i)) do # set AVa to do 6 MOVES
+             insertI= expr $i + 1
+	     customGrep0=$(grep "Feld'$adjustNuer'_'$insertI'" $6) # get another FELD depending where AVA is in fst MOVE
+	     customCheck=$(echo "$customGrep0" | awk '{print($2)}') # check TYPE
+             
+             
+
+            if [ "$customCheck" '==' 'TYPE' ]
             then
+                echo "RUN TYPES"
+	       
+<<COMMENT
             function myCheck() {
                  if [ "$customCheck" '==' "TYPE" ]
                  then
@@ -322,7 +327,13 @@ COMMENT
 
 			  
                  }
-
+COMMENT
+            else
+		 echo "dat"
+            fi		 
+	    done
+            }
+<<COMMENT
                rm object.svg
                touch object.svg
                if [] "" **
