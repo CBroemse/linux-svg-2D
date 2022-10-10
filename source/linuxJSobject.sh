@@ -261,6 +261,7 @@ mapUniques() {
         <animateMotion path="M -374 -369 L 0 -369" begin="10.1s" dur="0.3s" fill="freeze"/>
          <animateMotion path="M 0 0 L -280 0" begin="2.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -280 0 L -280 -123" begin="4.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -280 -123 L -374 -123" begin="6.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -374 -123 L -374 -369" begin="8.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -374 -369 L 0 -369" begin="10.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M 0 -369 L 0 -482" begin="12.1s" dur="0.3s" fill="freeze"/><animateMotion path="M 0 -369 L 0 -482" begin="12.1s" dur="0.3s" fill="freeze"/>
 COMMENT
+pok=$5
 function stride() {
              randLine=$(grep -n "R" $edger) # whole line of matches of 'Rand'='R' fields
 	     getRandNumber=$(echo $(grep -n "R" $edger | cut -d : f1))   # just line numbers of search's MATCHES
@@ -268,32 +269,65 @@ function stride() {
              newI=$(echo "$getRandNumber" | wc -w)
              checkType=$(echo "$randLine" | awk '{print($2)}') # selct 2nd Column TYPE vs WALL
              foAVA=$(grep -n "AVA" oD1.sh)
-             avaX=$(echo "$foAVA" | awk '{print($3)}') # get x value of avatar
+	     #foTARGET=$(grep -n "$pok" oD1.sh)
+             cook=$(echo "$foAVA" >> unique1.sh) # printf '%s\n' "$foAVA}")
+
+         for ((i=0;i<6;++i)) do
+	     iOne=$(echo | expr $i + 1)
+             foMOVE=$(grep -n "Feld$iOne" oD1.sh)
+	    # foAVA=$(grep -n "AVA" oD1.sh)
+	    # cook=$(echo "$foAVA" >> unique1.sh") #printf '%s\n' "$foAVA}")
+             awk '{ print $1 }' <<< $(head -n $i unique1.sh | tail -1)
+	     avaX=$(echo "$foAVA" | awk '{print($3)}') # get x value of avatar
              avaY=$(echo "$foAVA" | awk '{print($5)}') # get y value of avatar
-              
+	     avaLine=$(echo "$foAVA" | awk '{print($1)}')
              prep=$(grep -n "AVA" $edger) # grep with -n to match with line numbers
 	     moprep=$(echo "$prep" | awk '{print($1)}')
-	     for ((i=0;i<6;++i)) do
-	        extractNumer=$(echo "$moprep" | cut -f1 -d:) # => e.g "Feld1_1 => 1
-                                                          #  =>     "Feld3_3 => 15
-        #     adjustNuer=$(expr $extractNumer / 6) # devide bz 6 due to 6 x6 select the right line
-                echo "$avaX $avaY" #"$checkType" #"$newI" #"$getRandNumber" #"$randLine"
-	        echo "$extractNumer" #"$moprep" #"$adjustNuer"
-             done
-             } 
+	     getInput=$(head -n $zeropl2 unique3.sh | tail -1)
+             getInput2=$(head -n $zeropl2 unique2.sh | tail -1)
+
+	     dub= read some _  <<< "$foAVA"             # ---------------- EXTRACT line with AVATAR
+	     lineEmpty= read dat _ <<< "$foMOVE"        # 
+	     extractNumer=$(echo "$some" | cut -f1 -d:) # => e.g "Feld1_1 => 1
+                                                        #  =>     "Feld3_3 => 15
+	     extrEmpty=$(echo "$dat" | cut -f1 -d:)						
+             adjustNuer=$(echo | expr $extractNumer / 6) # devide bz 6 due to 6 x6 select the right line
+	    # adju=$(echo | expr $extrEmpty / 6)
+	     foextr=$(echo | expr $adjustNuer + 1)
+	     #moextr=$(echo | expr $adju +1)   
+	     #echo "$avaX $avaY" #"$checkType" #"$newI" #"$getRandNumber" #"$randLine"
+		insertI=$(echo | expr $i + 1) 
+		buility=$(echo "$poe""$extractNumer""_""$insertI") # ------------------------------- BUILD custom GREP advance functionality of svg
+	#	checkXbar=$(echo | $(grep "$buility" $edger))
+
+	#	plau=$(echo "$checkXbar") | awk '{print($1)}') #"$extractNumer" #"$moprep" #"$adjustNuer"
+	#	plau
+ #            done
+  #           } 
 #             for ((i=0;i<6;++i)) do # set AVa to do 6 MOVES
- #              insertI= expr $i + 1
-#	       customGrep0=$(grep "Feld'$adjustNuer'_'$insertI'" $6) # get another FELD depending where AVA is in fst MOVE
-#	       customCheck=$(echo "$customGrep0" | awk '{print($2)}') # check TYPE
-#
- #              if [ "$customCheck" '==' 'TYPE' ]
+  #              insertI= expr $i + 1
+               foastrid=$(echo ""Feld$foextr'_'$insertI"")
+	     #  fotania=$(echo ""Feld$moextr'_'$insertI"")
+	      # astrid=$(eval $foastrid)
+               customGrep0=$(grep "$foastrid" $edger) #"\"Feld'$adjustNuer'_'$insertI'\"" $edger) # get another FELD depending where AVA is in fst MOVE
+	     #  grepEm=$(grep "$fotania" $edger)
+	       customCheck=$(echo "$customGrep0" | awk '{print($2)}') # check TYPE
+               echo "$customGrep0" #"$buility" #"$insertI" #"$customGrep"
+               
+         for ((ii=0;ii<6;++ii)) do
+	     iiOne=$(echo | expr $ii + 1)
+             foMOVEii=$(grep -n ""$iOne'_'$iiOne"" oD1.sh) # ""$pok'_'$iiOne"" oD1.sh)
+             done 
+	       echo "$dat"
+	       echo "$foMOVEii"
+ #if [ "$customCheck" '==' 'TYPE' ]
   #             then
    #                echo "RUN TYPES"
     #           else
 #	           echo "dat"
  #              fi		 
-#	     done
- #           }
+	     done
+            }
 
 <<COMMENT
             function myCheck() {
