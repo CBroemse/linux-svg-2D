@@ -15,6 +15,12 @@ check currant position   ------------------> need a write/replace new AVA into D
      =>  *> Feld1_1RV AVA -222 10 91 -444 0
          *> grep -n ""E$"" oD1.sh
          => all open MOVES on TYPES 
+         *> grep -n ""L$"" oD1.sh
+         *> $ grep -n ""_1$"" oD1.sh
+         :
+          grep ""_6$"" oD1.sh
+         :
+
 
 #### USAGE:
 
