@@ -66,7 +66,7 @@ for ((i=0;i<$lengde;++i)) do
       echo "$cde line $parS2 ACTION $getWhole" >> "object1.sh"
       #echo "$parS2" >> "object1.sh"
     done
-# else
+# else./linuxJSobject.sh "peter" 1 2 4 "node" aDict1.sh
 #      echo " "$i" \"fl$i\" "name" "NOTHING"" >> "object1.sh"
 # fi
 done
@@ -262,6 +262,19 @@ mapUniques() {
          <animateMotion path="M 0 0 L -280 0" begin="2.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -280 0 L -280 -123" begin="4.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -280 -123 L -374 -123" begin="6.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -374 -123 L -374 -369" begin="8.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -374 -369 L 0 -369" begin="10.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M 0 -369 L 0 -482" begin="12.1s" dur="0.3s" fill="freeze"/><animateMotion path="M 0 -369 L 0 -482" begin="12.1s" dur="0.3s" fill="freeze"/>
 COMMENT
 pok=$5
+function weakesLink() {
+     TZPEs=$(grep -n ""E$"" oD1.sh)
+     rm unique1.sh
+     touch unique1.sh
+     echo "$TZPEs" >> unique1.sh
+     for ((mi=0;mi<6;++mi)) do
+	     iOnem=$(echo | expr $mi + 1)
+             xtrailm=$(grep -n "Feld$iOnem" unique1.sh)
+             typeLInksWEAKm=$(echo "$xtrailm" | wc -w) # ########################################### MEASURE WEAKEST LINK  
+	     echo "$typeLInksWEAKm" "$iOnem" 
+     done
+       
+}
 function stride() {
              randLine=$(grep -n "R" $edger) # whole line of matches of 'Rand'='R' fields
 	     getRandNumber=$(echo $(grep -n "R" $edger | cut -d : f1))   # just line numbers of search's MATCHES
@@ -269,12 +282,28 @@ function stride() {
              newI=$(echo "$getRandNumber" | wc -w)
              checkType=$(echo "$randLine" | awk '{print($2)}') # selct 2nd Column TYPE vs WALL
              foAVA=$(grep -n "AVA" oD1.sh)
-	     #foTARGET=$(grep -n "$pok" oD1.sh)
-             cook=$(echo "$foAVA" >> unique1.sh) # printf '%s\n' "$foAVA}")
-
+	     #foTARGET=$(grep -n "$pok" oD1.sh
+             #cook=$(echo "$foAVA" >> unique1.sh) # printf '%s\n' "$foAVA}")cook=$(echo "$foAVA" >> unique1.sh) # printf '%s\n' "$foAVA}")~~''***~~+
+             TZPES=$(grep ""E$"" oD1.sh)
+	     typeLines=$(echo $(grep -n ""E$"" oD1.sh | cut -d : f1))
+	     
+	     echo "$TZPES" >> unique1.sh # printf '%s\n' "$foAVA}")
+	      echo "scrreeeen -----------------------"
+	    rm unique2.sh
+	    touch unique2.sh
+	    weakesLink
+	    weakesLink >>  unique2.sh
+	     echo | sort -nr unique2.sh | tail -1 
+	     echo | sort -nr unique2.sh | tail -2 | head -1
+	     echo | sort -nr unique2.sh | tail -3 | head -1
+	     echo | sort -nr unique2.sh | tail -4 | head -1
+	     echo | sort -nr unique2.sh | tail -5 | head -1
+	    # awk '{print($2)}' |
          for ((i=0;i<6;++i)) do
 	     iOne=$(echo | expr $i + 1)
              foMOVE=$(grep -n "Feld$iOne" oD1.sh)
+	     xtrail=$(grep -n "Feld$iOne" unique1.sh)
+             typeLInksWEAK=$(echo "$xtrail" | wc -w) # ########################################### MEASURE WEAKEST LINK
 	    # foAVA=$(grep -n "AVA" oD1.sh)
 	    # cook=$(echo "$foAVA" >> unique1.sh") #printf '%s\n' "$foAVA}")
              awk '{ print $1 }' <<< $(head -n $i unique1.sh | tail -1)
@@ -290,6 +319,10 @@ function stride() {
 	     lineEmpty= read dat _ <<< "$foMOVE"        # 
 	     extractNumer=$(echo "$some" | cut -f1 -d:) # => e.g "Feld1_1 => 1
                                                         #  =>     "Feld3_3 => 15
+	     
+	    echo "scrreeeen -----------------------"
+	  #  weakesLink 
+	    echo $xtrail
 	     extrEmpty=$(echo "$dat" | cut -f1 -d:)						
              adjustNuer=$(echo | expr $extractNumer / 6) # devide bz 6 due to 6 x6 select the right line
 	    # adju=$(echo | expr $extrEmpty / 6)
@@ -317,9 +350,27 @@ function stride() {
          for ((ii=0;ii<6;++ii)) do
 	     iiOne=$(echo | expr $ii + 1)
              foMOVEii=$(grep -n ""$iOne'_'$iiOne"" oD1.sh) # ""$pok'_'$iiOne"" oD1.sh)
+	    # fobolg=$(echo "_ bolg") ################################################# Schaltstelle
+	     BOARD= read _ bolg _ <<< "$foMOVEii"
+#i	     if [ "$bolg" '==' "TYPE" ]
+
+#	     then
+#	      echo "$bolg"
+#	      elif [ "$ii" '==' "3" ] || [ "$i" '==' "4" ] && [ "$bolg" '==' "TYPE" ]
+#
+ #            then
+  #            echo "$bolg"
+   #          elif [ "$ii" '==' "5" ] || [ "$i" '==' "6" ] && [ "$bolg" '==' "TYPE" ]
+#
+ #            then
+  #            echo "$bolg"
+#
+#	     else
+#	      echo "$foMOVEii"
+#	     fi 
              done 
 	       echo "$dat"
-	       echo "$foMOVEii"
+	       #echo "$foMOVEii"
  #if [ "$customCheck" '==' 'TYPE' ]
   #             then
    #                echo "RUN TYPES"
@@ -327,6 +378,7 @@ function stride() {
 #	           echo "dat"
  #              fi		 
 	     done
+	   
             }
 
 <<COMMENT
