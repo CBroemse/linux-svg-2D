@@ -103,11 +103,14 @@ list2Object() {
            echo "got s.th"
            echo "searchin TYPE vs WALL ?"
            echo " check column in DICTIONARY"
-	   echo "$bebob" > "unique1.sh"
+	   echo "$bebob" > "unique1.sh"  # search $5 
         else
-	   foOd=5 # selet collum in DICTIONARY e.g oD1.sh COLUMN 5
-	   tK=$(echo "$myGrep" | awk '{ print $'$foOd' }' | head -n "$i" $6 | tail -1) 
-           echo " "$i" \"fl$i\" "$tK" "name" "NOTHING"" >> "unique1.sh"
+	   foXY=5 # select collum in DICTIONARY e.g oD1.sh COLUMN 5
+	   foTYPE=2
+	   tKi=$(echo "$myGrep" | awk '{ print $'$foXY' }' | head -n "$i" $6 | tail -1) # set for X or Y coodinate ..
+           tKii=$(echo "$myGrep" | awk '{ print $'$foTYPE' }' | head -n "$i" $6 | tail -1) # set for TYPE or WALL collumn
+
+           echo " "$i" \"fl$i\" "$tKi" "$tKii" "NOTHING"" >> "unique1.sh"
         fi
 
     done
@@ -163,9 +166,9 @@ mapUniques() {
    for ((i=0;i<$bak;++i)) do  ############ change bak OR kob
 	   #bak to write iteration and kob for an object == length aDict1.sh
 	zeropl2=$(echo | expr $i + 1) ###################### length of NAME in input from lines of MATCHES in INPUT
-   
-        getInput=$(head -n $zeropl2 unique3.sh | tail -1)
-        getInput2=$(head -n $zeropl2 unique2.sh | tail -1)
+        getTYPE=$(head -n $zeropl2 unique1.sh | tail -1) # get TYPE or WALL
+        getInputY=$(head -n $zeropl2 unique3.sh | tail -1)
+        getInputX=$(head -n $zeropl2 unique2.sh | tail -1)
 	kbt=$(echo | expr $kob - 1)
 	ups=$(echo | expr $i + 1)
 	zeropl2=$(echo | expr $i + 1) ###################### length of NAME in input from lines of MATCHES in INPUT
@@ -184,7 +187,10 @@ mapUniques() {
                  then
          # input1= e.g feld1_1 222 91
                      somein=$(cat svgHeader)
-                     mesReady=" <rect name = \"$i\" class= \"room wall\" width = \"94\" height=\"123\" x=\"$getInput2\" y=\"$getInput\"/>"
+		#     function classProv() {
+                 #       if
+		  #   }
+                     mesReady=" <rect name = \"$i\" class= \"room wall\" width = \"94\" height=\"123\" x=\"$getInputX\" y=\"$getInputY\"/>"
                      echo "$somein" >> "object.svg"
                  elif [ "$zeropl2" '==' "$bak" ] && [ "$zeroplus" '==' "$lengde" ]    ######################## Writing object to file
                  then
@@ -193,7 +199,7 @@ mapUniques() {
            #   foinput=$(echo "[ " $getInput ", " \"$getInput2\" "]]]; ")
                     echo "$moIn" >> "object.svg"
                  else
-                    mesReady=" <rect name = \"$i\" class= \"room wall\" width = \"94\" height=\"123\" x=\"$getInput2\" y=\"$getInput\"/>"
+                    mesReady=" <rect name = \"$i\" class= \"room wall\" width = \"94\" height=\"123\" x=\"$getInputX\" y=\"$getInputY\"/>"
                     echo "$mesReady" >> object.svg
                 fi
            fi
@@ -273,6 +279,7 @@ function weakesLink() {
      done
        
 }
+# TARGET = Feld6_6
 function stride() {
              randLine=$(grep -n "R" $edger) # whole line of matches of 'Rand'='R' fields
 	     getRandNumber=$(echo $(grep -n "R" $edger | cut -d : f1))   # just line numbers of search's MATCHES
@@ -280,14 +287,14 @@ function stride() {
              newI=$(echo "$getRandNumber" | wc -w)
              checkType=$(echo "$randLine" | awk '{print($2)}') # selct 2nd Column TYPE vs WALL
              foAVA=$(grep -n "AVA" oD1.sh)
-	     #foTARGET=$(grep -n "$pok" oD1.sh
+	     foTARGET=$(grep -n "Feld6_6" oD1.sh)
              #cook=$(echo "$foAVA" >> unique1.sh) # printf '%s\n' "$foAVA}")cook=$(echo "$foAVA" >> unique1.sh) # printf '%s\n' "$foAVA}")~~''***~~+
              TZPES=$(grep ""E$"" oD1.sh)
 	     typeLines=$(echo $(grep -n ""E$"" oD1.sh | cut -d : f1))
 	     
 	      echo "scrreeeen -----------------------"
 	    rm unique5.sh
-	    touch unique5.sh
+	    touch unique5.sH
 	    weakesLink
 	    weakesLink >>  unique5.sh
 	     echo | sort -nr unique5.sh | tail -1 
