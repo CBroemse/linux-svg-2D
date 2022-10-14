@@ -101,10 +101,8 @@ list2Object() {
          #  tY=$(awk '{ print($4) }' <<< $(head -n "$i" $6 | tail -1)) #get 3rd word ..
 
            echo "got s.th"
-           echo "will pivot on stacks now"
-           echo " in english: define column names"
-      # e.g   echo "Mits" "TITS" "HITS" "SITS" > "unique1.sh"
-           #echo "Mits" "TITS" "HITS" "SITS" > "unique1.sh"           
+           echo "searchin TYPE vs WALL ?"
+           echo " check column in DICTIONARY"
 	   echo "$bebob" > "unique1.sh"
         else
 	   foOd=5 # selet collum in DICTIONARY e.g oD1.sh COLUMN 5
@@ -264,12 +262,12 @@ COMMENT
 pok=$5
 function weakesLink() {
      TZPEs=$(grep -n ""E$"" oD1.sh)
-     rm unique1.sh
-     touch unique1.sh
-     echo "$TZPEs" >> unique1.sh
+     rm unique4.sh
+     touch unique4.sh
+     echo "$TZPEs" >> unique4.sh
      for ((mi=0;mi<6;++mi)) do
 	     iOnem=$(echo | expr $mi + 1)
-             xtrailm=$(grep -n "Feld$iOnem" unique1.sh)
+             xtrailm=$(grep -n "Feld$iOnem" unique4.sh)
              typeLInksWEAKm=$(echo "$xtrailm" | wc -w) # ########################################### MEASURE WEAKEST LINK  
 	     echo "$typeLInksWEAKm" "$iOnem" 
      done
@@ -287,22 +285,22 @@ function stride() {
              TZPES=$(grep ""E$"" oD1.sh)
 	     typeLines=$(echo $(grep -n ""E$"" oD1.sh | cut -d : f1))
 	     
-	     echo "$TZPES" >> unique1.sh # printf '%s\n' "$foAVA}")
 	      echo "scrreeeen -----------------------"
-	    rm unique2.sh
-	    touch unique2.sh
+	    rm unique5.sh
+	    touch unique5.sh
 	    weakesLink
-	    weakesLink >>  unique2.sh
-	     echo | sort -nr unique2.sh | tail -1 
-	     echo | sort -nr unique2.sh | tail -2 | head -1
-	     echo | sort -nr unique2.sh | tail -3 | head -1
-	     echo | sort -nr unique2.sh | tail -4 | head -1
-	     echo | sort -nr unique2.sh | tail -5 | head -1
+	    weakesLink >>  unique5.sh
+	     echo | sort -nr unique5.sh | tail -1 
+	     echo | sort -nr unique5.sh | tail -2 | head -1
+	     echo | sort -nr unique5.sh | tail -3 | head -1
+	     echo | sort -nr unique5.sh | tail -4 | head -1
+	     echo | sort -nr unique5.sh | tail -5 | head -1
 	    # awk '{print($2)}' |
          for ((i=0;i<6;++i)) do
 	     iOne=$(echo | expr $i + 1)
+	     selters=$(echo | sort -nr unique5.sh | tail -$iOne | head -1) # function to filter WEAKEST link
              foMOVE=$(grep -n "Feld$iOne" oD1.sh)
-	     xtrail=$(grep -n "Feld$iOne" unique1.sh)
+	     xtrail=$(grep -n "Feld$iOne" unique4.sh)
              typeLInksWEAK=$(echo "$xtrail" | wc -w) # ########################################### MEASURE WEAKEST LINK
 	    # foAVA=$(grep -n "AVA" oD1.sh)
 	    # cook=$(echo "$foAVA" >> unique1.sh") #printf '%s\n' "$foAVA}")
@@ -321,7 +319,7 @@ function stride() {
                                                         #  =>     "Feld3_3 => 15
 	     
 	    echo "scrreeeen -----------------------"
-	  #  weakesLink 
+	    echo "$selters" # weakesLink 
 	    echo $xtrail
 	     extrEmpty=$(echo "$dat" | cut -f1 -d:)						
              adjustNuer=$(echo | expr $extractNumer / 6) # devide bz 6 due to 6 x6 select the right line
