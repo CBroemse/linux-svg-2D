@@ -166,7 +166,7 @@ mapUniques() {
    for ((i=0;i<$bak;++i)) do  ############ change bak OR kob
 	   #bak to write iteration and kob for an object == length aDict1.sh
 	zeropl2=$(echo | expr $i + 1) ###################### length of NAME in input from lines of MATCHES in INPUT
-        getTYPE=$(head -n $zeropl2 unique1.sh | tail -1) # get TYPE or WALL
+	getTYPE=$(head -n $zeropl2 unique1.sh | tail -1 | awk '{print($4)}') # get TYPE or WALL
         getInputY=$(head -n $zeropl2 unique3.sh | tail -1)
         getInputX=$(head -n $zeropl2 unique2.sh | tail -1)
 	kbt=$(echo | expr $kob - 1)
@@ -176,6 +176,15 @@ mapUniques() {
       getWhole=$(echo "$myGrep" | awk '{print($'$zeropl2')}')
       cde=$(echo "got s.th ii '$i $parS $bak'")
       # echo '$poe' | awk  '{print $2}'
+      function classProv() {
+                        if [ "$getTYPE" '==' "TYPE" ]
+                        then
+                            echo "room sith"
+                         else
+                            echo "room wall"
+                         fi
+                     }
+
       someBob=$(echo | expr $bak + 1)
       function drama() {
            #for ((i=0;i<$bak;++i))
@@ -187,10 +196,8 @@ mapUniques() {
                  then
          # input1= e.g feld1_1 222 91
                      somein=$(cat svgHeader)
-		#     function classProv() {
-                 #       if
-		  #   }
-                     mesReady=" <rect name = \"$i\" class= \"room wall\" width = \"94\" height=\"123\" x=\"$getInputX\" y=\"$getInputY\"/>"
+		     aclas=$(classProv)
+                     mesReady=" <rect name = \"$i\" class= \"$aclas\" width = \"94\" height=\"123\" x=\"$getInputX\" y=\"$getInputY\"/>"
                      echo "$somein" >> "object.svg"
                  elif [ "$zeropl2" '==' "$bak" ] && [ "$zeroplus" '==' "$lengde" ]    ######################## Writing object to file
                  then
@@ -199,7 +206,8 @@ mapUniques() {
            #   foinput=$(echo "[ " $getInput ", " \"$getInput2\" "]]]; ")
                     echo "$moIn" >> "object.svg"
                  else
-                    mesReady=" <rect name = \"$i\" class= \"room wall\" width = \"94\" height=\"123\" x=\"$getInputX\" y=\"$getInputY\"/>"
+		    foclas=$(classProv)
+                    mesReady=" <rect name = \"$i\" class= \"$aclas\" width = \"94\" height=\"123\" x=\"$getInputX\" y=\"$getInputY\"/>"
                     echo "$mesReady" >> object.svg
                 fi
            fi
