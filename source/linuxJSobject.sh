@@ -156,24 +156,24 @@ rm object.js
 mapUniques() {
  for ((pm=0;pm<$lengde;++pm)) do
  zeroplus=$(echo | expr $pm + 1) # to write vim starts with lin no. 1 not 0 therefore + 1
- parS=$(echo "$poe" | awk '{print($'$zeroplus')}') #parse NAMEString one by one
+ parS=$(echo "$poe" | awk '{print($'$pm')}') #parse NAMEString one by one
  #$parS
  #search name x in file
  myGrep=$(grep -n "$parS" $edger) #get whole line(s) from DICTIONARY
  takeSteps=$(echo $(grep -n "$parS" $edger | cut -d : -f1))   # just line numbers of search's MATCHES
  bak=$(echo "$takeSteps" | wc -w)
+ rectGrep=$(grep -n ""E$"" $edger) #get whole line(s) from DICTIONARY
 
    for ((i=0;i<$bak;++i)) do  ############ change bak OR kob
 	   #bak to write iteration and kob for an object == length aDict1.sh
 	zeropl2=$(echo | expr $i + 1) ###################### length of NAME in input from lines of MATCHES in INPUT
         zeropl3=$(echo | expr $i + 2) ######################
-        getInputY=$(head -n $zeropl2 unique3.sh | tail -1)
-        getInputX=$(head -n $zeropl2 unique2.sh | tail -1)
+        getInputY=$(head -n $i unique3.sh | tail -1)
+        getInputX=$(head -n $i unique2.sh | tail -1)
 	kbt=$(echo | expr $kob - 1)
 	ups=$(echo | expr $i + 1)
-	zeropl2=$(echo | expr $i + 1) ###################### length of NAME in input from lines of MATCHES in INPUT
-      parS2=$(echo "$takeSteps" | awk '{print($'$zeropl2')}') #----------------------- parser get Line number of MATCHES
-      getWhole=$(echo "$myGrep" | awk '{print($'$zeropl2')}')
+      parS2=$(echo "$takeSteps" | awk '{print($'$i')}') #----------------------- parser get Line number of MATCHES
+      getWhole=$(echo "$myGrep" | awk '{print($'$i')}')
       cde=$(echo "got s.th ii '$i $parS $bak'")
       # echo '$poe' | awk  '{print $2}'
 
@@ -185,10 +185,13 @@ mapUniques() {
             getTYPE=$(head -n $i oD1.sh | tail -1) # | awk '{print($4)}') # get TYPE or WALL
             columnTYPE=$(echo "$getTYPE" | awk '{print($2)}')
       function classProv() {
-                if [ "$columnTYPE" '==' "TYPE" ]
+                if [ "$columnTYPE" '==' "TYPE" ] || [ "$columnTYPE" '==' "AVA" ]
                 then
                      echo "room sith"
-                else
+		elif [ "$columnTYPE" '==' "WALL" ]
+		then
+		     echo "room sith"
+                else 
                      echo "room wall"
                  fi
                  }
@@ -276,6 +279,11 @@ mapUniques() {
         <animateMotion path="M -374 -369 L 0 -369" begin="10.1s" dur="0.3s" fill="freeze"/>
          <animateMotion path="M 0 0 L -280 0" begin="2.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -280 0 L -280 -123" begin="4.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -280 -123 L -374 -123" begin="6.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -374 -123 L -374 -369" begin="8.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -374 -369 L 0 -369" begin="10.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M 0 -369 L 0 -482" begin="12.1s" dur="0.3s" fill="freeze"/><animateMotion path="M 0 -369 L 0 -482" begin="12.1s" dur="0.3s" fill="freeze"/>
 COMMENT
+# -------------------------------------------------------- SVG writer
+#function writeSVG() {
+   # rewrite drama
+   # have function seperatly to enahnce readability of function mapUnique
+   # } 
 pok=$5
 function weakesLink() {
      TZPEs=$(grep -n ""E$"" oD1.sh)
