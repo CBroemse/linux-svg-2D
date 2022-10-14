@@ -166,7 +166,7 @@ mapUniques() {
    for ((i=0;i<$bak;++i)) do  ############ change bak OR kob
 	   #bak to write iteration and kob for an object == length aDict1.sh
 	zeropl2=$(echo | expr $i + 1) ###################### length of NAME in input from lines of MATCHES in INPUT
-	getTYPE=$(head -n $zeropl2 unique1.sh | tail -1 | awk '{print($4)}') # get TYPE or WALL
+        zeropl3=$(echo | expr $i + 2) ######################
         getInputY=$(head -n $zeropl2 unique3.sh | tail -1)
         getInputX=$(head -n $zeropl2 unique2.sh | tail -1)
 	kbt=$(echo | expr $kob - 1)
@@ -176,20 +176,23 @@ mapUniques() {
       getWhole=$(echo "$myGrep" | awk '{print($'$zeropl2')}')
       cde=$(echo "got s.th ii '$i $parS $bak'")
       # echo '$poe' | awk  '{print $2}'
-      function classProv() {
-                        if [ "$getTYPE" '==' "TYPE" ]
-                        then
-                            echo "room sith"
-                         else
-                            echo "room wall"
-                         fi
-                     }
 
       someBob=$(echo | expr $bak + 1)
       function drama() {
            #for ((i=0;i<$bak;++i))
               #   rm object.svg
                #  touch object.svg
+            getTYPE=$(head -n $i oD1.sh | tail -1) # | awk '{print($4)}') # get TYPE or WALL
+            columnTYPE=$(echo "$getTYPE" | awk '{print($2)}')
+      function classProv() {
+                if [ "$columnTYPE" '==' "TYPE" ]
+                then
+                     echo "room sith"
+                else
+                     echo "room wall"
+                 fi
+                 }
+
 	    if [ "$readOp" '==' "svg" ]
             then
                  if [ "$i" '==' "0" ]
@@ -206,7 +209,7 @@ mapUniques() {
            #   foinput=$(echo "[ " $getInput ", " \"$getInput2\" "]]]; ")
                     echo "$moIn" >> "object.svg"
                  else
-		    foclas=$(classProv)
+		    aclas=$(classProv)
                     mesReady=" <rect name = \"$i\" class= \"$aclas\" width = \"94\" height=\"123\" x=\"$getInputX\" y=\"$getInputY\"/>"
                     echo "$mesReady" >> object.svg
                 fi
