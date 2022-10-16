@@ -34,15 +34,17 @@ each field has two vectors and four degrees of liberty(back and forward on each 
 fields that are at the RAND do have three degrees of liberty
 vertices have two degrees of liberty 
 
-              a map 6 x 6 fields     a 6 x 6 with walls and avatar (AVA)
-      column 1     VR R R R R VR    T  T  T T T T
-             2     R  T T T T  R    W  T  T T T T  
-             3     R  T T T T  R    W  T  W W W W
-             4     R  T T T T  R    W  T  W T T T
-             5     R  T T T T  R    W  T  W W W W
-             6     VR R R R R VR    T AVA T T T T
+              a map 6 x 6 fields     a 6 x 6 with
+                                     walls and
+                                     avatar (AVA)     (x,y)
+      column 1     VR R R R R VR    T  T  T T T T     (91,-222) -317 -412 -507 -602 -697     X
+             2     R  T T T T  R    W  T  T T T T      215
+             3     R  T T T T  R    W  T  W W W W      339
+             4     R  T T T T  R    W  T  W T T T      445
+             5     R  T T T T  R    W  T  W W W W      587
+             6     VR R R R R VR    T AVA T T T T      711
  
-      line          6 5 4 3 2  1    6  5  4 3 2 1   
+      line          6 5 4 3 2  1    6  5  4 3 2 1      Y
 #### GOAL: write a MOVE in svg via linux bash file
 
        # a MOVE is a string that looks as follows:
