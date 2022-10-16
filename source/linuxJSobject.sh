@@ -163,7 +163,7 @@ mapUniques() {
  takeSteps=$(echo $(grep -n "$parS" $edger | cut -d : -f1))   # just line numbers of search's MATCHES
  bak=$(echo "$takeSteps" | wc -w)
  rectGrep=$(grep -n ""E$"" $edger) #get whole line(s) from DICTIONARY
-
+ rectSteps=$(echo $(grep -n ""E$"" $edger | cut -d : -f1))
    for ((i=0;i<$bak;++i)) do  ############ change bak OR kob
 	   #bak to write iteration and kob for an object == length aDict1.sh
 	zeropl2=$(echo | expr $i + 1) ###################### length of NAME in input from lines of MATCHES in INPUT
@@ -180,7 +180,7 @@ mapUniques() {
       someBob=$(echo | expr $bak + 1)
       function drama() {
            #for ((i=0;i<$bak;++i))
-              #   rm object.svg
+              #   rm object.svg   a
                #  touch object.svg
             getTYPE=$(head -n $i oD1.sh | tail -1) # | awk '{print($4)}') # get TYPE or WALL
             columnTYPE=$(echo "$getTYPE" | awk '{print($2)}')
@@ -190,9 +190,9 @@ mapUniques() {
                      echo "room sith"
 		elif [ "$columnTYPE" '==' "WALL" ]
 		then
-		     echo "room sith"
+		     echo "room wall"
                 else 
-                     echo "room wall"
+                     echo "room sith"
                  fi
                  }
 
