@@ -35,10 +35,12 @@ each field has two vectors and four degrees of liberty(back and forward on each 
 fields that are at the RAND do have three degrees of liberty
 vertices have two degrees of liberty 
 
-        a map 6 x 6 fields     a 6 x 6 with walls and avatar (AVA)
-             VR R R R R VR    T  T  T T T T
-             R  T T T T  R    W  T  T T T T  
-             R  T T T T  R    W  T  W W W W
-             R  T T T T  R    W  T  W T T T
-             R  T T T T  R    W  T  W W W W
-             VR R R R R VR    T AVA T T T T
+              a map 6 x 6 fields     a 6 x 6 with walls and avatar (AVA)
+      column 1     VR R R R R VR    T  T  T T T T
+             2     R  T T T T  R    W  T  T T T T  
+             3     R  T T T T  R    W  T  W W W W
+             4     R  T T T T  R    W  T  W T T T
+             5     R  T T T T  R    W  T  W W W W
+             6     VR R R R R VR    T AVA T T T T
+ 
+          line      6 5 4 3 2  1    6  5  4 3 2 1   
