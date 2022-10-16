@@ -11,24 +11,20 @@ USAGE
    "node" :: String ; search lines in aDict1.sh
                          and write to unique4.sh
 
-./linuxJSobject.sh "grobi" object 4 2 "node" oD1.sh #aDict1.sh
+./linuxJSobject.sh "grobi" object 4 2 "node" oD1.sh 
 
 OVERVIEW
   mapping functions to read out of file
 
-  MAP aDict1.sh write/and insert in 
-    - unique1 ,2 ,3 .sh
+  MAP oD1.sh write/and insert in 
+    - unique1 ,2 ,3 ,4 ,5 .sh
     - object, 1 .sh
-  INDICATORS
-    - variables used below that are Ints (length of input)
-    - lengde: length of $ 1 the fst input String
-              how many NAME to be processed in one RUN
-	      ca. line: 30 of this file
-    - kob: length of an element of a list of different 
-           NAMES of a grep RUN
-	   kob = [NAMES] = ? bak ?
-    - bak: n elements of occurance0 of Name in aDict1.sh
-        used in functions readInputSTRING
+ 
+FUNCTIONS              purpose
+svg: mapUniques      via functions:
+     stride
+     weakesLink
+js   :	
           
 
 # usage e.g *>  ./linuxJSobject.sh "peter" 1 2 4 "node" aDict1.sh
@@ -298,6 +294,9 @@ function weakesLink() {
      done
        
 }
+# the function below illustrates some useful parameters that can be used
+# to write a move function, a combination of weakesLink and if clauses ...
+#  stride -> move => MOVE 
 # TARGET = Feld6_6
 function stride() {
              randLine=$(grep -n "R" $edger) # whole line of matches of 'Rand'='R' fields
