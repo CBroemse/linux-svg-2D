@@ -44,7 +44,7 @@ vertices have two degrees of liberty
              5     R  T T T T  R    W  T  W W W W           587
              6     VR R R R R VR    T AVA T T T T           711
  
-      line          6 5 4 3 2  1    6  5  4 3 2 1             Y
+      line          1 2 3 4 5  6    1  2  3 4 5 6             Y
 #### GOAL: write a MOVE in svg via linux bash file
 
        # a MOVE is a string that looks as follows:
