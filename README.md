@@ -43,4 +43,4 @@ vertices have two degrees of liberty
              5     R  T T T T  R    W  T  W W W W
              6     VR R R R R VR    T AVA T T T T
  
-          line      6 5 4 3 2  1    6  5  4 3 2 1   
+      line          6 5 4 3 2  1    6  5  4 3 2 1   
