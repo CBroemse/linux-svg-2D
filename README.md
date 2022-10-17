@@ -47,10 +47,19 @@ vertices have two degrees of liberty. Only horizontal and vertical moves, no dia
       line          1 2 3 4 5  6    1  2  3 4 5 6             Y
 #### GOAL: write a MOVE in svg via linux bash file
 
-       # a MOVE is a string that looks as follows:
-        M   0     0 L -280    <animateMotion path="M  0 0 L -280 0" begin="2.1s" dur="0.3s" fill="freeze"/>
+       # a MOVE is a string that looks as follows
+         in svg
+        <animateMotion path="M  0 0 L -280 0" begin="2.1s" dur="0.3s" fill="freeze"/>
         <animateMotion path="M  -280 0 L -280 -123" begin="4.1s" dur="0.3s" fill="freeze"/>
         <animateMotion path="M  -280 -123 L -374 -123" begin="6.1s" dur="0.3s" fill="freeze"/>
         <animateMotion path="M  -374 -123 L -374 -369" begin="8.1s" dur="0.3s" fill="freeze"/>
         <animateMotion path="M  -374 -369 L 0 -369" begin="10.1s" dur="0.3s" fill="freeze"/>
         <animateMotion path="M  0 -369 L 0 -482" begin="12.1s" dur="0.3s" fill="freeze"/>
+        
+                    numerical
+        M   0     0 L -280    0       2.1  0.3
+        M -280    0 L -280 -123       4.1  0.3
+        M -280 -123 L -374 -123       6.1  0.3
+        M -374 -123 L -374 -369       8.1  0.3
+        M -374 -369 L    0 -369      10.1  0.3
+        M    0 -369 L    0 -482      12.1  0.3
