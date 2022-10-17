@@ -54,7 +54,7 @@ vertices have two degrees of liberty. Only horizontal and vertical moves, no dia
         <animateMotion path="M  -280 -123 L -374 -123" begin="6.1s" dur="0.3s" fill="freeze"/>
         <animateMotion path="M  -374 -123 L -374 -369" begin="8.1s" dur="0.3s" fill="freeze"/>
         <animateMotion path="M  -374 -369 L 0 -369" begin="10.1s" dur="0.3s" fill="freeze"/>
-        <animateMotion path="M  0 -369 L 0 -482" begin="12.1s" dur="0.3s" fill="freeze"/>
+        <animateMotion path="M  0 -369 L 0 -492" begin="12.1s" dur="0.3s" fill="freeze"/>
         
                     numerical
         M   0     0 L -280    0       2.1  0.3
@@ -62,4 +62,4 @@ vertices have two degrees of liberty. Only horizontal and vertical moves, no dia
         M -280 -123 L -374 -123       6.1  0.3
         M -374 -123 L -374 -369       8.1  0.3
         M -374 -369 L    0 -369      10.1  0.3
-        M    0 -369 L    0 -482      12.1  0.3
+        M    0 -369 L    0 -492      12.1  0.3
