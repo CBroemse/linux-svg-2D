@@ -412,18 +412,23 @@ function moveToWeaks() {
 	     iOne=$(echo | expr $i + 1)
 	    
 	     selters=$(echo | sort -nr unique5.sh | tail -$iOne | head -1) # function to filter WEAKEST linki
+	     selToTarget=$(head -n $iOne unique5.sh | tail -1) #  $(echo | grep -n unique5.sh | tail -$iOne | head -1) # the order is N of different length
+             typeMighty=$(echo | sort -nr unique5.sh | head -1 | tail -1) # reverse selters -> most Mighty TYPE acumulation in lines
+	        # say if AVA line and a TYPE line are the same
+               #      then 
+	        #         go to strngh ==  4
+		#	 search 
+                #         grep -n "Feld$strngh" "unique4.sh"
+			 
+	     
+	     targOrd=$(awk '{print($1)}' <<< $selToTarget)
 	     ofsleters=$(awk '{print($2)}' <<< $selters)
              stringth=$(awk '{print($1)}' <<< $selters)
+	     typeXsMight=$(awk '{print($2)}' <<< $typeMighty
+     )
 	     strngh=$(echo | expr $stringth / 7)
-	     if [ "$strngh" '==' "0" ]
-	     then 
-		  echo " way is blocked at line" "$ofsleters"
-	     elif [ "$strngh" '==' "1" ]
-	     then 
-		 echo "narrow at" "$ofsleters"
-	     else
-		 echo "walking..."
-	     fi
+	     fomightTarg=$(expr $targOrd / 7)
+	     mightTarg=$(echo "$fomightTarg")
 	     getLin=$(head -n $i oD1.sh | tail -1)    # get line 
              foMOVE=$(grep -n "Feld$iOne" oD1.sh)
 	     targetLin=$(grep -n "$TARGET" oD1.sh | awk '{print($1)}' | cut -f1 -d:) # line number o TARGET in DICTIONARY
@@ -457,6 +462,22 @@ function moveToWeaks() {
 	    echo "        a) AVA to weakesLink"     	    
 	 #   echo "$selters" # weakesLink 
 	    echo "selected line: " "$ofsleters"
+	    meter=$(echo "length xtrail: " "$mightTarg") # strngh")
+	    if [ "$strngh" '==' "0" ]
+	     then 
+		  echo " way is blocked at line" "$ofsleters"
+		  echo "$meter"
+	     elif [ "$strngh" '==' "1" ]
+	     then 
+		 echo "narrow at" "$ofsleters"
+		 echo "$meter" 
+	     else
+		 echo "walking..."
+		 echo "$meter"
+	     fi 
+	     # write folgorder
+	     kaba=$(echo $xtrail)
+	    
 	    echo $xtrail
 	     extrEmpty=$(echo "$dat" | cut -f1 -d:)						
              adjustNuer=$(echo | expr $extractNumer / 6) # devide bz 6 due to 6 x6 select the right line
@@ -467,6 +488,31 @@ function moveToWeaks() {
                foastrid=$(echo ""Feld$foextr'_'$insertI"")
                customGrep0=$(grep "$foastrid" $edger) #"\"Feld'$adjustNuer'_'$insertI'\"" $edger) # get another FELD depending where AVA is in fst MOVE
 	       customCheck=$(echo "$customGrep0" | awk '{print($2)}') # check TYPE
+	        #  calcRoute= expr $mightTarg - $mighAVA
+	      for ((ii=0;ii<$fomightTarg;++ii))
+	          do
+	             echo "$ii"
+		     if [ "$iOne" '==' "1" ]
+         	     then
+			rm unique6.sh
+	                touch unique6.sh
+	                echo "$xtrail" >> unique6.sh
+                        getLinKaba=$(head -n $iOne unique6.sh | tail -1)    # get line  
+	                echo $getLinKaba
+	        	  echo "AVA is in line 1"
+		          echo " a matching ..." "$meter"
+	           #  elif [ "$iOne" '==' "1" ]
+	           #  then 
+		   #      echo "narrow at" "$ofsleters"
+		   #       echo "$meter" 
+	             else
+			  echo "$xtrail" >> unique6.sh
+			  getLinKaba=$(head -n $iOne unique6.sh | tail -1)    # get line  
+	                echo $getLinKaba
+		          echo "walking..."
+		          echo "$meter"
+	             fi
+	      done
                echo "$customGrep0" #"$buility" #"$insertI" #"$customGrep"
 	       echo "$buility" " " "$otherdat"
 	       # gnoim=ii
