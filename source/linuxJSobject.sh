@@ -381,13 +381,14 @@ function stride() {
 	     done
             }
   
+TARGET="Feld6_6"
 function moveToWeaks() {
              randLine=$(grep -n "R" $edger) # whole line of matches of 'Rand'='R' fields
 	     getRandNumber=$(echo $(grep -n "R" $edger | cut -d : f1))   # just line numbers of search's MATCHES
              newI=$(echo "$getRandNumber" | wc -w)
              checkType=$(echo "$randLine" | awk '{print($2)}') # selct 2nd Column TYPE vs WALL
              foAVA=$(grep -n "AVA" oD1.sh)
-	     foTARGET=$(grep -n "Feld6_6" oD1.sh)
+	     foTARGET=$(grep -n "$TARGET" oD1.sh)
              TZPES=$(grep ""E$"" oD1.sh)
 	     typeLines=$(echo $(grep -n ""E$"" oD1.sh | cut -d : f1))
 	     
@@ -412,11 +413,31 @@ function moveToWeaks() {
 	    
 	     selters=$(echo | sort -nr unique5.sh | tail -$iOne | head -1) # function to filter WEAKEST linki
 	     ofsleters=$(awk '{print($2)}' <<< $selters)
+             stringth=$(awk '{print($1)}' <<< $selters)
+	     strngh=$(echo | expr $stringth / 7)
+	     if [ "$strngh" '==' "0" ]
+	     then 
+		  echo " way is blocked at line" "$ofsleters"
+	     elif [ "$strngh" '==' "1" ]
+	     then 
+		 echo "narrow at" "$ofsleters"
+	     else
+		 echo "walking..."
+	     fi
 	     getLin=$(head -n $i oD1.sh | tail -1)    # get line 
              foMOVE=$(grep -n "Feld$iOne" oD1.sh)
-	     xtrail=$(grep -n "Feld$ofsleters" unique4.sh)
+	     targetLin=$(grep -n "$TARGET" oD1.sh | awk '{print($1)}' | cut -f1 -d:) # line number o TARGET in DICTIONARY
+             ofTarget=$(awk '{print($3)}' <<< $foTARGET)
+	     # targetYs
+             # ofT2=$(echo | expr $targetLin / 6) # line number of TARGET in Dictionary	     
+	     # different orders for different purposes
+	     # e.g ----------------------------------------------- fst level orders:
+	     #   TARGET relative to AVA: 6 ..      1 -> 
+	     #               weakesLink: 4 2 3 1 5 6 
+             #               
+             xtrail=$(grep -n "Feld$iOne" unique4.sh) # set to find TARGET -> show line number
+	     xWEAK=$(grep -n "Feld$ofsleters" unique4.sh) # set to find weakestLink
              typeLInksWEAK=$(echo "$xtrail" | wc -w) # ########################################### MEASURE WEAKEST LINK
-	    # foAVA=$(grep -n "AVA" oD1.sh)
              awk '{ print $1 }' <<< $(head -n $i unique1.sh | tail -1)
 	     avaX=$(echo "$foAVA" | awk '{print($3)}') # get x value of avatar
              avaY=$(echo "$foAVA" | awk '{print($5)}') # get y value of avatar
@@ -426,8 +447,9 @@ function moveToWeaks() {
 	     getInput=$(head -n $zeropl2 unique3.sh | tail -1)
              getInput2=$(head -n $zeropl2 unique2.sh | tail -1)
 
-	     dub= read some _  <<< "$foAVA"             # ---------------- EXTRACT line with AVATAR
-	     lineEmpty= read dat _ <<< "$foMOVE"        # 
+	     dub= read some _  <<< "$avaLine"             # ---------------- EXTRACT line with AVATAR
+	     lineEmpty= read dat _ <<< "$foMOVE"        #
+	     otherdat=$(awk '{print($2)}' <<< "$foMOVE") 
 	     extractNumer=$(echo "$some" | cut -f1 -d:) # => e.g "Feld1_1 => 1
                                                         #  =>     "Feld3_3 => 15
 	     
@@ -440,41 +462,18 @@ function moveToWeaks() {
              adjustNuer=$(echo | expr $extractNumer / 6) # devide bz 6 due to 6 x6 select the right line
 	    # adju=$(echo | expr $extrEmpty / 6)
 	     foextr=$(echo | expr $adjustNuer + 1)
-	     #moextr=$(echo | expr $adju +1)   
-	     #echo "$avaX $avaY" #"$checkType" #"$newI" #"$getRandNumber" #"$randLine"
 		insertI=$(echo | expr $i + 1) 
 		buility=$(echo "$poe""$extractNumer""_""$insertI") # ------------------------------- BUILD custom GREP advance functionality of svg
-	#	checkXbar=$(echo | $(grep "$buility" $edger))
-	#	plau=$(echo "$checkXbar") | awk '{print($1)}') #"$extractNumer" #"$moprep" #"$adjustNuer"
-	#	plau
                foastrid=$(echo ""Feld$foextr'_'$insertI"")
                customGrep0=$(grep "$foastrid" $edger) #"\"Feld'$adjustNuer'_'$insertI'\"" $edger) # get another FELD depending where AVA is in fst MOVE
 	       customCheck=$(echo "$customGrep0" | awk '{print($2)}') # check TYPE
                echo "$customGrep0" #"$buility" #"$insertI" #"$customGrep"
-               
-         for ((ii=0;ii<6;++ii)) do
-	     iiOne=$(echo | expr $ii + 1)
-             foMOVEii=$(grep -n ""$iOne'_'$iiOne"" oD1.sh) # ""$pok'_'$iiOne"" oD1.sh)
-	    # fobolg=$(echo "_ bolg") ################################################# Schaltstelle
-	     BOARD= read _ bolg _ <<< "$foMOVEii"
-#i	     if [ "$bolg" '==' "TYPE" ]
-
-#	     then
-#	      echo "$bolg"
-#	      elif [ "$ii" '==' "3" ] || [ "$i" '==' "4" ] && [ "$bolg" '==' "TYPE" ]
-#
- #            then
-  #            echo "$bolg"
-   #          elif [ "$ii" '==' "5" ] || [ "$i" '==' "6" ] && [ "$bolg" '==' "TYPE" ]
-#
- #            then
-  #            echo "$bolg"
-#
-#	     else
-#	      echo "$foMOVEii"
-#	     fi 
-             done 
+	       echo "$buility" " " "$otherdat"
+	       # gnoim=ii
+	       # echo "$gnoim"
+        # ofT2 = in which line is target relative to AVA       
 	       echo "$dat"
+	       echo "$avaLine"
 	       changeSVGanim
 	       #echo "$foMOVEii"
  #if [ "$customCheck" '==' 'TYPE' ]
