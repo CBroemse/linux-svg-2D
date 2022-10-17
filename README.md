@@ -16,7 +16,7 @@ check currant position   ------------------> need a write/replace new AVA into D
          *> grep -n ""E$"" oD1.sh
          => all open MOVES on TYPES 
          *> grep -n ""L$"" oD1.sh
-                 columns             |       rows
+                  columns             |       rows
          *> grep -n ""_1$"" oD1.sh    |   *> grep "Feld1_" oD1.sh
          :                            |   : 
          *> grep ""_6$"" oD1.sh       |   *> grep "Feld6_" oD1.sh
@@ -38,11 +38,11 @@ vertices have two degrees of liberty
                                      walls and
                                      avatar (AVA)     (x,y)
       column 1     VR R R R R VR    T  T  T T T T     (-222, 91) -317 -412 -507 -602 -697     X
-             2     R  T T T T  R    W  T  T T T T           215
-             3     R  T T T T  R    W  T  W W W W           339
-             4     R  T T T T  R    W  T  W T T T           445
-             5     R  T T T T  R    W  T  W W W W           587
-             6     VR R R R R VR    T AVA T T T T           711
+             2     R  T T T T  R    W  T  T T T T        .. 215)
+             3     R  T T T T  R    W  T  W W W W           339)
+             4     R  T T T T  R    W  T  W T T T           445)
+             5     R  T T T T  R    W  T  W W W W           587)
+             6     VR R R R R VR    T AVA T T T T           711)
  
       line          1 2 3 4 5  6    1  2  3 4 5 6             Y
 #### GOAL: write a MOVE in svg via linux bash file
@@ -53,4 +53,4 @@ vertices have two degrees of liberty
         <animateMotion path="M  -280 -123 L -374 -123" begin="6.1s" dur="0.3s" fill="freeze"/>
         <animateMotion path="M  -374 -123 L -374 -369" begin="8.1s" dur="0.3s" fill="freeze"/>
         <animateMotion path="M  -374 -369 L 0 -369" begin="10.1s" dur="0.3s" fill="freeze"/>
-       <animateMotion path="M  0 -369 L 0 -482" begin="12.1s" dur="0.3s" fill="freeze"/>
+        <animateMotion path="M  0 -369 L 0 -482" begin="12.1s" dur="0.3s" fill="freeze"/>
