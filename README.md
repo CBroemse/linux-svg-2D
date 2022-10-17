@@ -30,9 +30,9 @@ check currant position   ------------------> need a write/replace new AVA into D
                 |        |    |      |   |    |    |
                oD1.sh    R   VR  avatar  T    W  f(mov())         
 
-each field has two vectors and four degrees of liberty(back and forward on each axis)
+In this example each field has two vectors and four degrees of liberty(back and forward on each axis)
 fields that are at the RAND do have three degrees of liberty
-vertices have two degrees of liberty 
+vertices have two degrees of liberty. Only horizontal and vertical moves, no diagonal ones yet. 
 
               a map 6 x 6 fields     a 6 x 6 with
                                      walls and
@@ -48,7 +48,7 @@ vertices have two degrees of liberty
 #### GOAL: write a MOVE in svg via linux bash file
 
        # a MOVE is a string that looks as follows:
-        <animateMotion path="M  0 0 L -280 0" begin="2.1s" dur="0.3s" fill="freeze"/>
+        M   0     0 L -280    <animateMotion path="M  0 0 L -280 0" begin="2.1s" dur="0.3s" fill="freeze"/>
         <animateMotion path="M  -280 0 L -280 -123" begin="4.1s" dur="0.3s" fill="freeze"/>
         <animateMotion path="M  -280 -123 L -374 -123" begin="6.1s" dur="0.3s" fill="freeze"/>
         <animateMotion path="M  -374 -123 L -374 -369" begin="8.1s" dur="0.3s" fill="freeze"/>
