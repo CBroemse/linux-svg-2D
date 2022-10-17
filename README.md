@@ -26,9 +26,9 @@ check currant position   ------------------> need a write/replace new AVA into D
 
     *> ./linuxJSobject.sh "Feld" svg 3 3 "Feld" oD1.sh
 
-      Types: DICTIONARY,RAND,VERTEX,AVA,TYPE,WALL,MOVE
-                |        |    |      |   |    |    |
-               oD1.sh    R   VR  avatar  T    W  f(mov())         
+      Types: DICTIONARY,RAND,VERTEX,AVA,TYPE,WALL,MOVE,TARGET
+                |        |    |      |   |    |    |        |
+               oD1.sh    R   VR  avatar  T    W  f(mov())  TA        
 
 In this example each field has two vectors and four degrees of liberty(back and forward on each axis)
 fields that are at the RAND do have three degrees of liberty
@@ -42,7 +42,7 @@ vertices have two degrees of liberty. Only horizontal and vertical moves, no dia
              3     R  T T T T  R    T  T  W T W T           339)
              4     R  T T T T  R    T  T  W T T T           445)
              5     R  T T T T  R    T  T  T T T T           587)
-             6     VR R R R R VR    W  W  W T T T           711)
+             6     VR R R R R VR   TA  W  W T T T           711)
  
       line          1 2 3 4 5  6    6  4  4 3 2 1             Y
 #### GOAL: write a MOVE in svg via linux bash file
