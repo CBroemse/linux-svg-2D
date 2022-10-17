@@ -37,14 +37,14 @@ vertices have two degrees of liberty. Only horizontal and vertical moves, no dia
               a map 6 x 6 fields     a 6 x 6 with
                                      walls and
                                      avatar (AVA)     (x,y)
-      column 1     VR R R R R VR    T  T  T T T T     (-222, 91) -317 -412 -507 -602 -697     X
-             2     R  T T T T  R    W  T  T T T T        .. 215)
-             3     R  T T T T  R    W  T  W W W W           339)
-             4     R  T T T T  R    W  T  W T T T           445)
-             5     R  T T T T  R    W  T  W W W W           587)
-             6     VR R R R R VR    T AVA T T T T           711)
+      column 1     VR R R R R VR    T  T  W W T AVA     (-222, 91) -317 -412 -507 -602 -697     X
+             2     R  T T T T  R    T  T  W T W T        .. 215)
+             3     R  T T T T  R    T  T  W T W T           339)
+             4     R  T T T T  R    T  T  W T T T           445)
+             5     R  T T T T  R    T  T  T T T T           587)
+             6     VR R R R R VR    W  W  W T T T           711)
  
-      line          1 2 3 4 5  6    1  2  3 4 5 6             Y
+      line          1 2 3 4 5  6    6  4  4 3 2 1             Y
 #### GOAL: write a MOVE in svg via linux bash file
 
        # a MOVE is a string that looks as follows
