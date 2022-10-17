@@ -492,12 +492,13 @@ function moveToWeaks() {
 	      for ((ii=0;ii<$fomightTarg;++ii))
 	          do
 	             echo "$ii"
+		     iiOne=$(echo | expr $ii + 1)
 		     if [ "$iOne" '==' "1" ]
          	     then
 			rm unique6.sh
 	                touch unique6.sh
 	                echo "$xtrail" >> unique6.sh
-                        getLinKaba=$(head -n $iOne unique6.sh | tail -1)    # get line  
+                        getLinKaba=$(head -n $iiOne unique6.sh | tail -1)    # get line  
 	                echo $getLinKaba
 	        	  echo "AVA is in line 1"
 		          echo " a matching ..." "$meter"
