@@ -17,17 +17,17 @@ OVERVIEW
   mapping functions to read out of file
 
   MAP oD1.sh write/and insert in 
-    - unique1 ,2 ,3 ,4 ,5 .sh
+    - unique1 ,2 ,3 ,4 ,5 ,6 .sh
     - object, 1 .sh
  
 FUNCTIONS              purpose
-svg: mapUniques      via functions:
-     stride
+svg: mapUniques      via functions:  changeSVGanim
+     stride                        ,   
      weakesLink
 js   :	
           
 
-# usage e.g *>  ./linuxJSobject.sh "peter" 1 2 4 "node" aDict1.sh
+# usage e.g *>  ./linuxJSobject.sh "Feld" svg 3 3 "Feld" oD1.sh
 COMMENT
 #read fst word
 poe=$1
@@ -155,7 +155,9 @@ changeSVGanim() {
    lastY=$(awk '{print($8)}' <<< $lastPosi)
    echo "$lastX" "$lastY"
 }
-
+# function below searches DICTIONARY
+# depending on $3 = $readOP of main input
+#              $3 == svg || $3 == object 
 mapUniques() {
  for ((pm=0;pm<$lengde;++pm)) do
  zeroplus=$(echo | expr $pm + 1) # to write vim starts with lin no. 1 not 0 therefore + 1
@@ -372,7 +374,7 @@ function stride() {
                
          for ((ii=0;ii<6;++ii)) do
 	     iiOne=$(echo | expr $ii + 1)
-             foMOVEii=$(grep -n ""$iOne'_'$iiOne"" oD1.sh) # ""$pok'_'$iiOne"" oD1.sh)
+             foMOVEii=$(grep -n ""$iiOne'_'$iOne"" oD1.sh) # ""$pok'_'$iiOne"" oD1.sh)
 	    # fobolg=$(echo "_ bolg") ################################################# Schaltstelle
 	     BOARD= read _ bolg _ <<< "$foMOVEii"
              done 
