@@ -149,6 +149,13 @@ fstCol  ############################### NAMELIST in unique3.sh
 rm object.sh
 rm object.js
 
+changeSVGanim() {
+   lastPosi=$(grep -n "freeze" svgTail | tail -1) # previous simulation
+   lastX=$(awk '{print($7)}' <<< $lastPosi)
+   lastY=$(awk '{print($8)}' <<< $lastPosi)
+   echo "$lastX" "$lastY"
+}
+
 mapUniques() {
  for ((pm=0;pm<$lengde;++pm)) do
  zeroplus=$(echo | expr $pm + 1) # to write vim starts with lin no. 1 not 0 therefore + 1
@@ -173,7 +180,6 @@ mapUniques() {
       cde=$(echo "got s.th ii '$i $parS $bak'")
       # echo '$poe' | awk  '{print $2}'
 
-      someBob=$(echo | expr $bak + 1)
       function drama() {
            #for ((i=0;i<$bak;++i))
               #   rm object.svg   a
@@ -268,12 +274,12 @@ mapUniques() {
 }
 <<COMMENT
      # a MOVE is a string that looks as follows:
-     #  <animateMotion path="M 0 0 L -280 0" begin="2.1s" dur="0.3s" fill="freeze"/>
-        <animateMotion path="M -280 0 L -280 -123" begin="4.1s" dur="0.3s" fill="freeze"/>
-        <animateMotion path="M -280 -123 L -374 -123" begin="6.1s" dur="0.3s" fill="freeze"/>
-        <animateMotion path="M -374 -123 L -374 -369" begin="8.1s" dur="0.3s" fill="freeze"/>
-        <animateMotion path="M -374 -369 L 0 -369" begin="10.1s" dur="0.3s" fill="freeze"/>
-         <animateMotion path="M 0 0 L -280 0" begin="2.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -280 0 L -280 -123" begin="4.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -280 -123 L -374 -123" begin="6.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -374 -123 L -374 -369" begin="8.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M -374 -369 L 0 -369" begin="10.1s" dur="0.3s" fill="freeze"/> <animateMotion path="M 0 -369 L 0 -482" begin="12.1s" dur="0.3s" fill="freeze"/><animateMotion path="M 0 -369 L 0 -482" begin="12.1s" dur="0.3s" fill="freeze"/>
+     # <animateMotion path="M  0 0 L -280 0" begin="2.1s" dur="0.3s" fill="freeze"/>
+     <animateMotion path="M  -280 0 L -280 -123" begin="4.1s" dur="0.3s" fill="freeze"/>
+     <animateMotion path="M  -280 -123 L -374 -123" begin="6.1s" dur="0.3s" fill="freeze"/>
+     <animateMotion path="M  -374 -123 L -374 -369" begin="8.1s" dur="0.3s" fill="freeze"/>
+     <animateMotion path="M  -374 -369 L 0 -369" begin="10.1s" dur="0.3s" fill="freeze"/>
+    <animateMotion path="M  0 -369 L 0 -492" begin="12.1s" dur="0.3s" fill="freeze"/>
 COMMENT
 # -------------------------------------------------------- SVG writer
 #function writeSVG() {
@@ -342,7 +348,6 @@ function stride() {
 	     lineEmpty= read dat _ <<< "$foMOVE"        # 
 	     extractNumer=$(echo "$some" | cut -f1 -d:) # => e.g "Feld1_1 => 1
                                                         #  =>     "Feld3_3 => 15
-	     
 	    echo "scrreeeen -----------------------"
 	    echo "$selters" # weakesLink 
 	    echo $xtrail
@@ -355,18 +360,95 @@ function stride() {
 		insertI=$(echo | expr $i + 1) 
 		buility=$(echo "$poe""$extractNumer""_""$insertI") # ------------------------------- BUILD custom GREP advance functionality of svg
 	#	checkXbar=$(echo | $(grep "$buility" $edger))
-
 	#	plau=$(echo "$checkXbar") | awk '{print($1)}') #"$extractNumer" #"$moprep" #"$adjustNuer"
 	#	plau
- #            done
-  #           } 
-#             for ((i=0;i<6;++i)) do # set AVa to do 6 MOVES
-  #              insertI= expr $i + 1
                foastrid=$(echo ""Feld$foextr'_'$insertI"")
 	     #  fotania=$(echo ""Feld$moextr'_'$insertI"")
 	      # astrid=$(eval $foastrid)
                customGrep0=$(grep "$foastrid" $edger) #"\"Feld'$adjustNuer'_'$insertI'\"" $edger) # get another FELD depending where AVA is in fst MOVE
 	     #  grepEm=$(grep "$fotania" $edger)
+	       customCheck=$(echo "$customGrep0" | awk '{print($2)}') # check TYPE
+               echo "$customGrep0" #"$buility" #"$insertI" #"$customGrep"
+               
+         for ((ii=0;ii<6;++ii)) do
+	     iiOne=$(echo | expr $ii + 1)
+             foMOVEii=$(grep -n ""$iOne'_'$iiOne"" oD1.sh) # ""$pok'_'$iiOne"" oD1.sh)
+	    # fobolg=$(echo "_ bolg") ################################################# Schaltstelle
+	     BOARD= read _ bolg _ <<< "$foMOVEii"
+             done 
+	       echo "$dat"
+	       #echo "$foMOVEii"
+	     done
+            }
+  
+function moveToWeaks() {
+             randLine=$(grep -n "R" $edger) # whole line of matches of 'Rand'='R' fields
+	     getRandNumber=$(echo $(grep -n "R" $edger | cut -d : f1))   # just line numbers of search's MATCHES
+             newI=$(echo "$getRandNumber" | wc -w)
+             checkType=$(echo "$randLine" | awk '{print($2)}') # selct 2nd Column TYPE vs WALL
+             foAVA=$(grep -n "AVA" oD1.sh)
+	     foTARGET=$(grep -n "Feld6_6" oD1.sh)
+             TZPES=$(grep ""E$"" oD1.sh)
+	     typeLines=$(echo $(grep -n ""E$"" oD1.sh | cut -d : f1))
+	     
+	      echo "\nMEASSURE weakest link -----------------------"
+	      echo "  - 2 streams of action "
+	      echo "    I. get coordinates : AVA, weakesLink, TARGET"
+              echo "    II. decide PATH from"
+  	      echo "        a) AVA to weakesLink"
+              echo "        b) weakesLink to TARGET"    
+	    rm unique5.sh
+	    touch unique5.sH
+	    weakesLink
+	    weakesLink >>  unique5.sh
+	     echo | sort -nr unique5.sh | tail -1 
+	     echo | sort -nr unique5.sh | tail -2 | head -1
+	     echo | sort -nr unique5.sh | tail -3 | head -1
+	     echo | sort -nr unique5.sh | tail -4 | head -1
+	     echo | sort -nr unique5.sh | tail -5 | head -1
+	    # awk '{print($2)}' |
+         for ((i=0;i<6;++i)) do
+	     iOne=$(echo | expr $i + 1)
+	    
+	     selters=$(echo | sort -nr unique5.sh | tail -$iOne | head -1) # function to filter WEAKEST linki
+	     ofsleters=$(awk '{print($2)}' <<< $selters)
+	     getLin=$(head -n $i oD1.sh | tail -1)    # get line 
+             foMOVE=$(grep -n "Feld$iOne" oD1.sh)
+	     xtrail=$(grep -n "Feld$ofsleters" unique4.sh)
+             typeLInksWEAK=$(echo "$xtrail" | wc -w) # ########################################### MEASURE WEAKEST LINK
+	    # foAVA=$(grep -n "AVA" oD1.sh)
+             awk '{ print $1 }' <<< $(head -n $i unique1.sh | tail -1)
+	     avaX=$(echo "$foAVA" | awk '{print($3)}') # get x value of avatar
+             avaY=$(echo "$foAVA" | awk '{print($5)}') # get y value of avatar
+	     avaLine=$(echo "$foAVA" | awk '{print($1)}')
+             prep=$(grep -n "AVA" $edger) # grep with -n to match with line numbers
+	     moprep=$(echo "$prep" | awk '{print($1)}')
+	     getInput=$(head -n $zeropl2 unique3.sh | tail -1)
+             getInput2=$(head -n $zeropl2 unique2.sh | tail -1)
+
+	     dub= read some _  <<< "$foAVA"             # ---------------- EXTRACT line with AVATAR
+	     lineEmpty= read dat _ <<< "$foMOVE"        # 
+	     extractNumer=$(echo "$some" | cut -f1 -d:) # => e.g "Feld1_1 => 1
+                                                        #  =>     "Feld3_3 => 15
+	     
+	    echo "move '"$iOne"': -------------------- " 
+	    echo "        a) AVA to weakesLink"     	    
+	 #   echo "$selters" # weakesLink 
+	    echo "selected line: " "$ofsleters"
+	    echo $xtrail
+	     extrEmpty=$(echo "$dat" | cut -f1 -d:)						
+             adjustNuer=$(echo | expr $extractNumer / 6) # devide bz 6 due to 6 x6 select the right line
+	    # adju=$(echo | expr $extrEmpty / 6)
+	     foextr=$(echo | expr $adjustNuer + 1)
+	     #moextr=$(echo | expr $adju +1)   
+	     #echo "$avaX $avaY" #"$checkType" #"$newI" #"$getRandNumber" #"$randLine"
+		insertI=$(echo | expr $i + 1) 
+		buility=$(echo "$poe""$extractNumer""_""$insertI") # ------------------------------- BUILD custom GREP advance functionality of svg
+	#	checkXbar=$(echo | $(grep "$buility" $edger))
+	#	plau=$(echo "$checkXbar") | awk '{print($1)}') #"$extractNumer" #"$moprep" #"$adjustNuer"
+	#	plau
+               foastrid=$(echo ""Feld$foextr'_'$insertI"")
+               customGrep0=$(grep "$foastrid" $edger) #"\"Feld'$adjustNuer'_'$insertI'\"" $edger) # get another FELD depending where AVA is in fst MOVE
 	       customCheck=$(echo "$customGrep0" | awk '{print($2)}') # check TYPE
                echo "$customGrep0" #"$buility" #"$insertI" #"$customGrep"
                
@@ -393,6 +475,7 @@ function stride() {
 #	     fi 
              done 
 	       echo "$dat"
+	       changeSVGanim
 	       #echo "$foMOVEii"
  #if [ "$customCheck" '==' 'TYPE' ]
   #             then
@@ -403,9 +486,8 @@ function stride() {
 	     done
 	   
             }
-
 <<COMMENT
-            function myCheck() {
+function myCheck() {
                  if [ "$customCheck" '==' "TYPE" ]
                  then
 
@@ -482,7 +564,8 @@ function tk1() {
       touch object.svg
       echo "wrote object.svg"
       mapUniques #paste unique3.sh unique2.sh >> object.sh
-      stride
+     # stride
+      moveToWeaks
    else
       echo "did not write object.js"
    fi
