@@ -374,9 +374,10 @@ function stride() {
                
          for ((ii=0;ii<6;++ii)) do
 	     iiOne=$(echo | expr $ii + 1)
-             foMOVEii=$(grep -n ""$iiOne'_'$iOne"" oD1.sh) # ""$pok'_'$iiOne"" oD1.sh)
+             foMOVEii=$(grep -n "Feld"$iiOne'_'$iiOne"" oD1.sh) # ""$pok'_'$iiOne"" oD1.sh)
 	    # fobolg=$(echo "_ bolg") ################################################# Schaltstelle
 	     BOARD= read _ bolg _ <<< "$foMOVEii"
+	     echo "$foMOVEii"
              done 
 	       echo "$dat"
 	       #echo "$foMOVEii"
@@ -410,6 +411,8 @@ function moveToWeaks() {
 	     echo | sort -nr unique5.sh | tail -4 | head -1
 	     echo | sort -nr unique5.sh | tail -5 | head -1
 	    # awk '{print($2)}' |
+	    rm unique6.sh
+	    touch unique6.sh
          for ((i=0;i<6;++i)) do
 	     iOne=$(echo | expr $i + 1)
 	    
@@ -443,6 +446,7 @@ function moveToWeaks() {
 	     #               weakesLink: 4 2 3 1 5 6 
              #               
              xtrail=$(grep -n "Feld$iOne" unique4.sh) # set to find TARGET -> show line number
+	    echo "$xtrail" >> unique6.sh
 	     xWEAK=$(grep -n "Feld$ofsleters" unique4.sh) # set to find weakestLink
              typeLInksWEAK=$(echo "$xtrail" | wc -w) # ########################################### MEASURE WEAKEST LINK
              awk '{ print $1 }' <<< $(head -n $i unique1.sh | tail -1)
@@ -491,30 +495,49 @@ function moveToWeaks() {
                customGrep0=$(grep "$foastrid" $edger) #"\"Feld'$adjustNuer'_'$insertI'\"" $edger) # get another FELD depending where AVA is in fst MOVE
 	       customCheck=$(echo "$customGrep0" | awk '{print($2)}') # check TYPE
 	        #  calcRoute= expr $mightTarg - $mighAVA
-	      for ((ii=0;ii<$fomightTarg;++ii))
+	      for ((ii=0;ii<$fomightTarg;++ii)) # ########################################################## ------------ ii
 	          do
 	             echo "$ii"
 		     iiOne=$(echo | expr $ii + 1)
-		     if [ "$iOne" '==' "1" ]
-         	     then
-			rm unique6.sh
-	                touch unique6.sh
-	                echo "$xtrail" >> unique6.sh
-                        getLinKaba=$(head -n $iiOne unique6.sh | tail -1)    # get line  
-	                echo $getLinKaba
-	        	  echo "AVA is in line 1"
+		     iiOnef=$(echo | expr $iiOne + 1)
+		     iOnef=$(echo | expr $iOne + 1)
+		     iOneff=$(echo | expr $iOne + 2)
+		     xtrail2=$(grep ""Feld$iOne"" unique4.sh) # set to find TARGET -> show line number
+		     xfuture1=$(grep ""Feld$iOnef"" unique4.sh)
+		     xfuture2=$(grep ""Feld$iOneff"" unique4.sh)
+		   #  if [ "$iOne" '==' "1" ]
+         	   #  then
+			
+
+                    #    getLinKaba=$(head -n $iiOne unique6.sh | tail -1)    # get line  
+	            #    echo $getLinKaba
+	       # 	  echo "AVA is in line 1"
 		          echo " a matching ..." "$meter"
 	           #  elif [ "$iOne" '==' "1" ]
 	           #  then 
 		   #      echo "narrow at" "$ofsleters"
 		   #       echo "$meter" 
-	             else
-			  echo "$xtrail" >> unique6.sh
-			  getLinKaba=$(head -n $iOne unique6.sh | tail -1)    # get line  
-	                echo $getLinKaba
-		          echo "walking..."
-		          echo "$meter"
-	             fi
+	           #  else
+		#	  echo "$xtrail2" >> unique6.sh
+		#	  getLinKaba=$(head -n $iOne unique6.sh | tail -1)    # get line  
+	         #       echo $getLinKaba
+		#          echo "walking..."
+		 #         echo "$meter"
+		# rget=$(head -n ""Feld$iOne"" unique4.sh | tail -1)
+		 #echo "$rget"
+		 tsg=$(echo "$xtrail" | head -$iiOne | tail -1)
+		 moveDif=$(echo $tsg | awk '{print($3)}')
+		 echo $moveDif
+		 echo $tsg
+		 future=$(echo "$xfuture1" | head -$iiOne | tail -1)
+		 echo "$future"
+		 future2=$(echo "$xfuture2" | head -$iiOne | tail -1 | awk '{print($1)}')
+		 jk=(${future2//:/ })
+		 nu=$(echo ${jk[1]})                # "1:Feld1_4RV" ->
+                 cleanStr=$(echo "$nu" | cut -c 1-7) # "Feld1_4RV -> Feld1_4
+		 echo $cleanStr
+		 echo "$future2"
+	            # fi
 	      done
                echo "$customGrep0" #"$buility" #"$insertI" #"$customGrep"
 	       echo "$buility" " " "$otherdat"
