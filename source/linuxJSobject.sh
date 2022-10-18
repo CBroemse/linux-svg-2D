@@ -302,88 +302,7 @@ function weakesLink() {
      done
        
 }
-# the function below illustrates some useful parameters that can be used
-# to write a move function, a combination of weakesLink and if clauses ...
-#  stride -> move => MOVE 
-# TARGET = Feld6_6
-function stride() {
-             randLine=$(grep -n "R" $edger) # whole line of matches of 'Rand'='R' fields
-	     getRandNumber=$(echo $(grep -n "R" $edger | cut -d : f1))   # just line numbers of search's MATCHES
 
-             newI=$(echo "$getRandNumber" | wc -w)
-             checkType=$(echo "$randLine" | awk '{print($2)}') # selct 2nd Column TYPE vs WALL
-             foAVA=$(grep -n "AVA" oD1.sh)
-	     foTARGET=$(grep -n "Feld6_6" oD1.sh)
-             #cook=$(echo "$foAVA" >> unique1.sh) # printf '%s\n' "$foAVA}")cook=$(echo "$foAVA" >> unique1.sh) # printf '%s\n' "$foAVA}")~~''***~~+
-             TZPES=$(grep ""E$"" oD1.sh)
-	     typeLines=$(echo $(grep -n ""E$"" oD1.sh | cut -d : f1))
-	     
-	      echo "scrreeeen -----------------------"
-	    rm unique5.sh
-	    touch unique5.sH
-	    weakesLink
-	    weakesLink >>  unique5.sh
-	     echo | sort -nr unique5.sh | tail -1 
-	     echo | sort -nr unique5.sh | tail -2 | head -1
-	     echo | sort -nr unique5.sh | tail -3 | head -1
-	     echo | sort -nr unique5.sh | tail -4 | head -1
-	     echo | sort -nr unique5.sh | tail -5 | head -1
-	    # awk '{print($2)}' |
-         for ((i=0;i<6;++i)) do
-	     iOne=$(echo | expr $i + 1)
-	     selters=$(echo | sort -nr unique5.sh | tail -$iOne | head -1) # function to filter WEAKEST link
-             foMOVE=$(grep -n "Feld$iOne" oD1.sh)
-	     xtrail=$(grep -n "Feld$iOne" unique4.sh)
-             typeLInksWEAK=$(echo "$xtrail" | wc -w) # ########################################### MEASURE WEAKEST LINK
-	    # foAVA=$(grep -n "AVA" oD1.sh)
-	    # cook=$(echo "$foAVA" >> unique1.sh") #printf '%s\n' "$foAVA}")
-             awk '{ print $1 }' <<< $(head -n $i unique1.sh | tail -1)
-	     avaX=$(echo "$foAVA" | awk '{print($3)}') # get x value of avatar
-             avaY=$(echo "$foAVA" | awk '{print($5)}') # get y value of avatar
-	     avaLine=$(echo "$foAVA" | awk '{print($1)}')
-             prep=$(grep -n "AVA" $edger) # grep with -n to match with line numbers
-	     moprep=$(echo "$prep" | awk '{print($1)}')
-	     getInput=$(head -n $zeropl2 unique3.sh | tail -1)
-             getInput2=$(head -n $zeropl2 unique2.sh | tail -1)
-
-	     dub= read some _  <<< "$foAVA"             # ---------------- EXTRACT line with AVATAR
-	     lineEmpty= read dat _ <<< "$foMOVE"        # 
-	     extractNumer=$(echo "$some" | cut -f1 -d:) # => e.g "Feld1_1 => 1
-                                                        #  =>     "Feld3_3 => 15
-	    echo "scrreeeen -----------------------"
-	    echo "$selters" # weakesLink 
-	    echo $xtrail
-	     extrEmpty=$(echo "$dat" | cut -f1 -d:)						
-             adjustNuer=$(echo | expr $extractNumer / 6) # devide bz 6 due to 6 x6 select the right line
-	    # adju=$(echo | expr $extrEmpty / 6)
-	     foextr=$(echo | expr $adjustNuer + 1)
-	     #moextr=$(echo | expr $adju +1)   
-	     #echo "$avaX $avaY" #"$checkType" #"$newI" #"$getRandNumber" #"$randLine"
-		insertI=$(echo | expr $i + 1) 
-		buility=$(echo "$poe""$extractNumer""_""$insertI") # ------------------------------- BUILD custom GREP advance functionality of svg
-	#	checkXbar=$(echo | $(grep "$buility" $edger))
-	#	plau=$(echo "$checkXbar") | awk '{print($1)}') #"$extractNumer" #"$moprep" #"$adjustNuer"
-	#	plau
-               foastrid=$(echo ""Feld$foextr'_'$insertI"")
-	     #  fotania=$(echo ""Feld$moextr'_'$insertI"")
-	      # astrid=$(eval $foastrid)
-               customGrep0=$(grep "$foastrid" $edger) #"\"Feld'$adjustNuer'_'$insertI'\"" $edger) # get another FELD depending where AVA is in fst MOVE
-	     #  grepEm=$(grep "$fotania" $edger)
-	       customCheck=$(echo "$customGrep0" | awk '{print($2)}') # check TYPE
-               echo "$customGrep0" #"$buility" #"$insertI" #"$customGrep"
-               
-         for ((ii=0;ii<6;++ii)) do
-	     iiOne=$(echo | expr $ii + 1)
-             foMOVEii=$(grep -n "Feld"$iiOne'_'$iiOne"" oD1.sh) # ""$pok'_'$iiOne"" oD1.sh)
-	    # fobolg=$(echo "_ bolg") ################################################# Schaltstelle
-	     BOARD= read _ bolg _ <<< "$foMOVEii"
-	     echo "$foMOVEii"
-             done 
-	       echo "$dat"
-	       #echo "$foMOVEii"
-	     done
-            }
-  
 TARGET="Feld6_6"
 function moveToWeaks() {
              randLine=$(grep -n "R" $edger) # whole line of matches of 'Rand'='R' fields
@@ -501,27 +420,6 @@ function moveToWeaks() {
 		     xtrail2=$(grep ""Feld$iOne"" unique4.sh) # set to find TARGET -> show line number
 		     xfuture1=$(grep ""Feld$iOnef"" unique4.sh)
 		     xfuture2=$(grep ""Feld$iOneff"" unique4.sh)
-		   #  if [ "$iOne" '==' "1" ]
-         	   #  then
-			
-
-                    #    getLinKaba=$(head -n $iiOne unique6.sh | tail -1)    # get line  
-	            #    echo $getLinKaba
-	       # 	  echo "AVA is in line 1"
-		          echo " a matching ..." "$meter"
-	           #  elif [ "$iOne" '==' "1" ]
-	           #  then 
-		   #      echo "narrow at" "$ofsleters"
-		   #       echo "$meter" 
-	           #  else
-		#	  echo "$xtrail2" >> unique6.sh
-		#	  getLinKaba=$(head -n $iOne unique6.sh | tail -1)    # get line  
-	         #       echo $getLinKaba
-		#          echo "walking..."
-		 #         echo "$meter"
-		# rget=$(head -n ""Feld$iOne"" unique4.sh | tail -1)
-		 #echo "$rget"
-
 
                  jkAva=(${moprep//:/ })
 		  nuAnum=$(echo ${jkAva[0]})
@@ -549,9 +447,15 @@ function moveToWeaks() {
 		 nu2num=$(echo ${jk2[0]})
 		 nu2=$(echo ${jk2[1]})                # "1:Feld1_4RV" ->
                  cleanStrFut2Li=$(echo "$nu2" | cut -c 7) # "Feld1_4RV -> Feld1_4  -> 4
+                 if [ "$iOne" '==' "1" ]
+		 then
+		     echo "\"$cleanStrFutALi\""
+	         fi	     
+		 commandList # 
 		 echo "$cleanStrFutALi" "$nuAnum" # >> unique6.sh
 		 echo "$moprep"
-		 echo "$cleanStrFut0Li" "$nu0num" "$iOne" >> unique6.sh
+		 topolog=$(echo "$cleanStrFut0Li" "$nu0num"  "$cleanStrFut1Li" "$nu1num" "$iOne")
+	         echo "$topolog" >> unique6.sh
 		 echo "$present"
                  echo "$cleanStrFut1Li" "$nu1num"
 		 echo "$future"
@@ -560,85 +464,92 @@ function moveToWeaks() {
 	            # fi
 	      done
                echo "$customGrep0" #"$buility" #"$insertI" #"$customGrep"
-        # ofT2 = in which line is target relative to AVA       
-	       #echo "$avaLine"
 	       changeSVGanim
-	       #echo "$foMOVEii"
- #if [ "$customCheck" '==' 'TYPE' ]
-  #             then
-   #                echo "RUN TYPES"
-    #           else
-#	           echo "dat"
- #              fi		 
 	     done
 	   
             }
-<<COMMENT
-function myCheck() {
-                 if [ "$customCheck" '==' "TYPE" ]
-                 then
+# the function below illustrates some useful parameters that can be used
+# to write a move function, a combination of weakesLink and if clauses ...
+#  stride -> move => MOVE 
+# TARGET = Feld6_6
+function stride() {
+             randLine=$(grep -n "R" $edger) # whole line of matches of 'Rand'='R' fields
+	     getRandNumber=$(echo $(grep -n "R" $edger | cut -d : f1))   # just line numbers of search's MATCHES
 
-                     for ((iî=0;ii<4;++ii) # every field like this one has four degrees of freedom
-                     # belowv check if input is even
-                     if [ '$ii' -eq 0 ];  # source https://www.unix.com/shell-programming-and-scripting/240237-odd-even-date-bash.html
-                     then
-                         # get neiighbouring fields
-                         checkXbar= $(grep "Feld'$adjustNuer'_'$insertI'" $6)
-                         if [ "$adjustNuer" '==' "1" ]
-                         then
-                            foExpand= expr $adjustNuer + $i # with each MOVE parse through 6 MOVES = i
-                            aBarX=$(grep "Xbar" $6)
-                            aBarY=$(grep "Ybar" $6)
-                            getRightX= expr 5 + $foExpand
-                            xExpand=$(echo "$aBarX" | awk '{print($'$getRightX')}') # get next coordinate from Xbar
-                            yExpand=$(echo "$aBarY" | awk '{print($'$getRightX')}') # get next coordinate from Ybar
-                            # adding 5 to use oD1.sh Xbar entry
-                            # Xbar -222 -444 0.00000000 -222 -317 -411.99988 -507 -602 -697
-                            # xExpand  of  Xbar => -222
-                            #for ((iii=0;iii<6;++iii)) # ------------------------------------------ DEFINE HOW MANY MOVES AVA takes
-                        elif [ "$adjustNuer" '==' "6" ]
-                        then
-                            foExpand= expr $adjustNuer + $i # with each MOVE parse through 6 MOVES = i
-                            aBarX=$(grep "Xbar" $6)
-                            getRightX= expr 5 + $foExpand
-                            xExpand=$(echo "$aBarX" | awk '{print($'$getRightX')}') # get next coordinate from Xbar
-                            xExpand                                                # export last X coordinate
-                            #driveHand= expr $adjustNuer - 1
-                            #checkXbar= $(grep "Feld'$adjustNuer'_'$insertI'" $6)
+             newI=$(echo "$getRandNumber" | wc -w)
+             checkType=$(echo "$randLine" | awk '{print($2)}') # selct 2nd Column TYPE vs WALL
+             foAVA=$(grep -n "AVA" oD1.sh)
+	     foTARGET=$(grep -n "Feld6_6" oD1.sh)
+             #cook=$(echo "$foAVA" >> unique1.sh) # printf '%s\n' "$foAVA}")cook=$(echo "$foAVA" >> unique1.sh) # printf '%s\n' "$foAVA}")~~''***~~+
+             TZPES=$(grep ""E$"" oD1.sh)
+	     typeLines=$(echo $(grep -n ""E$"" oD1.sh | cut -d : f1))
+	     
+	      echo "scrreeeen -----------------------"
+	    rm unique5.sh
+	    touch unique5.sH
+	    weakesLink
+	    weakesLink >>  unique5.sh
+	     echo | sort -nr unique5.sh | tail -1 
+	     echo | sort -nr unique5.sh | tail -2 | head -1
+	     echo | sort -nr unique5.sh | tail -3 | head -1
+	     echo | sort -nr unique5.sh | tail -4 | head -1
+	     echo | sort -nr unique5.sh | tail -5 | head -1
+	    # awk '{print($2)}' |
+         for ((i=0;i<6;++i)) do
+	     iOne=$(echo | expr $i + 1)
+	     selters=$(echo | sort -nr unique5.sh | tail -$iOne | head -1) # function to filter WEAKEST link
+             foMOVE=$(grep -n "Feld$iOne" oD1.sh)
+	     xtrail=$(grep -n "Feld$iOne" unique4.sh)
+             typeLInksWEAK=$(echo "$xtrail" | wc -w) # ########################################### MEASURE WEAKEST LINK
+	    # foAVA=$(grep -n "AVA" oD1.sh)
+	    # cook=$(echo "$foAVA" >> unique1.sh") #printf '%s\n' "$foAVA}")
+             awk '{ print $1 }' <<< $(head -n $i unique1.sh | tail -1)
+	     avaX=$(echo "$foAVA" | awk '{print($3)}') # get x value of avatar
+             avaY=$(echo "$foAVA" | awk '{print($5)}') # get y value of avatar
+	     avaLine=$(echo "$foAVA" | awk '{print($1)}')
+             prep=$(grep -n "AVA" $edger) # grep with -n to match with line numbers
+	     moprep=$(echo "$prep" | awk '{print($1)}')
+	     getInput=$(head -n $zeropl2 unique3.sh | tail -1)
+             getInput2=$(head -n $zeropl2 unique2.sh | tail -1)
 
-                        else
-                            foExpand= expr $adjustNuer + $i # with each MOVE parse through 6 MOVES = i
-                            aBarX=$(grep "Xbar" $6)
-                            getRightX= expr 5 + $foExpand
-                            xExpand=$(echo "$aBarX" | awk '{print($'$getRightX')}') # get next coorinate from Xbar
-
-
-                 }
-COMMENT
-    
-<<COMMENT
-               rm object.svg
-               touch object.svg
-               if [] "" **
-               #  if [ "$i" '==' "0" ]
-               #  then
-         # input1= e.g feld1_1 222 91
-                     somein=$(cat svgHeader)
-                     mesReady=" <rect name = \"$i\" class= \"room wall\" width = \"94\" height=\"123\" x=\"$getInput2\" y=\"$getInput\"/>"
-                     echo "$somein" >> "object.svg"
-                 elif [ "$zeropl2" '==' "$bak" ] && [ "$zeroplus" '==' "$lengde" ]    ######################## Writing object to file
-                 then
-                         moIn=$(echo $(cat svgTail))
-                    echo " writn svg tail to object.svg"
-           #   foinput=$(echo "[ " $getInput ", " \"$getInput2\" "]]]; ")
-                    echo "$moIn" >> "object.svg"
-                 else
-                    mesReady=" <rect name = \"$i\" class= \"room wall\" width = \"94\" height=\"123\" x=\"$getInput2\" y=\"$getInput\"/>"
-                    echo "$mesReady" >> object.svg
-                 fi
-                 }
-                     #fi
-COMMENT
+	     dub= read some _  <<< "$foAVA"             # ---------------- EXTRACT line with AVATAR
+	     lineEmpty= read dat _ <<< "$foMOVE"        # 
+	     extractNumer=$(echo "$some" | cut -f1 -d:) # => e.g "Feld1_1 => 1
+                                                        #  =>     "Feld3_3 => 15
+	    echo "scrreeeen -----------------------"
+	    echo "$selters" # weakesLink 
+	    echo $xtrail
+	     extrEmpty=$(echo "$dat" | cut -f1 -d:)						
+             adjustNuer=$(echo | expr $extractNumer / 6) # devide bz 6 due to 6 x6 select the right line
+	    # adju=$(echo | expr $extrEmpty / 6)
+	     foextr=$(echo | expr $adjustNuer + 1)
+	     #moextr=$(echo | expr $adju +1)   
+	     #echo "$avaX $avaY" #"$checkType" #"$newI" #"$getRandNumber" #"$randLine"
+		insertI=$(echo | expr $i + 1) 
+		buility=$(echo "$poe""$extractNumer""_""$insertI") # ------------------------------- BUILD custom GREP advance functionality of svg
+	#	checkXbar=$(echo | $(grep "$buility" $edger))
+	#	plau=$(echo "$checkXbar") | awk '{print($1)}') #"$extractNumer" #"$moprep" #"$adjustNuer"
+	#	plau
+               foastrid=$(echo ""Feld$foextr'_'$insertI"")
+	     #  fotania=$(echo ""Feld$moextr'_'$insertI"")
+	      # astrid=$(eval $foastrid)
+               customGrep0=$(grep "$foastrid" $edger) #"\"Feld'$adjustNuer'_'$insertI'\"" $edger) # get another FELD depending where AVA is in fst MOVE
+	     #  grepEm=$(grep "$fotania" $edger)
+	       customCheck=$(echo "$customGrep0" | awk '{print($2)}') # check TYPE
+               echo "$customGrep0" #"$buility" #"$insertI" #"$customGrep"
+               
+         for ((ii=0;ii<6;++ii)) do
+	     iiOne=$(echo | expr $ii + 1)
+             foMOVEii=$(grep -n "Feld"$iiOne'_'$iiOne"" oD1.sh) # ""$pok'_'$iiOne"" oD1.sh)
+	    # fobolg=$(echo "_ bolg") ################################################# Schaltstelle
+	     BOARD= read _ bolg _ <<< "$foMOVEii"
+	     echo "$foMOVEii"
+             done 
+	       echo "$dat"
+	       #echo "$foMOVEii"
+	     done
+            }
+      
 # write javascript objects or svg file
 function tk1() {
    if [ $readOp '==' "object" ] || [ "$readOp" '==' "svg" ]
