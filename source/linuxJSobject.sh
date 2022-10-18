@@ -451,15 +451,15 @@ function moveToWeaks() {
 		 then
 		     echo "\"$cleanStrFutALi\""
 	         fi	     
-		 commandList # 
+		 # commandList # 
 		 echo "$cleanStrFutALi" "$nuAnum" # >> unique6.sh
 		 echo "$moprep"
-		 topolog=$(echo "$cleanStrFut0Li" "$nu0num"  "$cleanStrFut1Li" "$nu1num" "$iOne")
+		 topolog=$(echo "$cleanStrFut0Li" "$nu0num" "$iOne" "pres")
 	         echo "$topolog" >> unique6.sh
 		 echo "$present"
-                 echo "$cleanStrFut1Li" "$nu1num"
+                 echo "$cleanStrFut1Li" "$nu1num" "$iOne" "fut1" >> unique6.ah
 		 echo "$future"
-		 echo "$cleanStrFut2Li" "$nu2num"
+		 echo "$cleanStrFut2Li" "$nu2num" "$iOne" "fut2" >> unique6.sh
 		 echo "$future2"
 	            # fi
 	      done
