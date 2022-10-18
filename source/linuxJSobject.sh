@@ -525,17 +525,41 @@ function moveToWeaks() {
 		 #         echo "$meter"
 		# rget=$(head -n ""Feld$iOne"" unique4.sh | tail -1)
 		 #echo "$rget"
+
+
+                 jkAva=(${moprep//:/ })
+		  nuAnum=$(echo ${jkAva[0]})
+		   nuA=$(echo ${jkAva[1]})                # "1:Feld1_4RV" ->
+                 cleanStrFutALi=$(echo "$nuA" | cut -c 7) # "Feld1_4RV -> Feld1_4  -> 4
 		 tsg=$(echo "$xtrail" | head -$iiOne | tail -1)
+		
 		 moveDif=$(echo $tsg | awk '{print($3)}')
+                 present=$(echo "$tsg" | awk '{print($1)}')
+		 jk0=(${present//:/ })
+		 nu0num=$(echo ${jk0[1]})
+		 nu0=$(echo ${jk0[2]})                # "1:Feld1_4RV" ->
+                 cleanStrFut0Li=$(echo "$nu0" | cut -c 7) # "Feld1_4RV -> Feld1_4  -> 4
 		 echo $moveDif
 		 echo $tsg
-		 future=$(echo "$xfuture1" | head -$iiOne | tail -1)
-		 echo "$future"
+		 fofuture=$(echo "$xfuture1" | head -$iiOne | tail -1)
+		 future=$(echo "$fofuture" | awk '{print($1)}')
+		 jk1=(${future//:/ })
+		 nu1num=$(echo ${jk1[0]})
+		 nu1=$(echo ${jk1[1]})                # "1:Feld1_4RV" ->
+                 cleanStrFut1Li=$(echo "$nu1" | cut -c 7) # "Feld1_4RV -> Feld1_4  -> 4
+		 
 		 future2=$(echo "$xfuture2" | head -$iiOne | tail -1 | awk '{print($1)}')
-		 jk=(${future2//:/ })
-		 nu=$(echo ${jk[1]})                # "1:Feld1_4RV" ->
-                 cleanStr=$(echo "$nu" | cut -c 1-7) # "Feld1_4RV -> Feld1_4
-		 echo $cleanStr
+		 jk2=(${future2//:/ })
+		 nu2num=$(echo ${jk2[0]})
+		 nu2=$(echo ${jk2[1]})                # "1:Feld1_4RV" ->
+                 cleanStrFut2Li=$(echo "$nu2" | cut -c 7) # "Feld1_4RV -> Feld1_4  -> 4
+		 echo "$cleanStrFutALi" "$nuAnum"
+		 echo "$moprep"
+		 echo "$cleanStrFut0Li" "$nu0num"
+		 echo "$present"
+                 echo "$cleanStrFut1Li" "$nu1num"
+		 echo "$future"
+		 echo "$cleanStrFut2Li" "$nu2num"
 		 echo "$future2"
 	            # fi
 	      done
