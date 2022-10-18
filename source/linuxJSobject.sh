@@ -446,7 +446,6 @@ function moveToWeaks() {
 	     #               weakesLink: 4 2 3 1 5 6 
              #               
              xtrail=$(grep -n "Feld$iOne" unique4.sh) # set to find TARGET -> show line number
-	    echo "$xtrail" >> unique6.sh
 	     xWEAK=$(grep -n "Feld$ofsleters" unique4.sh) # set to find weakestLink
              typeLInksWEAK=$(echo "$xtrail" | wc -w) # ########################################### MEASURE WEAKEST LINK
              awk '{ print $1 }' <<< $(head -n $i unique1.sh | tail -1)
@@ -459,7 +458,6 @@ function moveToWeaks() {
              getInput2=$(head -n $zeropl2 unique2.sh | tail -1)
 
 	     dub= read some _  <<< "$avaLine"             # ---------------- EXTRACT line with AVATAR
-	     lineEmpty= read dat _ <<< "$foMOVE"        #
 	     otherdat=$(awk '{print($2)}' <<< "$foMOVE") 
 	     extractNumer=$(echo "$some" | cut -f1 -d:) # => e.g "Feld1_1 => 1
                                                         #  =>     "Feld3_3 => 15
@@ -485,9 +483,7 @@ function moveToWeaks() {
 	     kaba=$(echo $xtrail)
 	    
 	    echo $xtrail
-	     extrEmpty=$(echo "$dat" | cut -f1 -d:)						
              adjustNuer=$(echo | expr $extractNumer / 6) # devide bz 6 due to 6 x6 select the right line
-	    # adju=$(echo | expr $extrEmpty / 6)
 	     foextr=$(echo | expr $adjustNuer + 1)
 		insertI=$(echo | expr $i + 1) 
 		buility=$(echo "$poe""$extractNumer""_""$insertI") # ------------------------------- BUILD custom GREP advance functionality of svg
@@ -553,9 +549,9 @@ function moveToWeaks() {
 		 nu2num=$(echo ${jk2[0]})
 		 nu2=$(echo ${jk2[1]})                # "1:Feld1_4RV" ->
                  cleanStrFut2Li=$(echo "$nu2" | cut -c 7) # "Feld1_4RV -> Feld1_4  -> 4
-		 echo "$cleanStrFutALi" "$nuAnum"
+		 echo "$cleanStrFutALi" "$nuAnum" # >> unique6.sh
 		 echo "$moprep"
-		 echo "$cleanStrFut0Li" "$nu0num"
+		 echo "$cleanStrFut0Li" "$nu0num" "$iOne" >> unique6.sh
 		 echo "$present"
                  echo "$cleanStrFut1Li" "$nu1num"
 		 echo "$future"
@@ -564,12 +560,8 @@ function moveToWeaks() {
 	            # fi
 	      done
                echo "$customGrep0" #"$buility" #"$insertI" #"$customGrep"
-	       echo "$buility" " " "$otherdat"
-	       # gnoim=ii
-	       # echo "$gnoim"
         # ofT2 = in which line is target relative to AVA       
-	       echo "$dat"
-	       echo "$avaLine"
+	       #echo "$avaLine"
 	       changeSVGanim
 	       #echo "$foMOVEii"
  #if [ "$customCheck" '==' 'TYPE' ]
