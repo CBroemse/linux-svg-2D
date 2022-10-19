@@ -486,9 +486,9 @@ function moveToWeaks() {
 		 echo "$future2"
 	            # fi
 	      done
-	      pingLine=$(grep "Feld1_" oD1.sh) # choose longer one pingLine OR
+	      pingLine=$(grep "Feld$iOne_" oD1.sh) # choose longer one pingLine OR
 	      pingLMight=$(echo "$pingLine" | wc -w) ##	
-	      pingColu=$(grep ""_1$"" oD1.sh) # choose longer one pingLine OR
+	      pingColu=$(grep ""_$iOne$"" unique4.sh) # choose longer one pingColumn
 	      pingColuMight=$(echo "$pingColu" | wc -w) ##	  
 	     # path
               # pingColumn
