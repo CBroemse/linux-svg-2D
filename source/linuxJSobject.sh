@@ -330,8 +330,8 @@ function moveToWeaks() {
 	     echo | sort -nr unique5.sh | tail -4 | head -1
 	     echo | sort -nr unique5.sh | tail -5 | head -1
 	    # awk '{print($2)}' |
-	    rm unique6.sh
-	    touch unique6.sh
+       	    rm unique6.sh
+            touch unique6.sh   
          for ((i=0;i<6;++i)) do
 	     iOne=$(echo | expr $i + 1)
 	    
@@ -409,7 +409,6 @@ function moveToWeaks() {
                foastrid=$(echo ""Feld$foextr'_'$insertI"")
                customGrep0=$(grep "$foastrid" $edger) #"\"Feld'$adjustNuer'_'$insertI'\"" $edger) # get another FELD depending where AVA is in fst MOVE
 	       customCheck=$(echo "$customGrep0" | awk '{print($2)}') # check TYPE
-	        #  calcRoute= expr $mightTarg - $mighAVA
 	      for ((ii=0;ii<$fomightTarg;++ii)) # ########################################################## ------------ ii
 	          do
 	             echo "$ii"
@@ -433,13 +432,13 @@ function moveToWeaks() {
 		 nu0num=$(echo ${jk0[1]})
 		 nu0=$(echo ${jk0[2]})                # "1:Feld1_4RV" ->
                  cleanStrFut0Li=$(echo "$nu0" | cut -c 7) # "Feld1_4RV -> Feld1_4  -> 4
-		 echo $moveDif
-		 echo $tsg
-		 fofuture=$(echo "$xfuture1" | head -$iiOne | tail -1)
-		 future=$(echo "$fofuture" | awk '{print($1)}')
-		 jk1=(${future//:/ })
-		 nu1num=$(echo ${jk1[0]})
-		 nu1=$(echo ${jk1[1]})                # "1:Feld1_4RV" ->
+	#	 echo $moveDif
+	#	 echo $tsg
+		 future1=$(echo "$tsg" | head -1)
+	 # -$iiOne | tail -1 | awk '{print($1)}')
+		 jk1=(${future1//:/ })
+		 nu1num=$(echo ${jk1[1]})
+		 nu1=$(echo ${jk1[2]})                # "1:Feld1_4RV" ->
                  cleanStrFut1Li=$(echo "$nu1" | cut -c 7) # "Feld1_4RV -> Feld1_4  -> 4
 		 
 		 future2=$(echo "$xfuture2" | head -$iiOne | tail -1 | awk '{print($1)}')
@@ -447,22 +446,55 @@ function moveToWeaks() {
 		 nu2num=$(echo ${jk2[0]})
 		 nu2=$(echo ${jk2[1]})                # "1:Feld1_4RV" ->
                  cleanStrFut2Li=$(echo "$nu2" | cut -c 7) # "Feld1_4RV -> Feld1_4  -> 4
-                 if [ "$iOne" '==' "1" ]
+                 if [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ]
 		 then
-		     echo "\"$cleanStrFutALi\""
+			# echo "blob------------------------------"
+		   #  echo ""\"$""cleanStrFutALi"\""
+		        echo "$cleanStrFutALi"", ""$nuAnum"", ""$iOne"", " "ava" >> unique6.sh
+	#	elif [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "2" ]
+	#	 then
+	#	       if [ "$cleanStrFutALi" '==' "$cleanStrFut2Li" ]
+	#	       then # go horizontally to next line
+
+#		 elif [ "$iOne" '==' "2" ] && [ "$iiOne" '==' "2" ]
+#		 then
+		#	 echo "blob------------------------------"
+		  #   echo ""\"$""cleanStrFut0Li"\""
+#		      echo "$cleanStrFut2Li"", ""$nu2num"", ""$iOneff"", ""fut2" >> unique6.sh
+#		 elif [ "$iOne" '==' "3" ] && [ "$iiOne" '==' "2" ]
+#		 then
+		#	 echo "blob------------------------------"
+		    #  echo ""\"$""cleanStrFut1Li"\""
+#		    echo "$cleanStrFut2Li"", ""$nu2num"", ""$iOneff"", ""fut2" >> unique6.sh
+#		 elif [ "$iOne" '==' "4" ] && [ "$iiOne" '==' "2" ]
+#		 then
+#                 else
+#			 echo "blob------------------------------"
+		    # echo ""\"$""cleanStrFutALi"\""
 	         fi	     
-		 # commandList # 
-		 echo "$cleanStrFutALi" "$nuAnum" # >> unique6.sh
+		 # commandList #
+		# echo "$cleanStrFut0Li" "$nu0num" >> unique6.sh 
+		# echo "$cleanStrFutALi" "$nuAnum" "$iOne" "ava" >> unique6.sh
 		 echo "$moprep"
-		 topolog=$(echo "$cleanStrFut0Li" "$nu0num" "$iOne" "pres")
-	         echo "$topolog" >> unique6.sh
-		 echo "$present"
-                 echo "$cleanStrFut1Li" "$nu1num" "$iOne" "fut1" >> unique6.ah
-		 echo "$future"
-		 echo "$cleanStrFut2Li" "$nu2num" "$iOne" "fut2" >> unique6.sh
+		 topolog=$(echo "$cleanStrFut0Li"", ""$nu0num"", ""$iOne"", ""pres")
+	 #        echo "$topolog" >> unique6.sh
+		 echo "$cleanStrFut1Li"
+                 topolog2=$(echo "$cleanStrFut1Li"", ""$nu1num"", ""$iOne"", ""fut1")
+		 echo "$topolog2" >> unique6.sh
+		 echo "$xfuture1"
+	#	 echo "$cleanStrFut2Li"", ""$nu2num"", ""$iOne"", ""fut2" >> unique6.sh
 		 echo "$future2"
 	            # fi
 	      done
+	      pingLine=$(grep "Feld1_" oD1.sh) # choose longer one pingLine OR
+	      pingLMight=$(echo "$pingLine" | wc -w) ##	
+	      pingColu=$(grep ""_1$"" oD1.sh) # choose longer one pingLine OR
+	      pingColuMight=$(echo "$pingColu" | wc -w) ##	  
+	     # path
+              # pingColumn
+	      columnCHECK=$( grep "7" <<< $(sort -t ',' -k1,4 unique6.sh | head -4))
+	       rowCHECK=$(grep ""$iOne"" unique6.sh)
+	       # if []
                echo "$customGrep0" #"$buility" #"$insertI" #"$customGrep"
 	       changeSVGanim
 	     done
