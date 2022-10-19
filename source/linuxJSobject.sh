@@ -281,7 +281,7 @@ mapUniques() {
      <animateMotion path="M  -280 -123 L -374 -123" begin="6.1s" dur="0.3s" fill="freeze"/>
      <animateMotion path="M  -374 -123 L -374 -369" begin="8.1s" dur="0.3s" fill="freeze"/>
      <animateMotion path="M  -374 -369 L 0 -369" begin="10.1s" dur="0.3s" fill="freeze"/>
-    <animateMotion path="M  0 -369 L 0 -492" begin="12.1s" dur="0.3s" fill="freeze"/>
+     <animateMotion path="M  0 -369 L 0 -492" begin="12.1s" dur="0.3s" fill="freeze"/>
 COMMENT
 # -------------------------------------------------------- SVG writer
 #function writeSVG() {
@@ -398,8 +398,6 @@ function moveToWeaks() {
 		 echo "walking..."
 		 echo "$meter"
 	     fi 
-	     # write folgorder
-	     kaba=$(echo $xtrail)
 	    
 	    echo $xtrail
              adjustNuer=$(echo | expr $extractNumer / 6) # devide bz 6 due to 6 x6 select the right line
@@ -424,9 +422,9 @@ function moveToWeaks() {
 		  nuAnum=$(echo ${jkAva[0]})
 		   nuA=$(echo ${jkAva[1]})                # "1:Feld1_4RV" ->
                  cleanStrFutALi=$(echo "$nuA" | cut -c 7) # "Feld1_4RV -> Feld1_4  -> 4
+
 		 tsg=$(echo "$xtrail" | head -$iiOne | tail -1)
-		
-		 moveDif=$(echo $tsg | awk '{print($3)}')
+		 moveDif=$(echo $tsg | awk '{print($3)}')  # coordinate ?
                  present=$(echo "$tsg" | awk '{print($1)}')
 		 jk0=(${present//:/ })
 		 nu0num=$(echo ${jk0[1]})
@@ -435,10 +433,9 @@ function moveToWeaks() {
 	#	 echo $moveDif
 	#	 echo $tsg
 		 future1=$(echo "$tsg" | head -1)
-	 # -$iiOne | tail -1 | awk '{print($1)}')
 		 jk1=(${future1//:/ })
 		 nu1num=$(echo ${jk1[1]})
-		 nu1=$(echo ${jk1[2]})                # "1:Feld1_4RV" ->
+		 nu1=$(echo ${jk1[2]})                # "numberX:1:Feld1_4RV" -> 1:Feld1_4RV ->
                  cleanStrFut1Li=$(echo "$nu1" | cut -c 7) # "Feld1_4RV -> Feld1_4  -> 4
 		 
 		 future2=$(echo "$xfuture2" | head -$iiOne | tail -1 | awk '{print($1)}')
@@ -476,7 +473,9 @@ function moveToWeaks() {
 		# echo "$cleanStrFut0Li" "$nu0num" >> unique6.sh 
 		# echo "$cleanStrFutALi" "$nuAnum" "$iOne" "ava" >> unique6.sh
 		 echo "$moprep"
-		 topolog=$(echo "$cleanStrFut0Li"", ""$nu0num"", ""$iOne"", ""pres")
+		 # below prepare for sorting collumns of future1 MOVES
+		 # sort
+		 topolog=$(echo "$cleanStrFut0Li"", ""$nu0num"", ""$iOne"", ""pres") 
 	 #        echo "$topolog" >> unique6.sh
 		 echo "$cleanStrFut1Li"
                  topolog2=$(echo "$cleanStrFut1Li"", ""$nu1num"", ""$iOne"", ""fut1")
@@ -494,7 +493,8 @@ function moveToWeaks() {
               # pingColumn
 	      columnCHECK=$( grep "7" <<< $(sort -t ',' -k1,4 unique6.sh | head -4))
 	       rowCHECK=$(grep ""$iOne"" unique6.sh)
-	       # if []
+	       # if [ "$pingLine" '>' "$pingColu" ]
+	       #  then
                echo "$customGrep0" #"$buility" #"$insertI" #"$customGrep"
 	       changeSVGanim
 	     done
@@ -628,6 +628,6 @@ matchNames= read one _ <<< $tel
 
 paste unique3.sh unique2.sh
 tk1
-echo "done wrote: unique1.sh unique2.sh unique3.sh unique4.sh object.sh"
+echo "done wrote: unique1.sh unique2.sh unique3.sh unique4.sh unique5.sh unique6.sh object.sh"
 echo "posis of" $5 : $tel
 echo "its length" $lengde
