@@ -497,8 +497,13 @@ function moveToWeaks() {
 		       echo "$pingColu" | tail -$correcSleter # pingColumn
 	         fi	     
  #                                                                      #############################    SUMMING UP above
+ # ends with: 'for the last pingColumn if iOne is even and Match is true' 
+ # => send it every new line and new column -> send what
+ # => basically a tree with two 'branches' at  the 'root'
+ #    branch1: line > column -> odd = line
+ #    branch2: line <= column         
  # function is called every Feld1_1 Feld2_1 Feld3_1 ... Feld6_1 
-		
+ # --------------------------------------------------------------------------------------------------------------------------------------------------		
                 # echo "$cleanStrFut0Li" "$nu0num" >> unique6.sh 
 		# echo "$cleanStrFutALi" "$nuAnum" "$iOne" "ava" >> unique6.sh
 		 echo "$moprep"
