@@ -443,31 +443,57 @@ function moveToWeaks() {
 		 nu2num=$(echo ${jk2[0]})
 		 nu2=$(echo ${jk2[1]})                # "1:Feld1_4RV" ->
                  cleanStrFut2Li=$(echo "$nu2" | cut -c 7) # "Feld1_4RV -> Feld1_4  -> 4
-                 if [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ]
+		 	pingLine=$(grep ""Feld$iOne"" unique4.sh) # choose longer one pingLine OR
+	                 pingLMight=$(echo "$pingLine" | wc -w) ##	
+	               pingColu=$(grep ""_$iOne$"" unique4.sh) # choose longer one pingColumn
+	               pingColuMight=$(echo "$pingColu" | wc -w) ##	  
+	     # path
+              # pingColumn
+	              columnCHECK=$( grep "7" <<< $(sort -t ',' -k1,4 unique6.sh | head -4))
+	              rowCHECK=$(grep ""$iOne"" unique6.sh)
+	              correcSleter=$(echo | expr $folseters - 1)
+	              toMatch=$(expr $pingLMight '>' $pingColuMight)
+  # function below has two purposes    a) add avatar if ava = Feld1_1
+  #                                    b) from 1_1 decide which is more mighty
+  #                                       pingLine vs pingColuLine
+  #                    a || b if a1 > b1 then eval pingLine 
+  #   with every       a == odd  do -> pingLine
+  #		       a == even do -> pingColuLine  
+  #  OR vice versa
+  #     also for a = b 	             		       
+                 if [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ] && [ $toMatch '!=' 0 ] # means : if pingLMight > pingColuMight
 		 then
 			# echo "blob------------------------------"
 		   #  echo ""\"$""cleanStrFutALi"\""
 		        echo "$cleanStrFutALi"", ""$nuAnum"", ""$iOne"", " "ava" >> unique6.sh
-	#	elif [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "2" ]
-	#	 then
-	#	       if [ "$cleanStrFutALi" '==' "$cleanStrFut2Li" ]
-	#	       then # go horizontally to next line
-
-#		 elif [ "$iOne" '==' "2" ] && [ "$iiOne" '==' "2" ]
-#		 then
-		#	 echo "blob------------------------------"
-		  #   echo ""\"$""cleanStrFut0Li"\""
-#		      echo "$cleanStrFut2Li"", ""$nu2num"", ""$iOneff"", ""fut2" >> unique6.sh
-#		 elif [ "$iOne" '==' "3" ] && [ "$iiOne" '==' "2" ]
-#		 then
-		#	 echo "blob------------------------------"
-		    #  echo ""\"$""cleanStrFut1Li"\""
-#		    echo "$cleanStrFut2Li"", ""$nu2num"", ""$iOneff"", ""fut2" >> unique6.sh
-#		 elif [ "$iOne" '==' "4" ] && [ "$iiOne" '==' "2" ]
-#		 then
-#                 else
-#			 echo "blob------------------------------"
-		    # echo ""\"$""cleanStrFutALi"\""
+		
+	              echo "$pingLMight" "$pingColuMight"
+		      echo "pr ------------------------------------ XXX "
+	               echo "$xtrail2" | tail -$correcSleter # pingLine
+                 elif [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ] && [ $toMatch '!=' 1 ] # means : if pingLMight > pingColuMight
+		 then
+		        echo "$cleanStrFutALi"", ""$nuAnum"", ""$iOne"", " "ava" >> unique6.sh
+                       echo "pr ------------------------------------ YYY "
+		       echo "$pingLMight" "$pingColuMight"
+		       echo "$pingColu" | tail -$correcSleter # pingColumn
+                 elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` == 0 ] && [ $toMatch '!=' 1 ] # if iOne even number and match true 
+		 then
+		       echo "pr ------------------------------------ XXX "
+	               echo "$xtrail2" | tail -$correcSleter # pingLine
+	          elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` != 0 ] && [ $toMatch '!=' 1 ] # if to match an even number and match not true
+		  then
+                       echo "pr ------------------------------------ YYY "
+		       echo "$pingLMight" "$pingColuMight"
+		       echo "$pingColu" | tail -$correcSleter # pingColumn
+		  elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` == 1 ] && [ $toMatch '!=' 1 ] # if iOne even number and match not true
+		 then
+		       echo "pr ------------------------------------ XXX "
+	               echo "$xtrail2" | tail -$correcSleter # pingLine
+	       elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` != 0 ] && [ $toMatch '==' 1 ]
+	       then
+		      echo "pr ------------------------------------ YYY "
+		       echo "$pingLMight" "$pingColuMight"
+		       echo "$pingColu" | tail -$correcSleter # pingColumn
 	         fi	     
 		 # commandList #
 		# echo "$cleanStrFut0Li" "$nu0num" >> unique6.sh 
@@ -485,26 +511,7 @@ function moveToWeaks() {
 		 echo "$future2"
 	            # fi
 	      done
-	      pingLine=$(grep "Feld$iOne_" unique4.sh) # choose longer one pingLine OR
-	      pingLMight=$(echo "$pingLine" | wc -w) ##	
-	      pingColu=$(grep ""_$iOne$"" unique4.sh) # choose longer one pingColumn
-	      pingColuMight=$(echo "$pingColu" | wc -w) ##	  
-	     # path
-              # pingColumn
-	      columnCHECK=$( grep "7" <<< $(sort -t ',' -k1,4 unique6.sh | head -4))
-	       rowCHECK=$(grep ""$iOne"" unique6.sh)
-	       correcSleter=$(echo | expr $folseters - 1)
-	       toMatch=$(expr $pingLMight '>' $pingColuMight)
-	       echo "$pingLMight" "$pingColuMight"
-	         if [ $toMatch '!=' 0 ] # means : if pingLMight > pingColuMight
-	         then 
-	               echo "pr ------------------------------------ XXX "
-	               echo "$xtrail" | tail -$correcSleter # pingLine
-		 else
-		       echo "pr ------------------------------------ YYY "
-		       echo "$pingLMight" "$pingColuMight"
-		       echo "$pingColu" | tail -$correcSleter # pingColumn
-		  fi
+	      
                echo "$customGrep0" # "$buility" #"$insertI" #"$customGrep"
 	       changeSVGanim
 	     done
