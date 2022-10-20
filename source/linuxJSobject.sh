@@ -480,12 +480,13 @@ function moveToWeaks() {
 		 then
 		       echo "pr ------------------------------------ XXX "
 	               echo "$xtrail2" | tail -$correcSleter # pingLine
+ # [ "$iiOne" '==' "1" ] ::= for every new pingColu   
 	          elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` != 0 ] && [ $toMatch '!=' 1 ] # if to match an even number and match not true
 		  then
                        echo "pr ------------------------------------ YYY "
 		       echo "$pingLMight" "$pingColuMight"
 		       echo "$pingColu" | tail -$correcSleter # pingColumn
-		  elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` == 1 ] && [ $toMatch '!=' 1 ] # if iOne even number and match not true
+		  elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` == 1 ] && [ $toMatch '!=' 1 ] #  if iOne even number and match not true
 		 then
 		       echo "pr ------------------------------------ XXX "
 	               echo "$xtrail2" | tail -$correcSleter # pingLine
