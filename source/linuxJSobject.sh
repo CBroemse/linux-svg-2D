@@ -460,33 +460,33 @@ function moveToWeaks() {
   #   with every       a == odd  do -> pingLine
   #		       a == even do -> pingColuLine  
   #  OR vice versa
-  #     also for a = b 	             		       
+  #     also for a = b
+  # [ "$iOne" '==' "1" ] ::= for every new pingLine   
+  # [ "$iiOne" '==' "1" ] ::= for every new pingColu   
                  if [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ] && [ $toMatch '!=' 0 ] # means : if pingLMight > pingColuMight
 		 then
 			# echo "blob------------------------------"
 		   #  echo ""\"$""cleanStrFutALi"\""
 		        echo "$cleanStrFutALi"", ""$nuAnum"", ""$iOne"", " "ava" >> unique6.sh
-		
 	              echo "$pingLMight" "$pingColuMight"
 		      echo "pr ------------------------------------ XXX "
 	               echo "$xtrail2" | tail -$correcSleter # pingLine
-                 elif [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ] && [ $toMatch '!=' 1 ] # means : if pingLMight > pingColuMight
+                 elif [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ] && [ $toMatch '!=' 1 ] # : if pingLMight <= pingColuMight
 		 then
 		        echo "$cleanStrFutALi"", ""$nuAnum"", ""$iOne"", " "ava" >> unique6.sh
                        echo "pr ------------------------------------ YYY "
 		       echo "$pingLMight" "$pingColuMight"
 		       echo "$pingColu" | tail -$correcSleter # pingColumn
-                 elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` == 0 ] && [ $toMatch '!=' 1 ] # if iOne even number and match true 
+                 elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` == 0 ] && [ $toMatch '!=' 1 ] # : if iOne even number and match true 
 		 then
 		       echo "pr ------------------------------------ XXX "
 	               echo "$xtrail2" | tail -$correcSleter # pingLine
- # [ "$iiOne" '==' "1" ] ::= for every new pingColu   
-	          elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` != 0 ] && [ $toMatch '!=' 1 ] # if to match an even number and match not true
+	          elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` != 0 ] && [ $toMatch '!=' 1 ] # : if line number even and match not true
 		  then
                        echo "pr ------------------------------------ YYY "
 		       echo "$pingLMight" "$pingColuMight"
 		       echo "$pingColu" | tail -$correcSleter # pingColumn
-		  elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` == 1 ] && [ $toMatch '!=' 1 ] #  if iOne even number and match not true
+		  elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` == 1 ] && [ $toMatch '!=' 1 ] # : if iOne odd number and match not true
 		 then
 		       echo "pr ------------------------------------ XXX "
 	               echo "$xtrail2" | tail -$correcSleter # pingLine
@@ -496,8 +496,10 @@ function moveToWeaks() {
 		       echo "$pingLMight" "$pingColuMight"
 		       echo "$pingColu" | tail -$correcSleter # pingColumn
 	         fi	     
-		 # commandList #
-		# echo "$cleanStrFut0Li" "$nu0num" >> unique6.sh 
+ #                                                                      #############################    SUMMING UP above
+ # function is called every Feld1_1 Feld2_1 Feld3_1 ... Feld6_1 
+		
+                # echo "$cleanStrFut0Li" "$nu0num" >> unique6.sh 
 		# echo "$cleanStrFutALi" "$nuAnum" "$iOne" "ava" >> unique6.sh
 		 echo "$moprep"
 		 # below prepare for sorting collumns of future1 MOVES
