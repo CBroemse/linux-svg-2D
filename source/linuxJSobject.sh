@@ -485,7 +485,7 @@ function moveToWeaks() {
 		 echo "$future2"
 	            # fi
 	      done
-	      pingLine=$(grep "Feld$iOne_" oD1.sh) # choose longer one pingLine OR
+	      pingLine=$(grep "Feld$iOne_" unique4.sh) # choose longer one pingLine OR
 	      pingLMight=$(echo "$pingLine" | wc -w) ##	
 	      pingColu=$(grep ""_$iOne$"" unique4.sh) # choose longer one pingColumn
 	      pingColuMight=$(echo "$pingColu" | wc -w) ##	  
@@ -493,9 +493,19 @@ function moveToWeaks() {
               # pingColumn
 	      columnCHECK=$( grep "7" <<< $(sort -t ',' -k1,4 unique6.sh | head -4))
 	       rowCHECK=$(grep ""$iOne"" unique6.sh)
-	       # if [ "$pingLine" '>' "$pingColu" ]
-	       #  then
-               echo "$customGrep0" #"$buility" #"$insertI" #"$customGrep"
+	       correcSleter=$(echo | expr $folseters - 1)
+	       toMatch=$(expr $pingLMight '>' $pingColuMight)
+	       echo "$pingLMight" "$pingColuMight"
+	         if [ $toMatch '!=' 0 ] # means : if pingLMight > pingColuMight
+	         then 
+	               echo "pr ------------------------------------ XXX "
+	               echo "$xtrail" | tail -$correcSleter # pingLine
+		 else
+		       echo "pr ------------------------------------ YYY "
+		       echo "$pingLMight" "$pingColuMight"
+		       echo "$pingColu" | tail -$correcSleter # pingColumn
+		  fi
+               echo "$customGrep0" # "$buility" #"$insertI" #"$customGrep"
 	       changeSVGanim
 	     done
 	   
