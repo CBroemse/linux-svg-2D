@@ -303,20 +303,7 @@ function weakesLink() {
      done
        
 }
-function seriesTest () {
-		    list=$(grep "Feld2" unique4.sh | awk '{print($1)}' | cut -f1 -d:)
-		    solang=$(echo $list | wc -c)
-		    fstElem=$(echo $list | head -1)
-		     for ((q=0;q<6;++q)) do
-			     fromList=$(echo "$list" | head -$q | tail -1)
-			 calc0=$(echo | expr $q '*' 1)
-		         calc1=$(echo | expr $list '-' $calc0) 
-			 if [ "$calc1" '==' "$fstElem" ]  # e.g 10 == 10
-		         then 
-			     echo "$fromList"
-			 fi
-	             done
-	    } 
+
 TARGET="Feld6_6"
 function moveToWeaks() {
              foAVA=$(grep -n "AVA" oD1.sh)
@@ -488,15 +475,18 @@ function moveToWeaks() {
 		       nowX=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($3)}')
 		       nowY=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($5)}')
 		       echo "$nowX"
-		       foM1=$(expr 6 '*' 123)
-		       foM2=$(expr 492 '-' $foM1)
+		       foM1=$(expr 4 '*' 123)
+		       foM2=$(expr -492 '+' $foM1)
 		       move1=$(echo ""\<animateMotion path=\"M  0 -492 L 0 "$foM2"\" begin=\"14.1s\" dur=\"0.3s\" fill=\"freeze\"\/\>"")
 		       echo "$move1" 
                       # echo "$cleanStrFutALi"", ""$nuAnum"", ""$iOne"", " "ava" >> unique7.sh
                        insertAt=$(grep -n "freeze" svgTail | tail -1 | cut -d : -f1)
 		       prepAt=$(expr $insertAt + 1)
 		       headD=$(head -n $insertAt svgTail)
-		       echo "$headD" "$move1" ""\<\/g\> \<\/g\> \<\/svg\>"" >> unique7.sh 
+		       echo "$headD" "$move1" ""\<\/g\> \<\/g\> \<\/svg\>"" >> unique7.sh
+		       wert= read asd _ <<< $(echo $(./seriesTest.sh "Feld1"))
+		       echo "----------------------------- SERIES N ? "
+		       echo "$asd" 
 		       # { head -n $insertAt svgTail; echo "$move1"; tail -n +1 svgTail; }
                  elif [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ] && [ $toMatch '=' 0 ] # : if pingLMight <= pingColuMight not true
 		 then
