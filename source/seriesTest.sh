@@ -17,7 +17,7 @@ function seriesTest () {
 	    then 
 		grep "$inp" $inP2 | head -$tocalc | tail -1 | cut -f1 -d:
 	    else 
-                echo "888888"
+                echo ""$tocalc 888""
 	    fi
       done
      }
