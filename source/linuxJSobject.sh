@@ -484,7 +484,7 @@ function moveToWeaks() {
 		       prepAt=$(expr $insertAt + 1)
 		       headD=$(head -n $insertAt svgTail)
 		       echo "$headD" "$move1" ""\<\/g\> \<\/g\> \<\/svg\>"" >> unique7.sh
-		       wert= read asd _ <<< $(echo $(./seriesTest.sh "Feld1"))
+		       wert= read asd _ <<< $(echo $(./seriesTest.sh "Feld1" unique4.sh))
 		       echo "----------------------------- SERIES N ? "
 		       echo "$asd" 
 		       # { head -n $insertAt svgTail; echo "$move1"; tail -n +1 svgTail; }
