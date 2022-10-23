@@ -343,7 +343,7 @@ function moveToWeaks() {
 	     
 	     targOrd=$(awk '{print($1)}' <<< $selToTarget)
 	     ofsleters=$(awk '{print($2)}' <<< $selters)  # get column number of weakest link
-	     xWEAK=$(grep -n "Feld$ofsleters" unique4.sh) # set to find weakestLink
+	     xWEAK=$(grep -n "_$ofsleters$" unique4.sh) # set to find weakestLink
 	     jkW=(${xWEAK//:/ })
 	     nuW=$(echo ${jkW[0]})
 	     nuW2=$(echo ${jkW[1]})                # "1:Feld1_4RV" ->
@@ -468,25 +468,28 @@ function moveToWeaks() {
 		 then
 			# echo "blob------------------------------"
 		   #  echo ""\"$""cleanStrFutALi"\""
-		        echo "$cleanStrFutALi"", ""$nuAnum"", ""$iOne"", " "ava" >> unique6.sh
-	              echo "$pingLMight" "$pingColuMight"
-		      echo "pr ------------------------------------ XXX "
-	               echo "$xtrail2" | tail -$columnNumber # pingLine
 		       nowX=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($3)}')
 		       nowY=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($5)}')
-		       echo "$nowX"
+		     #  echo "$nowX" "$nowY"
 		       foM1=$(expr 4 '*' 123)
 		       foM2=$(expr -492 '+' $foM1)
 		       move1=$(echo ""\<animateMotion path=\"M  0 -492 L 0 "$foM2"\" begin=\"14.1s\" dur=\"0.3s\" fill=\"freeze\"\/\>"")
-		       echo "$move1" 
+		       
+		      echo "$move1" 
+		       echo "$cleanStrFutALi"", ""$nuAnum"", ""$iOne"", " "ava" >> unique6.sh
+	              echo "$pingLMight" "$pingColuMight"
+		      echo "pr ------------------------------------ XXX "
+	               echo "$pingColu" # "$xtrail2" | tail -$columnNumber # pingLine
+
                       # echo "$cleanStrFutALi"", ""$nuAnum"", ""$iOne"", " "ava" >> unique7.sh
                        insertAt=$(grep -n "freeze" svgTail | tail -1 | cut -d : -f1)
 		       prepAt=$(expr $insertAt + 1)
 		       headD=$(head -n $insertAt svgTail)
 		       echo "$headD" "$move1" ""\<\/g\> \<\/g\> \<\/svg\>"" >> unique7.sh
-		       wert= read asd _ <<< $(echo $(./seriesTest.sh "Feld1" unique4.sh))
+		       wert= read asd fout <<< $(echo $(./seriesTest.sh ""_1$"" unique4.sh))
 		       echo "----------------------------- SERIES N ? "
-		       echo "$asd" 
+		       echo ""$asd" "$fout" "\n""
+		       
 		       # { head -n $insertAt svgTail; echo "$move1"; tail -n +1 svgTail; }
                  elif [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ] && [ $toMatch '=' 0 ] # : if pingLMight <= pingColuMight not true
 		 then
@@ -494,25 +497,40 @@ function moveToWeaks() {
                        echo "pr ------------------------------------ YYY "
 		       echo "$pingLMight" "$pingColuMight"
 		       echo "$pingColu" | tail -$correcSleter # pingColumn
+		       wert= read asd fout <<< $(echo $(./seriesTest.sh "Feld1" unique4.sh))
+		       echo "----------------------------- SERIES N ? "
+		       echo "$asd" "$fout"
                  elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` == 0 ] && [ $toMatch '=' 1 ] # : if iOne even number and match true 
 		 then
 		       echo "pr ------------------------------------ XXX "
 	               echo "$xtrail2" | tail -$correcSleter # pingLine
+		       wert= read asd fout <<< $(echo $(./seriesTest.sh ""_$iOne$"" unique4.sh))
+		       echo "----------------------------- SERIES N ? "
+		       echo "$asd" "$fout"
 	          elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` == 0 ] && [ $toMatch '=' 0 ] # : if line number even and match not true
 		  then
                        echo "pr ------------------------------------ YYY "
 		       echo "$pingLMight" "$pingColuMight"
 		       echo "$pingColu" | tail -$correcSleter # pingColumn
-		  elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` == 1 ] && [ $toMatch '=' 0 ] # : if iOne odd number and match true
+		       wert= read asd fout <<< $(echo $(./seriesTest.sh "Feld$iOne" unique4.sh))
+		       echo "----------------------------- SERIES N ? "
+		       echo "$asd" "$fout"
+	         elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` == 1 ] && [ $toMatch '=' 0 ] # : if iOne odd number and match true
 		 then
 		       echo "pr ------------------------------------ XXX "
 	               echo "$xtrail2" | tail -$correcSleter # pingLine
 		       echo "$pingLMight" "$pingColuMight"
-	       elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` == 1 ] && [ $toMatch '=' 1 ] # : if iOne odd number and match not true
-	       then
-		      echo "pr ------------------------------------ YYY "
+		       wert= read asd fout <<< $(echo $(./seriesTest.sh ""_$iOne$"" unique4.sh))
+		       echo "----------------------------- SERIES N ? "
+		       echo "$asd" "$fout"
+	         elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` == 1 ] && [ $toMatch '=' 1 ] # : if iOne odd number and match not true
+	         then
+		       echo "pr ------------------------------------ YYY "
 		       echo "$pingLMight" "$pingColuMight"
 		       echo "$pingColu" | tail -$correcSleter # pingColumn
+		       wert= read asd fout <<< $(echo $(./seriesTest.sh "Feld$iOne" unique4.sh))
+		       echo "----------------------------- SERIES N ? "
+		       echo "$asd" "$fout"
 	         fi	     
  #                                                                      #############################    SUMMING UP above
  # ends with: 'for the last pingColumn if iOne is even and Match is true' 
@@ -538,7 +556,7 @@ function moveToWeaks() {
 	            # fi
 	      done
 	      
-               echo "$customGrep0" # "$buility" #"$insertI" #"$customGrep"
+              # echo "$customGrep0" # "$buility" #"$insertI" #"$customGrep"
 	       # changeSVGanim
 	     done
 	   
