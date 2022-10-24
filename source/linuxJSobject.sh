@@ -400,7 +400,6 @@ function moveToWeaks() {
 		 echo "$meter"
 	     fi 
 	    
-	    echo $xtrail
              adjustNuer=$(echo | expr $extractNumer / 6) # devide bz 6 due to 6 x6 select the right line
 	     foextr=$(echo | expr $adjustNuer + 1)
 		insertI=$(echo | expr $i + 1) 
@@ -474,7 +473,7 @@ function moveToWeaks() {
 		       foM1=$(expr 4 '*' 123)
 		       foM2=$(expr -492 '+' $foM1)
 		       move1=$(echo ""\<animateMotion path=\"M  0 -492 L 0 "$foM2"\" begin=\"14.1s\" dur=\"0.3s\" fill=\"freeze\"\/\>"")
-		       
+		      echo "" --- Line "$iOne"" until column ""$columnNumber" "" 
 		      echo "$move1" 
 		       echo "$cleanStrFutALi"", ""$nuAnum"", ""$iOne"", " "ava" >> unique6.sh
 	              echo "$pingLMight" "$pingColuMight"
@@ -487,9 +486,12 @@ function moveToWeaks() {
 		       headD=$(head -n $insertAt svgTail)
 		       echo "$headD" "$move1" ""\<\/g\> \<\/g\> \<\/svg\>"" >> unique7.sh
 		       wert= read asd fout <<< $(echo $(./seriesTest.sh ""_1$"" unique4.sh))
+		       wert2= read asd2 fout2 <<< $(echo $(./seriesTest.sh "Feld1" unique4.sh))
 		       echo "----------------------------- SERIES N ? "
-		       echo ""$asd" "$fout" "\n""
-		       
+		       quer=$(echo "$asd" "$fout" | head -2 | tail -1)
+		       quer2=$(echo "$asd2" "$fout2") 
+		       echo "$quer"
+		        echo "$quer2"
 		       # { head -n $insertAt svgTail; echo "$move1"; tail -n +1 svgTail; }
                  elif [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ] && [ $toMatch '=' 0 ] # : if pingLMight <= pingColuMight not true
 		 then
@@ -497,24 +499,33 @@ function moveToWeaks() {
                        echo "pr ------------------------------------ YYY "
 		       echo "$pingLMight" "$pingColuMight"
 		       echo "$pingColu" | tail -$correcSleter # pingColumn
-		       wert= read asd fout <<< $(echo $(./seriesTest.sh "Feld1" unique4.sh))
+		       wert= read asd fout <<< $(echo $(./seriesTest.sh ""_1$"" unique4.sh))
 		       echo "----------------------------- SERIES N ? "
 		       echo "$asd" "$fout"
-                 elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` == 0 ] && [ $toMatch '=' 1 ] # : if iOne even number and match true 
+		       wert2= read asd2 fout2 <<< $(echo $(./seriesTest.sh "Feld1" unique4.sh))
+		       quer2=$(echo "$asd2" "$fout2")
+		       echo "$quer2"
+                  elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` == 0 ] && [ $toMatch '=' 1 ] # : if iOne even number and match true 
 		 then
 		       echo "pr ------------------------------------ XXX "
 	               echo "$xtrail2" | tail -$correcSleter # pingLine
 		       wert= read asd fout <<< $(echo $(./seriesTest.sh ""_$iOne$"" unique4.sh))
 		       echo "----------------------------- SERIES N ? "
 		       echo "$asd" "$fout"
+		       wert2= read asd2 fout2 <<< $(echo $(./seriesTest.sh "Feld$iOne" unique4.sh))
+		       quer2=$(echo "$asd2" "$fout2")
+		       echo "$quer2"
 	          elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` == 0 ] && [ $toMatch '=' 0 ] # : if line number even and match not true
 		  then
                        echo "pr ------------------------------------ YYY "
 		       echo "$pingLMight" "$pingColuMight"
 		       echo "$pingColu" | tail -$correcSleter # pingColumn
-		       wert= read asd fout <<< $(echo $(./seriesTest.sh "Feld$iOne" unique4.sh))
+		       wert= read asd fout <<< $(echo $(./seriesTest.sh ""_$iOne$"" unique4.sh))
 		       echo "----------------------------- SERIES N ? "
 		       echo "$asd" "$fout"
+		       wert2= read asd2 fout2 <<< $(echo $(./seriesTest.sh "Feld$iOne" unique4.sh))
+		       quer2=$(echo "$asd2" "$fout2")
+		       echo "$quer2"
 	         elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` == 1 ] && [ $toMatch '=' 0 ] # : if iOne odd number and match true
 		 then
 		       echo "pr ------------------------------------ XXX "
@@ -523,14 +534,20 @@ function moveToWeaks() {
 		       wert= read asd fout <<< $(echo $(./seriesTest.sh ""_$iOne$"" unique4.sh))
 		       echo "----------------------------- SERIES N ? "
 		       echo "$asd" "$fout"
+		       wert2= read asd2 fout2 <<< $(echo $(./seriesTest.sh "Feld$iOne" unique4.sh))
+		       quer2=$(echo "$asd2" "$fout2")
+		       echo "$quer2"
 	         elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` == 1 ] && [ $toMatch '=' 1 ] # : if iOne odd number and match not true
 	         then
 		       echo "pr ------------------------------------ YYY "
 		       echo "$pingLMight" "$pingColuMight"
 		       echo "$pingColu" | tail -$correcSleter # pingColumn
-		       wert= read asd fout <<< $(echo $(./seriesTest.sh "Feld$iOne" unique4.sh))
+		       wert= read asd fout <<< $(echo $(./seriesTest.sh ""_$iOne$"" unique4.sh))
 		       echo "----------------------------- SERIES N ? "
 		       echo "$asd" "$fout"
+		       wert2= read asd2 fout2 <<< $(echo $(./seriesTest.sh "Feld$iOne" unique4.sh))
+		       quer2=$(echo "$asd2" "$fout2")
+		       echo "$quer2"
 	         fi	     
  #                                                                      #############################    SUMMING UP above
  # ends with: 'for the last pingColumn if iOne is even and Match is true' 
