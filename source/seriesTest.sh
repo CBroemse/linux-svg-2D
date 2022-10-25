@@ -13,6 +13,8 @@ function seriesTest () {
             fromList=$(grep "$inP" $inP2 | head -$tocalc | tail -1 | cut -f1 -d:)
             fromList2=$(grep "$inP" $inP2 | head -$tocalc2 | tail -1 | cut -f1 -d:)
 	    calc1=$(expr $fromList2 '-' 1) 
+	    calc2=$(echo "$fromList" | awk '{print($1)}')
+	    # colinear=$(echo | expr $(echo | expr $(echo | expr $calc2 '-' $q ) '/' 6) '+' 1)
 	    if [ "$fromList" '==' "$calc1" ] || [ "$tocalc" '==' "$solang" ] # e.g 10 == 10
 	    then 
 		grep "$inp" $inP2 | head -$tocalc | tail -1 | cut -f1 -d:
