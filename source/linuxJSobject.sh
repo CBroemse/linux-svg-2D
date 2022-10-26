@@ -327,7 +327,9 @@ function moveToWeaks() {
        	    rm unique6.sh
             touch unique6.sh
 	     rm unique7.sh
-            touch unique7.sh    
+            touch unique7.sh
+	    rm unique8.sh
+            touch unique8.sh  
          for ((i=0;i<6;++i)) do
 	     iOne=$(echo | expr $i + 1)
 	    
@@ -445,11 +447,9 @@ function moveToWeaks() {
   # function below has two purposes    a) add avatar if ava = Feld1_1
   #                                    b) from 1_1 decide which is more mighty
   #                                       pingLine vs pingColuLine
-  #                    a || b if a1 > b1 then eval pingLine 
-  #   with every       a == odd  do -> pingLine
-  #		       a == even do -> pingColuLine  
-  #  OR vice versa
-  #     also for a = b
+  #                    a || b if a1 <= b1 then eval pingColu 
+  #   with every              else             eval pingLine
+  
   # [ "$iOne" '==' "1" ] ::= for every new pingLine   
   # [ "$iiOne" '==' "1" ] ::= for every new pingColu   
                  if [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ] && [ $toMatch '=' 1 ] # means : if pingLMight > pingColuMight is true
@@ -464,8 +464,11 @@ function moveToWeaks() {
 		       move1=$(echo ""\<animateMotion path=\"M  0 -492 L 0 "$foM2"\" begin=\"14.1s\" dur=\"0.3s\" fill=\"freeze\"\/\>"")
 		      echo "" --- Line "$iOne"" until column ""$columnNumber" "" 
 		      echo "$move1" 
-		       echo "$cleanStrFutALi"", ""$nuAnum"", ""$iOne"", " "ava" >> unique6.sh
-	              echo "$pingLMight" "$pingColuMight"
+		     #  echo "$cleanStrFutALi"", ""$nuAnum"", ""$iOne"", " "ava" >> unique6.sh
+		     grot=$(echo "$pingLMight" "$pingColuMight")
+	             
+		      calcC=$(expr "$pingLMight" '+' "$pingColuMight")
+		       echo "$calcC" "$grot" >> unique6.sh
 		      echo " line -----------------selected line XXX "
 		      echo "$pingLine"
 	             echo " column ---------------" 
@@ -486,7 +489,10 @@ function moveToWeaks() {
                  elif [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ] && [ $toMatch '=' 0 ] # : if pingLMight <= pingColuMight not true
 		 then
 		        echo "$cleanStrFutALi"", ""$nuAnum"", ""$iOne"", " "ava" >> unique6.sh
-		       echo "$pingLMight" "$pingColuMight"
+		        grot=$(echo "$pingLMight" "$pingColuMight")
+	             
+		      calcC=$(expr "$pingLMight" '+' "$pingColuMight")
+		       echo "$calcC" "$grot" >> unique6.sh
 		        echo " line -----------------selected column YYY "
 		       echo "$pingLine"
 		       echo " column ---------------"
@@ -500,6 +506,10 @@ function moveToWeaks() {
 		       echo "column: $quer" 
 	         elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` '=' 1 ] && [ $toMatch '=' 1 ] # : if iOne even number and match true 
 		 then
+			   grot=$(echo "$pingLMight" "$pingColuMight")
+	             
+		      calcC=$(expr "$pingLMight" '+' "$pingColuMight")
+		       echo "$calcC" "$grot" >> unique6.sh
 		       echo " line -----------------selected line XXX "
 	               echo "$pingLine"
 		       echo " column ---------------"
@@ -513,7 +523,10 @@ function moveToWeaks() {
 		       echo "column: $quer"
 	          elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` '=' 1 ] && [ $toMatch '=' 0 ] # : if line number even and match not true
 		  then
-		       echo "$pingLMight" "$pingColuMight"
+		         grot=$(echo "$pingLMight" "$pingColuMight")
+	             
+		      calcC=$(expr "$pingLMight" '+' "$pingColuMight")
+		       echo "$calcC" "$grot" >> unique6.sh
 		        echo " line -----------------selected column YYY "
 		        echo "$pingLine"
 			echo " column ---------------"
@@ -527,11 +540,14 @@ function moveToWeaks() {
 		       echo "column: $quer"
 	         elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` '=' 0 ] && [ $toMatch '=' 1 ] # : if iOne odd number and match true
 		 then
+			   grot=$(echo "$pingLMight" "$pingColuMight")
+	             
+		      calcC=$(expr "$pingLMight" '+' "$pingColuMight")
+		       echo "$calcC" "$grot" >> unique6.sh
 		        echo " line -----------------selected line XXX "
 	               echo "$pingLine"
 		       echo " column ---------------"
 		        echo "$pingColu"
-		       echo "$pingLMight" "$pingColuMight"
 		       wert= read asd fout <<< $(echo $(./seriesTest.sh ""_$iOne$"" unique4.sh))
 		       echo "----------------------------- SERIES N ? "
 		       quer=$(echo "$asd" "$fout")
@@ -541,8 +557,10 @@ function moveToWeaks() {
 		       echo "column: $quer"
 	         elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` '=' 0 ] && [ $toMatch '=' 0 ] # : if iOne odd number and match not true
 	         then
-		       echo "pr ------------------------------------ YYY "
-		       echo "$pingLMight" "$pingColuMight"
+		        grot=$(echo "$pingLMight" "$pingColuMight")
+	             
+		      calcC=$(expr "$pingLMight" '+' "$pingColuMight")
+		       echo "$calcC" "$grot" >> unique6.sh
 		        echo " line -----------------selected column YYY "
 		        echo "$pingLine"
 			echo " column ---------------"
@@ -560,6 +578,10 @@ function moveToWeaks() {
 		 topolog=$(echo "$cleanStrFut0Li"", ""$nu0num"", ""$iOne"", ""pres") 
 	 #        echo "$topolog" >> unique6.sh
 	      done
+                 bestConnect=$(echo | sort -n unique6.sh | tail -$iOne | head -1 | awk '{print($1)}')
+		 echo "bo----------------------------bo"
+		 echo $(grep -n "$bestConnect" unique6.sh | tail -$iOne | head -1 | awk '{print($1)}') # |cut -f1 -d:)
+	         
               # echo "$customGrep0" # "$buility" #"$insertI" #"$customGrep"
 	       # changeSVGanim
 	     done
