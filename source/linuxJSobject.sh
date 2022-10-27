@@ -308,10 +308,7 @@ TARGET="Feld6_6"
 function moveToWeaks() {
              foAVA=$(grep -n "AVA" oD1.sh)
 	     foTARGET=$(grep -n "$TARGET" oD1.sh)
-	     
-	      echo "\nMEASSURE weakest link -----------------------"
-	      echo "  - 2 streams of action "
-	      echo "    I. get coordinates : AVA, weakesLink, TARGET"
+	      echo "    I. write unique6.sh via ./thisAlgo1.sh"
               echo "    II. decide PATH from"
   	      echo "        a) AVA to weakesLink"
               echo "        b) weakesLink to TARGET"    
@@ -319,11 +316,6 @@ function moveToWeaks() {
 	    touch unique5.sH
 	    weakesLink
 	    weakesLink >>  unique5.sh
-	     echo | sort -nr unique5.sh | tail -1 
-	     echo | sort -nr unique5.sh | tail -2 | head -1
-	     echo | sort -nr unique5.sh | tail -3 | head -1
-	     echo | sort -nr unique5.sh | tail -4 | head -1
-	     echo | sort -nr unique5.sh | tail -5 | head -1
        	    rm unique6.sh
             touch unique6.sh
 	     rm unique7.sh
@@ -336,12 +328,6 @@ function moveToWeaks() {
 	     selters=$(echo | sort -nr unique5.sh | tail -$iOne | head -1) # out of columns filter WEAKEST link line number
 	     selToTarget=$(head -n $iOne unique5.sh | tail -1) # the order is N of different length
              typeMighty=$(echo | sort -nr unique5.sh | head -1 | tail -1) # reverse selters -> most Mighty TYPE acumulation in lines
-	        # say if AVA line and a TYPE line are the same
-               #      then 
-	        #         go to strngh ==  4
-		#	 search 
-                #         grep -n "Feld$strngh" "unique4.sh" -> 23:Feld4_5 TyPE -507 10 587 -557.70000000 -456.30000000
-			 
 	     
 	     targOrd=$(awk '{print($1)}' <<< $selToTarget)
 	     ofsleters=$(awk '{print($2)}' <<< $selters)  # get column number of weakest link
@@ -360,13 +346,6 @@ function moveToWeaks() {
              foMOVE=$(grep -n "Feld$iOne" oD1.sh)
 	     targetLin=$(grep -n "$TARGET" oD1.sh | awk '{print($1)}' | cut -f1 -d:) # line number o TARGET in DICTIONARY
              ofTarget=$(awk '{print($3)}' <<< $foTARGET)
-	     # targetYs
-             # ofT2=$(echo | expr $targetLin / 6) # line number of TARGET in Dictionary	     
-	     # different orders for different purposes
-	     # e.g ----------------------------------------------- fst level orders:
-	     #   TARGET relative to AVA: 6 ..      1 -> 
-	     #               weakesLink: 4 2 3 1 5 6 
-             #               
              xtrail=$(grep -n "Feld$iOne" unique4.sh) # set to find TARGET -> show line number
 	     
              typeLInksWEAK=$(echo "$xtrail" | wc -w) # ########################################### MEASURE WEAKEST LINK
@@ -379,11 +358,6 @@ function moveToWeaks() {
 	     getInput=$(head -n $zeropl2 unique3.sh | tail -1)
              getInput2=$(head -n $zeropl2 unique2.sh | tail -1)
 
-	     dub= read some _  <<< "$avaLine"             # ---------------- EXTRACT line with AVATAR
-	     otherdat=$(awk '{print($2)}' <<< "$foMOVE") 
-	     extractNumer=$(echo "$some" | cut -f1 -d:) # => e.g "Feld1_1 => 1
-                                                        #  =>     "Feld3_3 => 15
-	     
 	    echo "move '"$iOne"': -------------------- " 
 	    echo "        a) AVA to weakesLink"     	    
 	 #   echo "$selters" # weakesLink 
@@ -402,23 +376,12 @@ function moveToWeaks() {
 		 echo "$meter"
 	     fi 
 	    
-             adjustNuer=$(echo | expr $extractNumer / 6) # devide bz 6 due to 6 x6 select the right line
-	     foextr=$(echo | expr $adjustNuer + 1)
-		insertI=$(echo | expr $i + 1) 
-		buility=$(echo "$poe""$extractNumer""_""$insertI") # ------------------------------- BUILD custom GREP advance functionality of svg
-               foastrid=$(echo ""Feld$foextr'_'$insertI"")
-               customGrep0=$(grep "$foastrid" $edger) #"\"Feld'$adjustNuer'_'$insertI'\"" $edger) # get another FELD depending where AVA is in fst MOVE
-	       customCheck=$(echo "$customGrep0" | awk '{print($2)}') # check TYPE
 	      for ((ii=0;ii<$fomightTarg;++ii)) # ########################################################## ------------ ii
 	          do
-	             echo "$ii"
-		     iiOne=$(echo | expr $ii + 1)
-		     iiOnef=$(echo | expr $iiOne + 1)
-		     iOnef=$(echo | expr $iOne + 1)
-		     iOneff=$(echo | expr $iOne + 2)
-		     xtrail2=$(grep ""Feld$iOne"" unique4.sh) # set to find TARGET -> show line number
-		     xfuture1=$(grep ""Feld$iOnef"" unique4.sh)
-		     xfuture2=$(grep ""Feld$iOneff"" unique4.sh)
+	         echo "$ii"
+		 iiOne=$(echo | expr $ii + 1)
+		 iOneff=$(echo | expr $iOne + 2)
+		 xtrail2=$(grep ""Feld$iOne"" unique4.sh) # set to find TARGET -> show line number
 
                  jkAva=(${moprep//:/ })
 		  nuAnum=$(echo ${jkAva[0]})
@@ -441,146 +404,17 @@ function moveToWeaks() {
 	     # path
               # pingColumn
 	              columnCHECK=$( grep "7" <<< $(sort -t ',' -k1,4 unique6.sh | head -4))
-	              rowCHECK=$(grep ""$iOne"" unique6.sh)
 	              correcSleter=6 # $ofsleters # $(echo | expr $ofsleters - 1)
-	              toMatch=$(expr $pingLMight '>' $pingColuMight) # 
-  # function below has two purposes    a) add avatar if ava = Feld1_1
-  #                                    b) from 1_1 decide which is more mighty
-  #                                       pingLine vs pingColuLine
-  #                    a || b if a1 <= b1 then eval pingColu 
-  #   with every              else             eval pingLine
-  
-  # [ "$iOne" '==' "1" ] ::= for every new pingLine   
-  # [ "$iiOne" '==' "1" ] ::= for every new pingColu   
-                 if [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ] && [ $toMatch '=' 1 ] # means : if pingLMight > pingColuMight is true
-		 then
-			# echo "blob------------------------------"
-		   #  echo ""\"$""cleanStrFutALi"\""
-		       nowX=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($3)}')
-		       nowY=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($5)}')
-		     #  echo "$nowX" "$nowY"
-		       foM1=$(expr 4 '*' 123)
-		       foM2=$(expr -492 '+' $foM1)
-		       move1=$(echo ""\<animateMotion path=\"M  0 -492 L 0 "$foM2"\" begin=\"14.1s\" dur=\"0.3s\" fill=\"freeze\"\/\>"")
-		      echo "" --- Line "$iOne"" until column ""$columnNumber" "" 
-		      echo "$move1" 
-		     #  echo "$cleanStrFutALi"", ""$nuAnum"", ""$iOne"", " "ava" >> unique6.sh
-		     grot=$(echo "$pingLMight" "$pingColuMight")
-	             
-		      calcC=$(expr "$pingLMight" '+' "$pingColuMight")
-		       echo "$calcC" "$grot" >> unique6.sh
-		      echo " line -----------------selected line XXX "
-		      echo "$pingLine"
-	             echo " column ---------------" 
-		      echo "$pingColu" # "$xtrail2" | tail -$columnNumber # pingLine
-
-                      # echo "$cleanStrFutALi"", ""$nuAnum"", ""$iOne"", " "ava" >> unique7.sh
-                       insertAt=$(grep -n "freeze" svgTail | tail -1 | cut -d : -f1)
-		       prepAt=$(expr $insertAt + 1)
-		       headD=$(head -n $insertAt svgTail)
-		       echo "$headD" "$move1" ""\<\/g\> \<\/g\> \<\/svg\>"" >> unique7.sh
-		       wert= read asd fout <<< $(echo $(./seriesTest.sh ""_1$"" unique4.sh))
-		       wert2= read asd2 fout2 <<< $(echo $(./seriesTest.sh "Feld1" unique4.sh))
-		       echo "----------------------------- SERIES N ? "
-		       quer=$(echo "$asd" "$fout" | head -2 | tail -1)
-		       quer2=$(echo "$asd2" "$fout2") 
-		       echo "line: $quer2"
-		       echo "column: $quer"
-                 elif [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ] && [ $toMatch '=' 0 ] # : if pingLMight <= pingColuMight not true
-		 then
-		        echo "$cleanStrFutALi"", ""$nuAnum"", ""$iOne"", " "ava" >> unique6.sh
-		        grot=$(echo "$pingLMight" "$pingColuMight")
-	             
-		      calcC=$(expr "$pingLMight" '+' "$pingColuMight")
-		       echo "$calcC" "$grot" >> unique6.sh
-		        echo " line -----------------selected column YYY "
-		       echo "$pingLine"
-		       echo " column ---------------"
-		       echo "$pingColu"
-		       wert= read asd fout <<< $(echo $(./seriesTest.sh ""_1$"" unique4.sh))
-		       echo "----------------------------- SERIES N ? "
-		       quer=$(echo "$asd" "$fout")
-		       wert2= read asd2 fout2 <<< $(echo $(./seriesTest.sh "Feld1" unique4.sh))
-		       quer2=$(echo "$asd2" "$fout2")
-                       echo "line: $quer2"
-		       echo "column: $quer" 
-	         elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` '=' 1 ] && [ $toMatch '=' 1 ] # : if iOne even number and match true 
-		 then
-			   grot=$(echo "$pingLMight" "$pingColuMight")
-	             
-		      calcC=$(expr "$pingLMight" '+' "$pingColuMight")
-		       echo "$calcC" "$grot" >> unique6.sh
-		       echo " line -----------------selected line XXX "
-	               echo "$pingLine"
-		       echo " column ---------------"
-		        echo "$pingColu"
-		       wert= read asd fout <<< $(echo $(./seriesTest.sh ""_$iOne$"" unique4.sh))
-		       echo "----------------------------- SERIES N ? "
-		       quer=$(echo "$asd" "$fout")
-		       wert2= read asd2 fout2 <<< $(echo $(./seriesTest.sh "Feld$iOne" unique4.sh))
-		       quer2=$(echo "$asd2" "$fout2")
-		        echo "line: $quer2"
-		       echo "column: $quer"
-	          elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` '=' 1 ] && [ $toMatch '=' 0 ] # : if line number even and match not true
-		  then
-		         grot=$(echo "$pingLMight" "$pingColuMight")
-	             
-		      calcC=$(expr "$pingLMight" '+' "$pingColuMight")
-		       echo "$calcC" "$grot" >> unique6.sh
-		        echo " line -----------------selected column YYY "
-		        echo "$pingLine"
-			echo " column ---------------"
-		       echo "$pingColu"
-		       wert= read asd fout <<< $(echo $(./seriesTest.sh ""_$iOne$"" unique4.sh))
-		       echo "----------------------------- SERIES N ? "
-		       quer=$(echo "$asd" "$fout")
-		       wert2= read asd2 fout2 <<< $(echo $(./seriesTest.sh "Feld$iOne" unique4.sh))
-		       quer2=$(echo "$asd2" "$fout2")
-		        echo "line: $quer2"
-		       echo "column: $quer"
-	         elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` '=' 0 ] && [ $toMatch '=' 1 ] # : if iOne odd number and match true
-		 then
-			   grot=$(echo "$pingLMight" "$pingColuMight")
-	             
-		      calcC=$(expr "$pingLMight" '+' "$pingColuMight")
-		       echo "$calcC" "$grot" >> unique6.sh
-		        echo " line -----------------selected line XXX "
-	               echo "$pingLine"
-		       echo " column ---------------"
-		        echo "$pingColu"
-		       wert= read asd fout <<< $(echo $(./seriesTest.sh ""_$iOne$"" unique4.sh))
-		       echo "----------------------------- SERIES N ? "
-		       quer=$(echo "$asd" "$fout")
-		       wert2= read asd2 fout2 <<< $(echo $(./seriesTest.sh "Feld$iOne" unique4.sh))
-		       quer2=$(echo "$asd2" "$fout2")
-		        echo "line: $quer2"
-		       echo "column: $quer"
-	         elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` '=' 0 ] && [ $toMatch '=' 0 ] # : if iOne odd number and match not true
-	         then
-		        grot=$(echo "$pingLMight" "$pingColuMight")
-	             
-		      calcC=$(expr "$pingLMight" '+' "$pingColuMight")
-		       echo "$calcC" "$grot" >> unique6.sh
-		        echo " line -----------------selected column YYY "
-		        echo "$pingLine"
-			echo " column ---------------"
-		       echo "$pingColu"
-		       wert= read asd fout <<< $(echo $(./seriesTest.sh ""_$iOne$"" unique4.sh))
-		       echo "----------------------------- SERIES N ? "
-		       quer=$(echo "$asd" "$fout")
-		       wert2= read asd2 fout2 <<< $(echo $(./seriesTest.sh "Feld$iOne" unique4.sh))
-		       quer2=$(echo "$asd2" "$fout2")
-	               echo "line: $quer2"
-		       echo "column: $quer"
-		 fi	     
- # --------------------------------------------------------------------------------------------------------------------------------------------------		
- # below prepare for sorting collumns of future1 MOVES
+	              toMatch=$(expr $pingLMight '>' $pingColuMight) #
+  # iOne. iiOne. toMatch. xtrail2. 14.1s. columnNumber. pingLine. pingColu. pingLMight. pingColuMight. 
+   #              if [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ] && [ $toMatch '=' 1 ] # means : if pingLMight > pingColuMight is true
+                 ./thisAlgo1.sh "$iOne" "$iiOne" "$toMatch" "$xtrail2" "$begin" "$columnNumber" "$pingLine" "$pingColu" "$pingLMight" "$pingColuMight"
 		 topolog=$(echo "$cleanStrFut0Li"", ""$nu0num"", ""$iOne"", ""pres") 
 	 #        echo "$topolog" >> unique6.sh
 	      done
-                 bestConnect=$(echo | sort -n unique6.sh | tail -$iOne | head -1 | awk '{print($1)}')
+                 bestConnect=$(echo | sort -nr unique6.sh | tail -$iOne | head -1 | awk '{print($1)}')
 		 echo "bo----------------------------bo"
-		 echo $(grep -n "$bestConnect" unique6.sh | tail -$iOne | head -1 | awk '{print($1)}') # |cut -f1 -d:)
+		 echo $(grep -n "$bestConnect" unique6.sh | tail -$iOne | head -1) # | awk '{print($1)}') # |cut -f1 -d:)
 	         
               # echo "$customGrep0" # "$buility" #"$insertI" #"$customGrep"
 	       # changeSVGanim
