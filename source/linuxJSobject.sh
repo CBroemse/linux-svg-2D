@@ -409,8 +409,15 @@ function moveToWeaks() {
 	     done
 	     bestConnect=$(echo | sort -nr unique6.sh | tail -$iOne | head -1 | awk '{print($1)}')
 		 echo "bo----------------------------bo"
-		 echo "$bestConnect" # $(grep -n "$bestConnect" unique6.sh | tail -$iOne | head -1) # | awk '{print($1)}') # |cut -f1 -d:)
-	         
+		 echo "$bestConnect" # 
+		 echo $(grep -n "$bestConnect" unique6.sh | tail -$iOne | head -1) # | awk '{print($1)}') # |cut -f1 -d:)
+                 nowX=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($3)}')
+                 nowY=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($5)}')
+                  #  echo "$nowX" "$nowY"
+                  foM1=$(expr 4 '*' 123)
+                  foM2=$(expr -492 '+' $foM1)
+                  move1=$(echo ""\<animateMotion path=\"M  0 -492 L 0 "$foM2"\" begin=\"14.1s\" dur=\"0.3s\" fill=\"freeze\"\/\>"")
+	          echo "$move1"
               # echo "$customGrep0" # "$buility" #"$insertI" #"$customGrep"
 	       # changeSVGanim
             }

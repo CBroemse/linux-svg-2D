@@ -32,14 +32,7 @@ function thisAlgo () {
                  if [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ] && [ $toMatch '=' 1 ] # means : if pingLMight > pingColuMight is true
 		 then
 			# echo "blob------------------------------"
-		       nowX=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($3)}')
-		       nowY=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($5)}')
-		     #  echo "$nowX" "$nowY"
-		       foM1=$(expr 4 '*' 123)
-		       foM2=$(expr -492 '+' $foM1)
-		       move1=$(echo ""\<animateMotion path=\"M  0 -492 L 0 "$foM2"\" begin=\"14.1s\" dur=\"0.3s\" fill=\"freeze\"\/\>"")
 		       echo "" --- Line "$iOne"" until column ""$columnNumber" "" 
-		       echo "$move1" 
 		       grot=$(echo "$pingLMight" "$pingColuMight")
 		       calcC=$(expr "$pingLMight" '+' "$pingColuMight")
 		       echo "$calcC" "$grot" >> unique6.sh
@@ -55,7 +48,7 @@ function thisAlgo () {
 		       wert= read asd fout <<< $(echo $(./seriesTest.sh ""_1$"" unique4.sh))
                        wert2= read asd2 fout2 <<< $(echo $(./seriesTest.sh "Feld1" unique4.sh))
 		       echo "----------------------------- SERIES N ? "
-		       quer=$(echo "$asd" "$fout" | head -2 | tail -1)
+		       quer=$(echo "$asd" "$fout")
 		       quer2=$(echo "$asd2" "$fout2") 
 		       echo "line: $quer2"
 		       echo "column: $quer"
