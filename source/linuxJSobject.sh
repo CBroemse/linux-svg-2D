@@ -418,6 +418,11 @@ function moveToWeaks() {
                   foM2=$(expr -492 '+' $foM1)
                   move1=$(echo ""\<animateMotion path=\"M  0 -492 L 0 "$foM2"\" begin=\"14.1s\" dur=\"0.3s\" fill=\"freeze\"\/\>"")
 	          echo "$move1"
+                  insertAt=$(grep -n "freeze" svgTail | tail -1 | cut -d : -f1)
+                  prepAt=$(expr $insertAt + 1)
+                  headD=$(head -n $insertAt svgTail)
+                  echo "$headD" "$move1" ""\<\/g\> \<\/g\> \<\/svg\>"" >> unique7.sh
+		  
               # echo "$customGrep0" # "$buility" #"$insertI" #"$customGrep"
 	       # changeSVGanim
             }

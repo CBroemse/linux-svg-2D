@@ -41,10 +41,6 @@ function thisAlgo () {
 		       echo "$pingLine"
 	               echo " column ---------------" 
 		       echo "$pingColu" # "$xtrail2" | tail -$columnNumber # pingLine
-                       insertAt=$(grep -n "freeze" svgTail | tail -1 | cut -d : -f1)
-		       prepAt=$(expr $insertAt + 1)
-		       headD=$(head -n $insertAt svgTail)
-		       echo "$headD" "$move1" ""\<\/g\> \<\/g\> \<\/svg\>"" >> unique7.sh
 		       wert= read asd fout <<< $(echo $(./seriesTest.sh ""_1$"" unique4.sh))
                        wert2= read asd2 fout2 <<< $(echo $(./seriesTest.sh "Feld1" unique4.sh))
 		       echo "----------------------------- SERIES N ? "
