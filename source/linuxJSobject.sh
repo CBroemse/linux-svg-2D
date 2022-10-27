@@ -407,7 +407,7 @@ function moveToWeaks() {
 	      done
                  
 	     done
- # thisAlgo1 front-end
+ # thisAlgo1 front-end -----------------------##################################### FRONT END: './thisAlgo1.sh'
  # bestConnect:  list of weights y x -> take best 3 of 6
  # step1= length bestConnect n -> map with bestConnectValues n times 
 	     bestConnect=$(echo | sort -nr unique6.sh | head -3) # set to best 3 lines | head -1 | awk '{print($1)}')
