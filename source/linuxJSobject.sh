@@ -407,10 +407,16 @@ function moveToWeaks() {
 	      done
                  
 	     done
-	     bestConnect=$(echo | sort -nr unique6.sh | tail -$iOne | head -1 | awk '{print($1)}')
-		 echo "bo----------------------------bo"
-		 echo "$bestConnect" # 
-		 echo $(grep -n "$bestConnect" unique6.sh | tail -$iOne | head -1) # | awk '{print($1)}') # |cut -f1 -d:)
+ # thisAlgo1 front-end
+ # bestConnect:  list of weights y x -> take best 3 of 6
+ # step1= length bestConnect n -> map with bestConnectValues n times 
+	     bestConnect=$(echo | sort -nr unique6.sh | head -3) # set to best 3 lines | head -1 | awk '{print($1)}')
+	     step1=$(echo "$bestConnect" | wc -l) # count max connected lines
+             for ((iii=0;iii<$step1;++iii)) do
+	         echo "bo----------------------------bo"
+		 jOne=$(echo | expr $iii + 1)
+		 echo "$bestConnect" | head -$jOne | tail -1 # 
+		 echo $(grep -n "$bestConnect" unique6.sh | tail -$jOne | head -1) # | awk '{print($1)}') # |cut -f1 -d:)
                  nowX=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($3)}')
                  nowY=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($5)}')
                   #  echo "$nowX" "$nowY"
@@ -421,8 +427,12 @@ function moveToWeaks() {
                   insertAt=$(grep -n "freeze" svgTail | tail -1 | cut -d : -f1)
                   prepAt=$(expr $insertAt + 1)
                   headD=$(head -n $insertAt svgTail)
-                  echo "$headD" "$move1" ""\<\/g\> \<\/g\> \<\/svg\>"" >> unique7.sh
-		  
+                  echo "$headD" "$move1" >> unique7.sh
+		  if [ "$jOne" '==' "$step1" ]
+		  then 
+		       echo ""\<\/g\> \<\/g\> \<\/svg\>"" >> unique7.sh
+		  fi
+	   done	  
               # echo "$customGrep0" # "$buility" #"$insertI" #"$customGrep"
 	       # changeSVGanim
             }
