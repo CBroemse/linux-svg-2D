@@ -397,28 +397,22 @@ function moveToWeaks() {
                  cleanStrFut0Li=$(echo "$nu0" | cut -c 7) # "Feld1_4RV -> Feld1_4  -> 4
 	#	 echo $moveDif
 	#	 echo $tsg
-		 	pingLine=$(grep ""Feld$iOne"" unique4.sh) # choose longer one pingLine OR
-	                 pingLMight=$(echo "$pingLine" | wc -w) ##	
-	               pingColu=$(grep ""_$iOne$"" unique4.sh) # choose longer one pingColumn
-	               pingColuMight=$(echo "$pingColu" | wc -w) ##	  
-	     # path
-              # pingColumn
-	              columnCHECK=$( grep "7" <<< $(sort -t ',' -k1,4 unique6.sh | head -4))
-	              correcSleter=6 # $ofsleters # $(echo | expr $ofsleters - 1)
-	              toMatch=$(expr $pingLMight '>' $pingColuMight) #
+
+	             
   # iOne. iiOne. toMatch. xtrail2. 14.1s. columnNumber. pingLine. pingColu. pingLMight. pingColuMight. 
    #              if [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ] && [ $toMatch '=' 1 ] # means : if pingLMight > pingColuMight is true
                  ./thisAlgo1.sh "$iOne" "$iiOne" "$toMatch" "$xtrail2" "$begin" "$columnNumber" "$pingLine" "$pingColu" "$pingLMight" "$pingColuMight"
 		 topolog=$(echo "$cleanStrFut0Li"", ""$nu0num"", ""$iOne"", ""pres") 
 	 #        echo "$topolog" >> unique6.sh
 	      done
-                 bestConnect=$(echo | sort -nr unique6.sh | tail -$iOne | head -1 | awk '{print($1)}')
+                 
+	     done
+	     bestConnect=$(echo | sort -nr unique6.sh | tail -$iOne | head -1 | awk '{print($1)}')
 		 echo "bo----------------------------bo"
-		 echo $(grep -n "$bestConnect" unique6.sh | tail -$iOne | head -1) # | awk '{print($1)}') # |cut -f1 -d:)
+		 echo "$bestConnect" # $(grep -n "$bestConnect" unique6.sh | tail -$iOne | head -1) # | awk '{print($1)}') # |cut -f1 -d:)
 	         
               # echo "$customGrep0" # "$buility" #"$insertI" #"$customGrep"
 	       # changeSVGanim
-	     done
             }
 
 # the function below illustrates some useful parameters that can be used
