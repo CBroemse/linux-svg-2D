@@ -309,6 +309,10 @@ function moveToWeaks() {
              foAVA=$(grep -n "AVA" oD1.sh)
 	     foTARGET=$(grep -n "$TARGET" oD1.sh)
 	      echo "    I. write unique6.sh via ./thisAlgo1.sh"
+	      echo "        a) Max of Y's in unique5.sh"
+	      echo "        B) max of X in unique6.sh via"
+	      echo "             $bestConnect (below)"
+	      #                   sum of Y and X per line
               echo "    II. decide PATH from"
   	      echo "        a) AVA to weakesLink"
               echo "        b) weakesLink to TARGET"    
@@ -409,28 +413,39 @@ function moveToWeaks() {
 	     done
  # thisAlgo1 front-end -----------------------##################################### FRONT END: './thisAlgo1.sh'
  # bestConnect:  list of weights y x -> take best 3 of 6
- # step1= length bestConnect n -> map with bestConnectValues n times 
+ # step1= length bestConnect n -> map with bestConnectValues n times
+ # type: vim -O unique5.sh unique6.sh unique4.sh
+ #              |            |           |   
+ #     -> weights Y -> weights sum Y X -> source
 	     bestConnect=$(echo | sort -nr unique6.sh | head -3) # set to best 3 lines | head -1 | awk '{print($1)}')
 	     step1=$(echo "$bestConnect" | wc -l) # count max connected lines
              for ((iii=0;iii<$step1;++iii)) do
 	         echo "bo----------------------------bo"
 		 jOne=$(echo | expr $iii + 1)
 		 echo "$bestConnect" | head -$jOne | tail -1 # 
-		 echo $(grep -n "$bestConnect" unique6.sh | tail -$jOne | head -1) # | awk '{print($1)}') # |cut -f1 -d:)
+		 echo $(grep -n "$bestConnect" unique6.sh | tail -$iii | head -1) # | awk '{print($1)}') # |cut -f1 -d:)
                  nowX=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($3)}')
                  nowY=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($5)}')
-                  #  echo "$nowX" "$nowY"
+                  echo "$nowY"
                   foM1=$(expr 4 '*' 123)
-                  foM2=$(expr -492 '+' $foM1)
-                  move1=$(echo ""\<animateMotion path=\"M  0 -492 L 0 "$foM2"\" begin=\"14.1s\" dur=\"0.3s\" fill=\"freeze\"\/\>"")
+                  foM2=$(expr -492 '+' "$foM1")
+		  foTim1=$(expr "$jOne" '*' 2)
+		  timeS=$(echo | expr 12 '+' "$foTim1")
+		 # foM3=
+                  move1=$(echo ""\<animateMotion path=\"M  0 -492 L 0 "$foM2"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>"")
 	          echo "$move1"
                   insertAt=$(grep -n "freeze" svgTail | tail -1 | cut -d : -f1)
-                  prepAt=$(expr $insertAt + 1)
-                  headD=$(head -n $insertAt svgTail)
-                  echo "$headD" "$move1" >> unique7.sh
-		  if [ "$jOne" '==' "$step1" ]
+                  prepAt=$(expr $insertAt + $iii)
+                  headD=$(head -n $prepAt svgTail)
+		  if [ "$jOne" '==' "1" ]
+		  then 
+                     echo "$headD" "$move1" >> unique7.sh
+		  elif [ "$jOne" '==' "$step1" ]
 		  then 
 		       echo ""\<\/g\> \<\/g\> \<\/svg\>"" >> unique7.sh
+                       echo "$nowX" # due to syntax only need last occurance for all 6		       
+                  else
+                        echo "$move1" >> unique7.sh                   
 		  fi
 	   done	  
               # echo "$customGrep0" # "$buility" #"$insertI" #"$customGrep"
