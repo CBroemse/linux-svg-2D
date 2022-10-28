@@ -423,7 +423,7 @@ function moveToWeaks() {
 	         echo "bo----------------------------bo"
 		 jOne=$(echo | expr $iii + 1)
 		 echo "$bestConnect" | head -$jOne | tail -1 # 
-		 echo $(grep -n "$bestConnect" unique6.sh | tail -$iii | head -1) # | awk '{print($1)}') # |cut -f1 -d:)
+		 echo $(grep -n "$bestConnect" unique6.sh | tail -$jOne | head -1) # | awk '{print($1)}') # |cut -f1 -d:)
                  nowX=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($3)}')
                  nowY=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($5)}')
                   echo "$nowY"
