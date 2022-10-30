@@ -409,35 +409,40 @@ function moveToWeaks() {
 		 jOne=$(echo | expr $iii + 1)
 		 jjOne=$(echo | expr $iii + 2)
 		 bC=$(echo "$bestConnect" | head -$jOne | tail -1 | awk '{print($1)}')
-	#	 echo "$bC" "maximum X + Y"  
-               	 place3=$(grep -n "$bestConnect" unique6.sh | tail -$iii | head -1) # need $jjOne due to sort ?!
+	#	 echo "$bC" "maximum X + Y" 
+       place3=$(grep -n "$bestConnect" unique6.sh | tail -$iii | head -1) # need $jjOne due to sort ?! 	
 		 place=$(grep -n "$bestConnect" unique6.sh | tail -$jOne | head -1) # | awk '{print($1)}') # |cut -f1 -d:)
 		 place2=$(grep -n "$bestConnect" unique6.sh | tail -$jjOne | head -1) # need $jjOne due to sort ?!
-		  
-		 itsLine=$(echo "$place" | cut -f1 -d:)
-		     oneMinusAVA=$(expr "$itsLine" '-' 1)
+		 fosTead=$(echo "$bestConnect" | head -1 | awk '{print($1)}') # always search best sum y x -> line 
+                 placeSteady=$(grep -n "$fosTead" unique6.sh |  cut -f1 -d:) # need $jjOne due to sort ?!
+                 itsLine=$(echo "$place" | cut -f1 -d:)
+		     oneMinusAVA=$(expr "$itsLine")
 		     itsLine2=$(echo "$place2" | cut -f1 -d:)
 		     oneMinusAVA2=$(expr "$itsLine2" '-' 1)
-		      itsLine3=$(echo "$place3" | cut -f1 -d:)
-		     oneMinusAVA3=$(expr "$itsLine3" '-' 1)
-		     fom1=$(expr "$oneMinusAVA" '*' -123)
+		     oneMinusAVA3=$(echo "$place2" | cut -f1 -d:)
+		     
+		     fom1=$(expr "$oneMinusAVA2" '*' -123)
                   fom2=$(expr "$fom1" '-' "$fom1")
                  nowX=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($3)}')
                  nowY=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($5)}')
                  # echo "$nowY"
-                  foM1=$(expr 4 '*' 123)
-                  foM2=$(expr -492 '+' "$foM1")
 		  foM3=$(expr "$nowY")
 		  foTim1=$(expr "$jOne" '*' 2)
 		  timeS=$(echo | expr 12 '+' "$foTim1")
 		  xWEAK2=$(grep -n ""_5$"" unique4.sh | tail -$jOne | head -1)
+		  fofoMM=$(expr "$oneMinusAVA" '*' -1)
+			  foMM1=$(expr 100 '*' "$fofoMM")
+	                  foMM2=$(expr "$foMM1" '+' 20) # e.g line: 5 -> -500 +20 -> -480
+			  fofoMM2=$(expr "$oneMinusAVA3" '*' -$placeSteady)
+			  foMM12=$(expr 100 '*' "$fofoMM2")
+	                  foMM22=$(expr "$foMM12" '+' 20) # e.g line: 5 -> -500 +20 -> -480  
 	     mov2=$(expr -480)
 	     mov3=$(expr 123)
 	       #   echo "$move1"
-	     foM1=$(expr 4 '*' -123) 
-	     foM2=$(expr -492 '+' "$foM1")
-	     foMM1=$(expr 100 '*' -5)
-	     foMM2=$(expr "$foMM1" '+' 20) # e.g line: 5 -> -500 +20 -> -480 
+	     foM1=$(expr "$oneMinusAVA" '*' -123)
+	     fofoM2=$(expr "$foM1" '*' -1) 
+	     foM2=$(expr "$fofoM2" '+' "$foM1")
+	     
                   insertAt=$(grep -n "freeze" svgTail | tail -1 | cut -d : -f1)
                   prepAt=$(expr $insertAt + $iii)
                   headD=$(head -n $prepAt svgTail)
@@ -455,16 +460,18 @@ function moveToWeaks() {
                      echo "$move1"
 		  elif [ "$jOne" '==' "$step1" ]
 		  then 
-		     move3=$(echo ""\<animateMotion path=\"M  "$foMM2" "0" L "$foMM2" "123"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>"")
+		     move3=$(echo ""\<animateMotion path=\"M  "$foMM22" "0" L "$foMM22" "123"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>"")
                      echo "$move3" >> unique7.sh
 		     echo "$bC" "maximum X + Y rank:" "$jOne"  
 		     echo "$place" "maximum X  rank:" "$iii" 
 		     echo ""\<\/g\> \<\/g\> \<\/svg\>"" >> unique7.sh
                      echo "$move3" # due to syntax only need last occurance for all 6		       
                   else
+			  
 		     move2=$(echo ""\<animateMotion path=\"M  "$fom2" "0" L "$foMM2" "0"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>"")
                      echo "$move2" >> unique7.sh  
 		     echo "$bC" "maximum X + Y rank:" "$jOne" 
+		    
 		     echo "$place3" "maximum X rank:" "$jOne" 	
 	             echo "$move2"		
 		  fi
