@@ -391,15 +391,13 @@ function moveToWeaks() {
           # iOne. iiOne. toMatch. xtrail2. 14.1s. columnNumber. pingLine. pingColu. pingLMight. pingColuMight. 
           #              if [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ] && [ $toMatch '=' 1 ] # means : if pingLMight > pingColuMight is true
                  ./thisAlgo1.sh "$iOne" "$iiOne" "$toMatch" "$xtrail2" "$begin" "$columnNumber" "$pingLine" "$pingColu" "$pingLMight" "$pingColuMight"
-		 topolog=$(echo "$cleanStrFut0Li"", ""$nu0num"", ""$iOne"", ""pres") 
-	  #        echo "$topolog" >> unique6.sh
 	      done
                  
 	     done
  # thisAlgo1 front-end -----------------------##################################### FRONT END: './thisAlgo1.sh'
  # bestConnect:  list of weights y x -> take best 3 of 6
  # step1= length bestConnect n -> map with bestConnectValues n times
- # type: vim -O unique5.sh unique6.sh unique4.sh
+ # type: vim -O unique8.sh unique5.sh unique6.sh unique4.sh
  #              |            |           |   
  #     -> weights Y -> weights sum Y X -> source
 	     bestConnect=$(echo | sort -nr unique6.sh | head -3) # set to best 3 lines | head -1 | awk '{print($1)}')
@@ -410,7 +408,7 @@ function moveToWeaks() {
 		 jjOne=$(echo | expr $iii + 2)
 		 bC=$(echo "$bestConnect" | head -$jOne | tail -1 | awk '{print($1)}')
 	#	 echo "$bC" "maximum X + Y" 
-       place3=$(grep -n "$bestConnect" unique6.sh | tail -$iii | head -1) # need $jjOne due to sort ?! 	
+                 place3=$(grep -n "$bestConnect" unique6.sh | tail -$iii | head -1) # need $jjOne due to sort ?! 	
 		 place=$(grep -n "$bestConnect" unique6.sh | tail -$jOne | head -1) # | awk '{print($1)}') # |cut -f1 -d:)
 		 place2=$(grep -n "$bestConnect" unique6.sh | tail -$jjOne | head -1) # need $jjOne due to sort ?!
 		 fosTead=$(echo "$bestConnect" | head -1 | awk '{print($1)}') # always search best sum y x -> line 
@@ -419,14 +417,10 @@ function moveToWeaks() {
 		     oneMinusAVA=$(expr "$itsLine")
 		     itsLine2=$(echo "$place2" | cut -f1 -d:)
 		     oneMinusAVA2=$(expr "$itsLine2" '-' 1)
-		     oneMinusAVA3=$(echo "$place2" | cut -f1 -d:)
+		     oneMinusAVA3=$(echo "$place2" | cut -f1 -d:) # apply to move3
 		     
 		     fom1=$(expr "$oneMinusAVA2" '*' -123)
                   fom2=$(expr "$fom1" '-' "$fom1")
-                 nowX=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($3)}')
-                 nowY=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($5)}')
-                 # echo "$nowY"
-		  foM3=$(expr "$nowY")
 		  foTim1=$(expr "$jOne" '*' 2)
 		  timeS=$(echo | expr 12 '+' "$foTim1")
 		  xWEAK2=$(grep -n ""_5$"" unique4.sh | tail -$jOne | head -1)
@@ -436,9 +430,6 @@ function moveToWeaks() {
 			  fofoMM2=$(expr "$oneMinusAVA3" '*' -$placeSteady)
 			  foMM12=$(expr 100 '*' "$fofoMM2")
 	                  foMM22=$(expr "$foMM12" '+' 20) # e.g line: 5 -> -500 +20 -> -480  
-	     mov2=$(expr -480)
-	     mov3=$(expr 123)
-	       #   echo "$move1"
 	     foM1=$(expr "$oneMinusAVA" '*' -123)
 	     fofoM2=$(expr "$foM1" '*' -1) 
 	     foM2=$(expr "$fofoM2" '+' "$foM1")
@@ -447,8 +438,9 @@ function moveToWeaks() {
                   prepAt=$(expr $insertAt + $iii)
                   headD=$(head -n $prepAt svgTail)
 		  echo "$oneMinusAVA2"
-		  echo "$oneMinusAVA"
+		  echo "$oneMinusAVA" "select maximum X or Y "
 		  echo "$oneMinusAVA3"
+	#	  grep lineOrColumn () {
 		  if [ "$jOne" '==' "1" ]
 		  then 
 		    
