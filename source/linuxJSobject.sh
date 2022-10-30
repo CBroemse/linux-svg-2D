@@ -388,22 +388,11 @@ function moveToWeaks() {
 		   nuA=$(echo ${jkAva[1]})                # "1:Feld1_4RV" ->
                  cleanStrFutALi=$(echo "$nuA" | cut -c 7) # "Feld1_4RV -> Feld1_4  -> 4
 
-		 tsg=$(echo "$xtrail" | head -$ii | tail -1)
-		 moveDif=$(echo $tsg | awk '{print($3)}')  # coordinate ?
-                 present=$(echo "$tsg" | awk '{print($1)}')
-		 jk0=(${present//:/ })
-		 nu0num=$(echo ${jk0[1]})
-		 nu0=$(echo ${jk0[2]})                # "1:Feld1_4RV" ->
-                 cleanStrFut0Li=$(echo "$nu0" | cut -c 7) # "Feld1_4RV -> Feld1_4  -> 4
-	#	 echo $moveDif
-	#	 echo $tsg
-
-	             
-  # iOne. iiOne. toMatch. xtrail2. 14.1s. columnNumber. pingLine. pingColu. pingLMight. pingColuMight. 
-   #              if [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ] && [ $toMatch '=' 1 ] # means : if pingLMight > pingColuMight is true
+          # iOne. iiOne. toMatch. xtrail2. 14.1s. columnNumber. pingLine. pingColu. pingLMight. pingColuMight. 
+          #              if [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ] && [ $toMatch '=' 1 ] # means : if pingLMight > pingColuMight is true
                  ./thisAlgo1.sh "$iOne" "$iiOne" "$toMatch" "$xtrail2" "$begin" "$columnNumber" "$pingLine" "$pingColu" "$pingLMight" "$pingColuMight"
 		 topolog=$(echo "$cleanStrFut0Li"", ""$nu0num"", ""$iOne"", ""pres") 
-	 #        echo "$topolog" >> unique6.sh
+	  #        echo "$topolog" >> unique6.sh
 	      done
                  
 	     done
@@ -421,10 +410,16 @@ function moveToWeaks() {
 		 jjOne=$(echo | expr $iii + 2)
 		 bC=$(echo "$bestConnect" | head -$jOne | tail -1 | awk '{print($1)}')
 	#	 echo "$bC" "maximum X + Y"  
+               	 place3=$(grep -n "$bestConnect" unique6.sh | tail -$iii | head -1) # need $jjOne due to sort ?!
 		 place=$(grep -n "$bestConnect" unique6.sh | tail -$jOne | head -1) # | awk '{print($1)}') # |cut -f1 -d:)
 		 place2=$(grep -n "$bestConnect" unique6.sh | tail -$jjOne | head -1) # need $jjOne due to sort ?!
-		     itsLine=$(echo "$place2" | cut -f1 -d:)
+		  
+		 itsLine=$(echo "$place" | cut -f1 -d:)
 		     oneMinusAVA=$(expr "$itsLine" '-' 1)
+		     itsLine2=$(echo "$place2" | cut -f1 -d:)
+		     oneMinusAVA2=$(expr "$itsLine2" '-' 1)
+		      itsLine3=$(echo "$place3" | cut -f1 -d:)
+		     oneMinusAVA3=$(expr "$itsLine3" '-' 1)
 		     fom1=$(expr "$oneMinusAVA" '*' -123)
                   fom2=$(expr "$fom1" '-' "$fom1")
                  nowX=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($3)}')
@@ -446,6 +441,9 @@ function moveToWeaks() {
                   insertAt=$(grep -n "freeze" svgTail | tail -1 | cut -d : -f1)
                   prepAt=$(expr $insertAt + $iii)
                   headD=$(head -n $prepAt svgTail)
+		  echo "$oneMinusAVA2"
+		  echo "$oneMinusAVA"
+		  echo "$oneMinusAVA3"
 		  if [ "$jOne" '==' "1" ]
 		  then 
 		    
@@ -467,7 +465,6 @@ function moveToWeaks() {
 		     move2=$(echo ""\<animateMotion path=\"M  "$fom2" "0" L "$foMM2" "0"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>"")
                      echo "$move2" >> unique7.sh  
 		     echo "$bC" "maximum X + Y rank:" "$jOne" 
-		    place3=$(grep -n "$bestConnect" unique6.sh | tail -$iii | head -1) # need $jjOne due to sort ?! 
 		     echo "$place3" "maximum X rank:" "$jOne" 	
 	             echo "$move2"		
 		  fi
