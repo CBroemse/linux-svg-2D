@@ -17,13 +17,15 @@ OVERVIEW
   mapping functions to read out of file
 
   MAP oD1.sh write/and insert in 
-    - unique1 ,2 ,3 ,4 ,5 ,6 .sh
+    - unique1 ,2 ,3 ,4 ,5 ,6 ,7 ,8 .sh
     - object, 1 .sh
  
 FUNCTIONS              purpose
-svg: mapUniques      via functions:  changeSVGanim
-     stride                        ,   
-     weakesLink
+js/ svg: mapUniques      via functions:  changeSVGanim , write js objects
+     stride          test move                 
+     weakesLink      write 2 moves
+needs two computations still to realise changes in code in browser.
+Due to the early use of 'unique7.sh' - under development
 js   :	
           
 
@@ -335,11 +337,9 @@ function moveToWeaks() {
 	     
 	     targOrd=$(awk '{print($1)}' <<< $selToTarget)
 	     ofsleters=$(awk '{print($2)}' <<< $selters)  # get column number of weakest link
-	     xWEAK=$(grep -n ""_$ofsleters$"" unique4.sh) # set to find weakestLink
+	     xWEAK=$(grep -n ""_$ofsleters$"" unique4.sh) # set to find weakestLink = pingLine
 	     jkW=(${xWEAK//:/ })
 	     nuW=$(echo ${jkW[0]})
-	     nuW2=$(echo ${jkW[1]})                # "1:Feld1_4RV" ->
-             columnNumber=$(echo "$nuW2" | cut -c 7) # "Feld1_4RV -> Feld1_4  -> 4
 
              stringth=$(awk '{print($1)}' <<< $selters)
 	     typeXsMight=$(awk '{print($2)}' <<< $typeMighty)
@@ -354,9 +354,6 @@ function moveToWeaks() {
 	     
              typeLInksWEAK=$(echo "$xtrail" | wc -w) # ########################################### MEASURE WEAKEST LINK
              awk '{ print $1 }' <<< $(head -n $i unique1.sh | tail -1)
-	     avaX=$(echo "$foAVA" | awk '{print($3)}') # get x value of avatar
-             avaY=$(echo "$foAVA" | awk '{print($5)}') # get y value of avatar
-	     avaLine=$(echo "$foAVA" | awk '{print($1)}')
              prep=$(grep -n "AVA" $edger) # grep with -n to match with line numbers
 	     moprep=$(echo "$prep" | awk '{print($1)}')
 	     getInput=$(head -n $zeropl2 unique3.sh | tail -1)
@@ -365,7 +362,6 @@ function moveToWeaks() {
 	    echo "move '"$iOne"': -------------------- " 
 	    echo "        a) AVA to weakesLink"     	    
 	 #   echo "$selters" # weakesLink 
-	    echo "selected line: $nuW2" #  $columnNumber" # "$ofsleters"
 	    meter=$(echo "length xtrail: $mightTarg") # strngh")
 	    if [ "$strngh" '==' "0" ]
 	     then 
@@ -422,30 +418,58 @@ function moveToWeaks() {
              for ((iii=0;iii<$step1;++iii)) do
 	         echo "bo----------------------------bo"
 		 jOne=$(echo | expr $iii + 1)
-		 echo "$bestConnect" | head -$jOne | tail -1 # 
-		 echo $(grep -n "$bestConnect" unique6.sh | tail -$jOne | head -1) # | awk '{print($1)}') # |cut -f1 -d:)
+		 jjOne=$(echo | expr $iii + 2)
+		 bC=$(echo "$bestConnect" | head -$jOne | tail -1 | awk '{print($1)}')
+	#	 echo "$bC" "maximum X + Y"  
+		 place=$(grep -n "$bestConnect" unique6.sh | tail -$jOne | head -1) # | awk '{print($1)}') # |cut -f1 -d:)
+		 place2=$(grep -n "$bestConnect" unique6.sh | tail -$jjOne | head -1) # need $jjOne due to sort ?!
+		     itsLine=$(echo "$place2" | cut -f1 -d:)
+		     oneMinusAVA=$(expr "$itsLine" '-' 1)
+		     fom1=$(expr "$oneMinusAVA" '*' -123)
+                  fom2=$(expr "$fom1" '-' "$fom1")
                  nowX=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($3)}')
                  nowY=$(echo "$xtrail2" | tail -$columnNumber | awk '{print($5)}')
-                  echo "$nowY"
+                 # echo "$nowY"
                   foM1=$(expr 4 '*' 123)
                   foM2=$(expr -492 '+' "$foM1")
+		  foM3=$(expr "$nowY")
 		  foTim1=$(expr "$jOne" '*' 2)
 		  timeS=$(echo | expr 12 '+' "$foTim1")
-		 # foM3=
-                  move1=$(echo ""\<animateMotion path=\"M  0 -492 L 0 "$foM2"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>"")
-	          echo "$move1"
+		  xWEAK2=$(grep -n ""_5$"" unique4.sh | tail -$jOne | head -1)
+	     mov2=$(expr -480)
+	     mov3=$(expr 123)
+	       #   echo "$move1"
+	     foM1=$(expr 4 '*' -123) 
+	     foM2=$(expr -492 '+' "$foM1")
+	     foMM1=$(expr 100 '*' -5)
+	     foMM2=$(expr "$foMM1" '+' 20) # e.g line: 5 -> -500 +20 -> -480 
                   insertAt=$(grep -n "freeze" svgTail | tail -1 | cut -d : -f1)
                   prepAt=$(expr $insertAt + $iii)
                   headD=$(head -n $prepAt svgTail)
 		  if [ "$jOne" '==' "1" ]
 		  then 
+		    
+		     echo "$bC" "maximum X + Y rank:" "$jOne"  
+		     
+		      move1=$(echo ""\<animateMotion path=\"M  0 "$fom1" L "$fom2" "0"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>"")	  
                      echo "$headD" "$move1" >> unique7.sh
+		     echo "$place2" "maximum Xrank:" "2" 
+                     echo "$move1"
 		  elif [ "$jOne" '==' "$step1" ]
 		  then 
-		       echo ""\<\/g\> \<\/g\> \<\/svg\>"" >> unique7.sh
-                       echo "$nowX" # due to syntax only need last occurance for all 6		       
+		     move3=$(echo ""\<animateMotion path=\"M  "$foMM2" "0" L "$foMM2" "123"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>"")
+                     echo "$move3" >> unique7.sh
+		     echo "$bC" "maximum X + Y rank:" "$jOne"  
+		     echo "$place" "maximum X  rank:" "$iii" 
+		     echo ""\<\/g\> \<\/g\> \<\/svg\>"" >> unique7.sh
+                     echo "$move3" # due to syntax only need last occurance for all 6		       
                   else
-                        echo "$move1" >> unique7.sh                   
+		     move2=$(echo ""\<animateMotion path=\"M  "$fom2" "0" L "$foMM2" "0"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>"")
+                     echo "$move2" >> unique7.sh  
+		     echo "$bC" "maximum X + Y rank:" "$jOne" 
+		    place3=$(grep -n "$bestConnect" unique6.sh | tail -$iii | head -1) # need $jjOne due to sort ?! 
+		     echo "$place3" "maximum X rank:" "$jOne" 	
+	             echo "$move2"		
 		  fi
 	   done	  
               # echo "$customGrep0" # "$buility" #"$insertI" #"$customGrep"
