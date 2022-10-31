@@ -16,7 +16,7 @@ USAGE
 OVERVIEW
   mapping functions to read out of file
 
-  MAP oD1.sh write/and insert in 
+  MAP $edger write/and insert in 
     - unique1 ,2 ,3 ,4 ,5 ,6 ,7 ,8 .sh
     - object, 1 .sh
  
@@ -84,13 +84,13 @@ rm unique1.sh                     #clear to use files just as 'Zwischenspeicher'
 touch unique1.sh                  #write fst file
 list2Object() { 
     for ((i=0;i<$kob;++i)) do
-#	    tX=$(echo $(awk '{ print($2) }' <<< $(head -n "$i" $6 | tail -1))) #get fst word of each lne of $6 e.g oD1.sh
+#	    tX=$(echo $(awk '{ print($2) }' <<< $(head -n "$i" $6 | tail -1))) #get fst word of each lne of $6 e.g $edger
 #	    tY=$(echo $(awk '{ print($4) }' <<< $(head -n "$i" $6 | tail -1))) #get 3rd word ..
             myGrep=$(grep -n "Feld" $edger) #get X coordinate o field
            # takeSteps=$(echo $(grep -n "$parS" $edger | cut -d : -f1))   # just line numbers of
            # bak=$(echo "$takeSteps" | wc -w)
 
-           # tX=$(echo "$myGrep" | awk '{ print($5) }') # <<< $(head -n "$i" $6 | tail -1)) #get fst word of each lne of $6 e.g oD1.sh
+           # tX=$(echo "$myGrep" | awk '{ print($5) }') # <<< $(head -n "$i" $6 | tail -1)) #get fst word of each lne of $6 e.g $edger
          #  tY=$(awk '{ print($4) }' <<< $(head -n "$i" $6 | tail -1)) #get 3rd word ..
 
         if [ "$i" '==' "0" ]
@@ -103,7 +103,7 @@ list2Object() {
            echo " check column in DICTIONARY"
 	   echo "$bebob" > "unique1.sh"  # search $5 
         else
-	   foXY=5 # select collum in DICTIONARY e.g oD1.sh COLUMN 5
+	   foXY=5 # select collum in DICTIONARY e.g $edger COLUMN 5
 	   foTYPE=2
 	   tKi=$(echo "$myGrep" | awk '{ print $'$foXY' }' | head -n "$i" $6 | tail -1) # set for X or Y coodinate ..
            tKii=$(echo "$myGrep" | awk '{ print $'$foTYPE' }' | head -n "$i" $6 | tail -1) # set for TYPE or WALL collumn
@@ -189,7 +189,7 @@ mapUniques() {
            #for ((i=0;i<$bak;++i))
               #   rm object.svg   a
                #  touch object.svg
-            getTYPE=$(head -n $i oD1.sh | tail -1) # | awk '{print($4)}') # get TYPE or WALL
+            getTYPE=$(head -n $i $edger | tail -1) # | awk '{print($4)}') # get TYPE or WALL
             columnTYPE=$(echo "$getTYPE" | awk '{print($2)}')
       function classProv() {
                 if [ "$columnTYPE" '==' "TYPE" ] || [ "$columnTYPE" '==' "AVA" ]
@@ -293,7 +293,7 @@ COMMENT
    # } 
 pok=$5
 function weakesLink() {
-     TZPEs=$(grep -n ""E$"" oD1.sh)
+     TZPEs=$(grep -n ""E$"" $edger)
      rm unique4.sh
      touch unique4.sh
      echo "$TZPEs" >> unique4.sh
@@ -308,8 +308,8 @@ function weakesLink() {
 
 TARGET="Feld6_6"
 function moveToWeaks() {
-             foAVA=$(grep -n "AVA" oD1.sh)
-	     foTARGET=$(grep -n "$TARGET" oD1.sh)
+             foAVA=$(grep -n "AVA" $edger)
+	     foTARGET=$(grep -n "$TARGET" $edger)
 	      echo "    I. write unique6.sh via ./thisAlgo1.sh"
 	      echo "        a) Max of Y's in unique5.sh"
 	      echo "        B) max of X in unique6.sh via"
@@ -335,9 +335,9 @@ function moveToWeaks() {
 	     strngh=$(echo | expr $stringth / 7)
 	     fomightTarg=$(expr $targOrd / 7)
 	     mightTarg=$(echo "$fomightTarg")
-	     getLin=$(head -n $i oD1.sh | tail -1)    # get line 
-             foMOVE=$(grep -n "Feld$iOne" oD1.sh)
-	     targetLin=$(grep -n "$TARGET" oD1.sh | awk '{print($1)}' | cut -f1 -d:) # line number o TARGET in DICTIONARY
+	     getLin=$(head -n $i $edger | tail -1)    # get line 
+             foMOVE=$(grep -n "Feld$iOne" $edger)
+	     targetLin=$(grep -n "$TARGET" $edger | awk '{print($1)}' | cut -f1 -d:) # line number o TARGET in DICTIONARY
              ofTarget=$(awk '{print($3)}' <<< $foTARGET)
              xtrail=$(grep -n "Feld$iOne" unique4.sh) # set to find TARGET -> show line number
 	     
@@ -401,7 +401,7 @@ function moveToWeaks() {
 		     oneMinusAVA2=$(expr "$itsLine2" '-' 1)
 		     oneMinusAVA3=$(echo "$place2" | cut -f1 -d:) # apply to move3
 		     
-		     fom1=$(expr "$oneMinusAVA2" '*' -123)
+		  fom1=$(expr "$oneMinusAVA2" '*' -123)
                   fom2=$(expr "$fom1" '-' "$fom1")
 		  xWEAK2=$(grep -n ""_5$"" unique4.sh | tail -$jOne | head -1)
 		  fofoMM=$(expr "$oneMinusAVA" '*' -1)
@@ -432,31 +432,41 @@ function moveToWeaks() {
 	          #     $5 = new y =                -> changeSVGanim | awk '{print($2)}
 		  foTim1=$(expr "$jOne" '*' 2)
 		  timeS=$(echo | expr 12 '+' "$foTim1")
+		  oldXM1=$(echo $(changeSVGanim | awk '{print($1)}'))
+		  oldYM1=$(echo $(changeSVGanim | awk '{print($2)}' | sed 's/"//'))
 	    function lineOrColumn () {      
 	          YorX=$(head -n $jOne unique8.sh)
 		  inp1=$1 ; inp2=$2 ; inp3=$3 ; 
-		  if [ "$YorX" '==' "X" ]
+		  if [ "$YorX" '==' "X" ] && [ "$jOne" '==' "1" ]
 		  then 
-			 # echo $(""M "$1" "$2" L "$3" "$2""")
-			  echo ""\<animateMotion path=\"M  "$inp1" "$inp2" L "$inp3" "$inp2"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>""
+			 # echo $(""M "$1" "$2" L "$3" "$1""")
+			  echo ""\<animateMotion path=\"M "$inp1" "$inp2" L "$inp3" "$inp1"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>""
+		  
+		  elif [ "$YorX" '==' "Y" ] && [ "jOne" '==' "1" ]
+		  then
+			#  echo $(""M "$1" "$2" L "$3" "$2""")
+			  echo ""\<animateMotion path=\"M "$inp1" "$inp2" L "$inp1" "$inp3"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>""
+		  elif [ "$jOne" '==' "$step1" ]
+		  then
+			#  echo $(""M "$1" "$2" L "$1" "$2""")
+			  echo ""\<animateMotion path=\"M "$inp1" "$inp3" L "$inp1" "$inp2"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>""
 		  else # [ "$YorX" '==' "Y" ]
-			#  echo $(""M "$1" "$2" L "$1" "$3""")
-			  echo ""\<animateMotion path=\"M  "$inp1" "$inp2" L "$inp1" "$inp3"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>""
+			#  echo $(""M "$1" "$2" L "$1" "$2""")
+			  echo ""\<animateMotion path=\"M "$inp1" "$inp2" L "$inp3" "$inp2"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>""
 	          fi
 	          }
                  # lineOrColumn	  
 		  if [ "$jOne" '==' "1" ]
 		  then 
 		    
-		     echo "$bC" "maximum X + Y rank:" "$jOne"  
-		     lnC=$(echo lineOrColumn "$fom2" "0" "$fom1")
-		     move1=$(echo $(lineOrColumn "0" "492" "0")) # "$fom2" "0" "$fom1"))	  
+		     echo "$bC" "maximum X + Y rank:" "$jOne" "$oldXM1" "$oldYM1" 
+		     move1=$(echo $(lineOrColumn "$oldXM1" "$oldYM1" "$fom2")) # "$fom2" "0" "$fom1"))	  
                      echo "$headD" "$move1" >> unique7.sh
 		     echo "$place2" "maximum Xrank:" "2" 
                      echo "$move1"
 		  elif [ "$jOne" '==' "$step1" ]
 		  then 
-		     move3=$(echo $(lineOrColumn "$foMM22" "0" "123"))
+		     move3=$(echo $(lineOrColumn "$foMM22" "123" "0"))
                      echo "$move3" >> unique7.sh
 		     echo "$bC" "maximum X + Y rank:" "$jOne"  
 		     echo "$place" "maximum X  rank:" "$iii" 
@@ -464,7 +474,7 @@ function moveToWeaks() {
                      echo "$move3" # due to syntax only need last occurance for all 6		       
                   else
 			  
-		     move2=$(echo $(lineOrColumn "$fom2" "0" "$foMM2"))
+		     move2=$(echo $(lineOrColumn "0" "0" "$foMM22"))
                      echo "$move2" >> unique7.sh  
 		     echo "$bC" "maximum X + Y rank:" "$jOne" 
 		    
@@ -485,10 +495,10 @@ function stride() {
 	     getRandNumber=$(echo $(grep -n "R" $edger | cut -d : f1))   # just line numbers of search's MATCHES
              newI=$(echo "$getRandNumber" | wc -w)
              checkType=$(echo "$randLine" | awk '{print($2)}') # selct 2nd Column TYPE vs WALL
-             foAVA=$(grep -n "AVA" oD1.sh)
-	     foTARGET=$(grep -n "$TARGET" oD1.sh)
-             TZPES=$(grep ""E$"" oD1.sh)
-	     typeLines=$(echo $(grep -n ""E$"" oD1.sh | cut -d : f1))
+             foAVA=$(grep -n "AVA" $edger)
+	     foTARGET=$(grep -n "$TARGET" $edger)
+             TZPES=$(grep ""E$"" $edger)
+	     typeLines=$(echo $(grep -n ""E$"" $edger | cut -d : f1))
 	     
 	      echo "\nMEASSURE weakest link -----------------------"
 	      echo "  - 2 streams of action "
@@ -529,9 +539,9 @@ function stride() {
 	     strngh=$(echo | expr $stringth / 7)
 	     fomightTarg=$(expr $targOrd / 7)
 	     mightTarg=$(echo "$fomightTarg")
-	     getLin=$(head -n $i oD1.sh | tail -1)    # get line 
-             foMOVE=$(grep -n "Feld$iOne" oD1.sh)
-	     targetLin=$(grep -n "$TARGET" oD1.sh | awk '{print($1)}' | cut -f1 -d:) # line number o TARGET in DICTIONARY
+	     getLin=$(head -n $i $edger | tail -1)    # get line 
+             foMOVE=$(grep -n "Feld$iOne" $edger)
+	     targetLin=$(grep -n "$TARGET" $edger | awk '{print($1)}' | cut -f1 -d:) # line number o TARGET in DICTIONARY
              ofTarget=$(awk '{print($3)}' <<< $foTARGET)
 	     # targetYs
              # ofT2=$(echo | expr $targetLin / 6) # line number of TARGET in Dictionary	     
