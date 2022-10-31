@@ -318,16 +318,9 @@ function moveToWeaks() {
               echo "    II. decide PATH from"
   	      echo "        a) AVA to weakesLink"
               echo "        b) weakesLink to TARGET"    
-	    rm unique5.sh
-	    touch unique5.sH
-	    weakesLink
-	    weakesLink >>  unique5.sh
-       	    rm unique6.sh
-            touch unique6.sh
-	     rm unique7.sh
-            touch unique7.sh
-	    rm unique8.sh
-            touch unique8.sh  
+	    rm unique5.sh ; touch unique5.sH ; weakesLink ; weakesLink >>  unique5.sh
+       	    rm unique6.sh ; touch unique6.sh ; rm unique7.sh ; touch unique7.sh
+	    rm unique8.sh ; touch unique8.sh  
          for ((i=0;i<6;++i)) do
 	     iOne=$(echo | expr $i + 1)
 	    
@@ -337,10 +330,6 @@ function moveToWeaks() {
 	     
 	     targOrd=$(awk '{print($1)}' <<< $selToTarget)
 	     ofsleters=$(awk '{print($2)}' <<< $selters)  # get column number of weakest link
-	     xWEAK=$(grep -n ""_$ofsleters$"" unique4.sh) # set to find weakestLink = pingLine
-	     jkW=(${xWEAK//:/ })
-	     nuW=$(echo ${jkW[0]})
-
              stringth=$(awk '{print($1)}' <<< $selters)
 	     typeXsMight=$(awk '{print($2)}' <<< $typeMighty)
 	     strngh=$(echo | expr $stringth / 7)
@@ -383,16 +372,9 @@ function moveToWeaks() {
 		 iOneff=$(echo | expr $iOne + 2)
 		 xtrail2=$(grep ""Feld$iOne"" unique4.sh) # set to find TARGET -> show line number
 
-                 jkAva=(${moprep//:/ })
-		  nuAnum=$(echo ${jkAva[0]})
-		   nuA=$(echo ${jkAva[1]})                # "1:Feld1_4RV" ->
-                 cleanStrFutALi=$(echo "$nuA" | cut -c 7) # "Feld1_4RV -> Feld1_4  -> 4
-
           # iOne. iiOne. toMatch. xtrail2. 14.1s. columnNumber. pingLine. pingColu. pingLMight. pingColuMight. 
-          #              if [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ] && [ $toMatch '=' 1 ] # means : if pingLMight > pingColuMight is true
                  ./thisAlgo1.sh "$iOne" "$iiOne" "$toMatch" "$xtrail2" "$begin" "$columnNumber" "$pingLine" "$pingColu" "$pingLMight" "$pingColuMight"
 	      done
-                 
 	     done
  # thisAlgo1 front-end -----------------------##################################### FRONT END: './thisAlgo1.sh'
  # bestConnect:  list of weights y x -> take best 3 of 6
@@ -421,8 +403,6 @@ function moveToWeaks() {
 		     
 		     fom1=$(expr "$oneMinusAVA2" '*' -123)
                   fom2=$(expr "$fom1" '-' "$fom1")
-		  foTim1=$(expr "$jOne" '*' 2)
-		  timeS=$(echo | expr 12 '+' "$foTim1")
 		  xWEAK2=$(grep -n ""_5$"" unique4.sh | tail -$jOne | head -1)
 		  fofoMM=$(expr "$oneMinusAVA" '*' -1)
 			  foMM1=$(expr 100 '*' "$fofoMM")
@@ -440,19 +420,43 @@ function moveToWeaks() {
 		  echo "$oneMinusAVA2"
 		  echo "$oneMinusAVA" "select maximum X or Y "
 		  echo "$oneMinusAVA3"
-	#	  grep lineOrColumn () {
+	       # move1: $1 = old x = last val: 0, -> changeSVGanim | awk '{print($1)}'
+		  #     $2 = old y = $fom1       ->
+		  #     $3 = old time = last sec: 12 -> changeSVGanim | awk '{print($3)}'
+		  #     $4 = new x = $fom2
+	          #     $5 = new y =                -> changeSVGanim | awk '{print($2)}'	  
+   	       # move1: $1 = old x = last val: 0, -> changeSVGanim | awk '{print($1)}'
+		  #     $2 = old y = $fom1       ->
+		  #     $3 = old time = last sec: 12 -> changeSVGanim | awk '{print($3)}'
+		  #     $4 = new x = $fom2
+	          #     $5 = new y =                -> changeSVGanim | awk '{print($2)}
+		  foTim1=$(expr "$jOne" '*' 2)
+		  timeS=$(echo | expr 12 '+' "$foTim1")
+	    function lineOrColumn () {      
+	          YorX=$(head -n $jOne unique8.sh)
+		  inp1=$1 ; inp2=$2 ; inp3=$3 ; 
+		  if [ "$YorX" '==' "X" ]
+		  then 
+			 # echo $(""M "$1" "$2" L "$3" "$2""")
+			  echo ""\<animateMotion path=\"M  "$inp1" "$inp2" L "$inp3" "$inp2"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>""
+		  else # [ "$YorX" '==' "Y" ]
+			#  echo $(""M "$1" "$2" L "$1" "$3""")
+			  echo ""\<animateMotion path=\"M  "$inp1" "$inp2" L "$inp1" "$inp3"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>""
+	          fi
+	          }
+                 # lineOrColumn	  
 		  if [ "$jOne" '==' "1" ]
 		  then 
 		    
 		     echo "$bC" "maximum X + Y rank:" "$jOne"  
-		     
-		      move1=$(echo ""\<animateMotion path=\"M  0 "$fom1" L "$fom2" "0"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>"")	  
+		     lnC=$(echo lineOrColumn "$fom2" "0" "$fom1")
+		     move1=$(echo $(lineOrColumn "0" "492" "0")) # "$fom2" "0" "$fom1"))	  
                      echo "$headD" "$move1" >> unique7.sh
 		     echo "$place2" "maximum Xrank:" "2" 
                      echo "$move1"
 		  elif [ "$jOne" '==' "$step1" ]
 		  then 
-		     move3=$(echo ""\<animateMotion path=\"M  "$foMM22" "0" L "$foMM22" "123"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>"")
+		     move3=$(echo $(lineOrColumn "$foMM22" "0" "123"))
                      echo "$move3" >> unique7.sh
 		     echo "$bC" "maximum X + Y rank:" "$jOne"  
 		     echo "$place" "maximum X  rank:" "$iii" 
@@ -460,7 +464,7 @@ function moveToWeaks() {
                      echo "$move3" # due to syntax only need last occurance for all 6		       
                   else
 			  
-		     move2=$(echo ""\<animateMotion path=\"M  "$fom2" "0" L "$foMM2" "0"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>"")
+		     move2=$(echo $(lineOrColumn "$fom2" "0" "$foMM2"))
                      echo "$move2" >> unique7.sh  
 		     echo "$bC" "maximum X + Y rank:" "$jOne" 
 		    
