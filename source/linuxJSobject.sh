@@ -398,8 +398,17 @@ function moveToWeaks() {
 		     itsLine2=$(echo "$place2" | cut -f1 -d:)
 		     oneMinusAVA2=$(expr "$itsLine2" '-' 1)
 		     oneMinusAVA3=$(echo "$place" | cut -f1 -d:) # move on step ahead of counter
-		     
-		  fom1=$(expr "$oneMinusAVA2" '*' -123)
+		     YorX=$(head -n $jOne unique8.sh)
+		     function dojo() { 
+			if [ "$YorX" '==' "X" ] 
+	                then
+			       	echo "123 120"
+			else 
+				echo "120 123"
+			fi }
+			dojo1=$(echo dojo | awk '{print($1)}')
+		#  dojo2=$(echo dojo | awk '{print($2)}'
+		  fom1=$(expr "$oneMinusAVA2" '*' -$dojo1)
                   fom2=$(expr "$fom1" '-' "$fom1")
 		  xWEAK2=$(grep -n ""_5$"" unique4.sh | tail -$jOne | head -1)
 		  
@@ -427,8 +436,21 @@ function moveToWeaks() {
 		  timeS=$(echo | expr 12 '+' "$foTim1")
 		  oldXM1=$(echo $(changeSVGanim | awk '{print($1)}'))
 		  oldYM1=$(echo $(changeSVGanim | awk '{print($2)}' | sed 's/"//'))
+		   fofoMidle=$(expr "$oneMinusAVA" '*' -1)
+			  foMidle1=$(expr 100 '*' "$fofoMidle")
+	                  foMidle2=$(expr "$foMidle1" '+' 20) # e.g line: 5 -> -500 +20 -> -480
+	#		  fofoMidle2=$(expr "$oneMinusAVA" '*' -$placeSteady)
+	#		  foMidle12=$(expr 10 '*' "$fofoMidle2")
+	 #                 foMidle22=$(expr "$foMidle12" '-' 20) # e.g line: 5 -> -500 +20 -> -480
+		  fofoMM=$(expr "$oneMinusAVA" '*' -1)
+			  foMM1=$(expr 100 '*' "$fofoMM")
+	                  foMM2=$(expr "$foMM1" '+' 20) # e.g line: 5 -> -500 +20 -> -480
+			  fofoMM2=$(expr "$oneMinusAVA3" '*' -$placeSteady)
+			  foMM12=$(expr 100 '*' "$fofoMM2")
+	                  foMM22=$(expr "$foMM12" '+' 20) # e.g line: 5 -> -500 +20 -> -480 
+		  	  
 	    function lineOrColumn () {      
-	          YorX=$(head -n $jOne unique8.sh)
+	          
 		  inp1=$1 ; inp2=$2 ; inp3=$3 ; 
 		  if [ "$YorX" '==' "X" ] && [ "$jOne" '==' "1" ]
 		  then 	
@@ -438,7 +460,7 @@ function moveToWeaks() {
 		  elif [ "$YorX" '==' "Y" ] && [ "jOne" '==' "1" ]
 		  then
 			#  echo $(""M "$1" "$2" L "$1" "$3""")
-			  echo ""\<animateMotion path=\"M "$inp1" "$inp2" L "$inp1" "$inp3"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>""
+			  echo ""\<animateMotion path=\"M "$inp1" "$inp2" L "$inp3" "$inp1"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>""
 		  elif [ "$jOne" '==' "$step1" ]
 		  then
 			#  echo $(""M "$1" "$3" L "$1" "$2""")
@@ -448,24 +470,20 @@ function moveToWeaks() {
 			  echo ""\<animateMotion path=\"M "$inp1" "$inp2" L "$inp3" "$inp2"\" begin=\""$timeS".1s\" dur=\"0.3s\" fill=\"freeze\"\/\>""
 	          fi
 	          }
+	         
                  # lineOrColumn	  
 		  if [ "$jOne" '==' "1" ]
 		  then 
 		    
 		     echo "$bC" "maximum X + Y rank:" "$jOne" "$oldXM1" "$oldYM1" 
-		     move1=$(echo $(lineOrColumn "$oldXM1" "$oldYM1" "$fom2")) # "$fom2" "0" "$fom1"))	  
+		     move1=$(echo $(lineOrColumn "$oldXM1" "$oldYM1" "$foM2")) # "$foMidle22")) # "$fom2" "0" "$fom1"))	  
                      echo "$headD" "$move1" >> unique7.sh
 		     echo "$place2" "maximum Xrank:" "2"
 		     echo "$place2" |  cut -d : -f 
                      echo "$move1"
 		  elif [ "$jOne" '==' "$step1" ]
 		  then
-		    fofoMM=$(expr "$oneMinusAVA" '*' -1)
-			  foMM1=$(expr 100 '*' "$fofoMM")
-	                  foMM2=$(expr "$foMM1" '+' 20) # e.g line: 5 -> -500 +20 -> -480
-			  fofoMM2=$(expr "$oneMinusAVA3" '*' -$placeSteady)
-			  foMM12=$(expr 100 '*' "$fofoMM2")
-	                  foMM22=$(expr "$foMM12" '+' 20) # e.g line: 5 -> -500 +20 -> -480   
+		     
 		     move3=$(echo $(lineOrColumn "$foMM22" "123" "0"))
                      echo "$move3" >> unique7.sh
 		     echo "$bC" "maximum X + Y rank:" "$jOne"  
@@ -473,13 +491,8 @@ function moveToWeaks() {
 		     echo ""\<\/g\> \<\/g\> \<\/svg\>"" >> unique7.sh
                      echo "$move3" # due to syntax only need last occurance for all 6		       
                   else
-		    fofoMM=$(expr "$oneMinusAVA" '*' -1)
-			  foMM1=$(expr 100 '*' "$fofoMM")
-	                  foMM2=$(expr "$foMM1" '+' 20) # e.g line: 5 -> -500 +20 -> -480
-			  fofoMM2=$(expr "$oneMinusAVA" '*' -$placeSteady)
-			  foMM12=$(expr 10 '*' "$fofoMM2")
-	                  foMM22=$(expr "$foMM12" '+' 20) # e.g line: 5 -> -500 +20 -> -480  	  
-		     move2=$(echo $(lineOrColumn "0" "0" "$foMM22"))
+		    	  
+		     move2=$(echo $(lineOrColumn "0" "0" "$foMM1"))
                      echo "$move2" >> unique7.sh  
 		     echo "$bC" "maximum X + Y rank:" "$jOne" 
 		    
