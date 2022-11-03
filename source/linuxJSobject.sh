@@ -475,7 +475,7 @@ function moveToWeaks() {
 		          echo "$place2" |  cut -d : -f 
                           echo "$move1"
 	              else   
-		          move1=$(echo $(lineOrColumn "$oldXM1" "$oldYM1" "2")) # "$foMidle22")) # "$fom2" "0" "$fom1")) # oD1.sh	  
+		          move1=$(echo $(lineOrColumn "$oldXM1" "$oldYM1" "$fom2")) # "$foMidle22")) # "$fom2" "0" "$fom1")) # oD1.sh	  
                           echo "$headD" "$move1" >> unique7.sh
 		          echo "$place2" "maximum Xrank:" "2"
 		          echo "$place2" |  cut -d : -f 
@@ -495,7 +495,7 @@ function moveToWeaks() {
                      echo "$move3" # due to syntax only need last occurance for all 6
 		    else
 		     # place4=$(grep -n "$bestConnect" unique6.sh | tail -$iii | head -1) # need $jjOne due to sort ?! 
-		     move3=$(echo $(lineOrColumn "$foMM22" "0" "-123"))
+		     move3=$(echo $(lineOrColumn "$foMM22" "0" "$dojo2"))
                      echo "$move3" >> unique7.sh
 		     echo "$bC" "maximum X + Y rank:" "$jOne"  
 		     echo "$place" "maximum X  rank:" "$iii" 
@@ -503,24 +503,24 @@ function moveToWeaks() {
                      echo "$move3" # due to syntax only need last occurance for all 6
                     fi		     
                   else
+		     
 		     if [ "$YorXFst" '==' "X" ] && [ "$jOne" '==' "2" ]
 		     then
-			     prepAVAa=$(expr "$oneMinusAVA" '-' 3)
-		fom1a=$(expr "$prepAVAa" '*' -$dojo1)
-			   move2=$(echo $(lineOrColumn "$foM2" "222" "$fom1")) # "$foMidle22")) # "$fom2" "0" "$fom1"))	  
+			  prepAVAaa=$(expr "$oneMinusAVA" '-' 1)
+		     fom1aa=$(expr "$prepAVAaa" '*' -$dojo1)
+			  move2=$(echo $(lineOrColumn "$fom2" "$oldXM1" "$fom1")) # "$foMidle22")) # "$fom2" "0" "$fom1"))	  
                           echo "$headD" "$move2" >> unique7.sh
 		          echo "$place2" "maximum Xrank:" "2"
 		          echo "$place2" |  cut -d : -f 
                           echo "$move2"
-	              else   
-			      prepAVAaa=$(expr "$oneMinusAVA")
-		fom1aa=$(expr "$prepAVAaa" '*' -$dojo1)	      
+	              else 
+			   prepAVAaa=$(expr "$oneMinusAVA" '-' 4)
+		           fom1aa=$(expr "$prepAVAaa" '*' -$dojo2)  
 		           move2=$(echo $(lineOrColumn "$fom1aa" "$oldYM1" "$fom1aa"))    # oD2.sh, goal:"M 480 -492 L 480 -123"
-                            echo "$move2" >> unique7.sh  
+                           echo "$move2" >> unique7.sh  
 		           echo "$bC" "maximum X + Y rank:" "$jOne" 
-		    
-		             echo "$place2" "maximum X rank:" "$jOne" 	
-	                  echo "$move2"
+		           echo "$place2" "maximum X rank:" "$jOne" 	
+	                   echo "$move2"
 	              fi		  
 		  fi
 	   done	  
