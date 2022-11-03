@@ -485,9 +485,9 @@ function moveToWeaks() {
 		  then
                      if [ "$YorXFst" '==' "Y" ] && [ "$jOne" '==' "3" ]
 		     then
-			     prepAVAaa=$(expr "$oneMinusAVA" '+' 5)
-		fom1aa=$(expr "$prepAVAa" '*' "$dojo2")
-			      move3=$(echo $(lineOrColumn "$fom1aa" "$oldYM1" "$dojo1")) # oD2.sh
+			     prepAVAaa=$(expr "$oneMinusAVA" '+' 3)
+		fom1aa=$(expr "$prepAVAaa" '*' "$dojo2")
+			      move3=$(echo $(lineOrColumn "-$fom1aa" "$oldYM1" "$dojo1")) # oD2.sh
                      echo "$move3" >> unique7.sh
 		     echo "$bC" "maximum X + Y rank:" "$jOne"  
 		     echo "$place" "maximum X  rank:" "$iii" 
@@ -513,8 +513,8 @@ function moveToWeaks() {
 		          echo "$place2" |  cut -d : -f 
                           echo "$move2"
 	              else   
-			      prepAVAaa=$(expr "$oneMinusAVA" '+' 4)
-		fom1aa=$(expr "$prepAVAa" '*' -$dojo1)	      
+			      prepAVAaa=$(expr "$oneMinusAVA")
+		fom1aa=$(expr "$prepAVAaa" '*' -$dojo1)	      
 		           move2=$(echo $(lineOrColumn "$fom1aa" "$oldYM1" "$fom1aa"))    # oD2.sh, goal:"M 480 -492 L 480 -123"
                             echo "$move2" >> unique7.sh  
 		           echo "$bC" "maximum X + Y rank:" "$jOne" 
