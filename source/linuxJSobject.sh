@@ -305,7 +305,7 @@ function weakesLink() {
      done
        
 }
-
+# type: vim -O unique8.sh unique5.sh unique6.sh unique4.sh
 TARGET="Feld6_6"
 function moveToWeaks() {
              foAVA=$(grep -n "AVA" $edger)
@@ -320,7 +320,7 @@ function moveToWeaks() {
               echo "        b) weakesLink to TARGET"    
 	    rm unique5.sh ; touch unique5.sH ; weakesLink ; weakesLink >>  unique5.sh
        	    rm unique6.sh ; touch unique6.sh ; rm unique7.sh ; touch unique7.sh
-	    rm unique8.sh ; touch unique8.sh  
+	    rm unique8.sh ; touch unique8.sh ; rm unique9.sh ; touch unique9.sh 
          for ((i=0;i<6;++i)) do
 	     iOne=$(echo | expr $i + 1)
 	     selters=$(echo | sort -nr unique5.sh | tail -$iOne | head -1) # out of columns filter WEAKEST link line number
@@ -377,14 +377,13 @@ function moveToWeaks() {
  # thisAlgo1 front-end -----------------------##################################### FRONT END: './thisAlgo1.sh'
  # bestConnect:  list of weights y x -> take best 3 of 6
  # step1= length bestConnect n -> map with bestConnectValues n times
- # type: vim -O unique8.sh unique5.sh unique6.sh unique4.sh
  #              |            |           |   
  #     -> weights Y -> weights sum Y X -> source
-             weakestPair=$(echo | sort -n unique6.sh | head -1 | tail -1)
+             weakestPair=$(echo | sort -n unique8.sh | head -1 | tail -1)
 	     bestConnect=$(echo | sort -nr unique6.sh | head -3) # set to best 3 lines | head -1 | awk '{print($1)}')
 	     step1=$(echo "$bestConnect" | wc -l) # count max connected lines
              for ((iii=0;iii<$step1;++iii)) do
-	         echo "bo----------------------------bo"
+	         echo "bo----------------------------bo iii"
 		 jOne=$(echo | expr $iii + 1)
 		 jjOne=$(echo | expr $iii + 2)
 		 bC=$(echo "$bestConnect" | head -$jOne | tail -1 | awk '{print($1)}')
@@ -399,7 +398,10 @@ function moveToWeaks() {
 		     itsLine2=$(echo "$place2" | cut -f1 -d:)
 		     oneMinusAVA2=$(expr "$itsLine2" '-' 1)
 		     oneMinusAVA3=$(echo "$place" | cut -f1 -d:) # move on step ahead of counter
-		     YorX=$(head -n $jOne unique8.sh | tail -1)
+		     rawYorX=$(head -n $jOne unique8.sh | tail -1)
+		     YorX=$(echo "$rawYorX" | awk '{print($1)}')
+		     nextField=$(echo "$rawYorX" | awk '{print($4)}')
+		     afterNext=$(echo "$rawYorX" | awk '{print($8)}')
 		     YorkofGroup=$(grep -nr "$YorX" unique8.sh | tail -1 | cut -d : -f1) # last of every group
                      YorXGr=$(head -n $YorkofGroup unique8.sh | tail -1) # eiter shows if X or y last or snd last line
 		     YorXFst=$(head -n 1 unique8.sh | tail -1) # shows fst step eiter X or Y
@@ -464,8 +466,9 @@ function moveToWeaks() {
                  # lineOrColumn	  
 		  if [ "$jOne" '==' "1" ]
 		  then 
-		    
-		     echo "$bC" "maximum X + Y rank:" "$jOne" "$oldXM1" "$oldYM1"
+		    echo "bo----------------------------bo tree"
+		     echo "$nextField"
+			    echo "$afterNext"
 		     if [ "$YorX" '==' "Y" ] # && [ "$jOne" '==' "2" ]
 		     then
 			    
@@ -474,8 +477,9 @@ function moveToWeaks() {
 		          echo "$place2" "maximum Xrank:" "2"
 		          echo "$place2" |  cut -d : -f 
                           echo "$move1"
+			   
 	              else   
-		          move1=$(echo $(lineOrColumn "$oldXM1" "$oldYM1" "$fom2")) # "$foMidle22")) # "$fom2" "0" "$fom1")) # oD1.sh	  
+		          move1=$(echo $(lineOrColumn "$oldXM1" "$oldYM1" "$foM2")) # "$foMidle22")) # "$fom2" "0" "$fom1")) # oD1.sh	  
                           echo "$headD" "$move1" >> unique7.sh
 		          echo "$place2" "maximum Xrank:" "2"
 		          echo "$place2" |  cut -d : -f 
@@ -483,19 +487,24 @@ function moveToWeaks() {
 		     fi
 		  elif [ "$jOne" '==' "$step1" ]
 		  then
+			echo "bo----------------------------bo tree"
+	             echo "$nextField"
+			    echo "$afterNext"
                      if [ "$YorXFst" '==' "Y" ] && [ "$jOne" '==' "3" ]
 		     then
 			     prepAVAaa=$(expr "$oneMinusAVA" '+' 3)
 		fom1aa=$(expr "$prepAVAaa" '*' "$dojo2")
-			      move3=$(echo $(lineOrColumn "-$fom1aa" "$oldYM1" "$dojo1")) # oD2.sh
+		move3=$(echo $(lineOrColumn "-$fom1aa" "$oldYM1" "3 2")) # "$dojo1")) # oD2.sh
                      echo "$move3" >> unique7.sh
 		     echo "$bC" "maximum X + Y rank:" "$jOne"  
 		     echo "$place" "maximum X  rank:" "$iii" 
 		     echo ""\<\/g\> \<\/g\> \<\/svg\>"" >> unique7.sh
                      echo "$move3" # due to syntax only need last occurance for all 6
 		    else
-		     # place4=$(grep -n "$bestConnect" unique6.sh | tail -$iii | head -1) # need $jjOne due to sort ?! 
-		     move3=$(echo $(lineOrColumn "$foMM22" "0" "$dojo2"))
+		    foM1s=$(expr "$oneMinusAVA" '*' -$dojo2)
+	                   fofoM2s=$(expr "$foM1s" '*' -1) 
+	                   foM2s=$(expr "$fofoM2s" '+' "$foM1s")
+		     move3=$(echo $(lineOrColumn "$foMM22" "$foM2s" "$dojo2"))
                      echo "$move3" >> unique7.sh
 		     echo "$bC" "maximum X + Y rank:" "$jOne"  
 		     echo "$place" "maximum X  rank:" "$iii" 
@@ -503,24 +512,32 @@ function moveToWeaks() {
                      echo "$move3" # due to syntax only need last occurance for all 6
                     fi		     
                   else
-		     
-		     if [ "$YorXFst" '==' "X" ] && [ "$jOne" '==' "2" ]
+			  echo "bo----------------------------bo tree"
+		     echo "$nextField"
+		   echo "$afterNext"
+		   reas1=$(expr "$afterNext" '-' "$nextField") # unique8.sh the last two digits ,test for ascending+1  
+		     if [ "$reas1" '==' "1" ] && [ "$jOne" '==' "2" ]
 		     then
-			  prepAVAaa=$(expr "$oneMinusAVA" '-' 1)
+			  prepAVAaa=$(expr "$oneMinusAVA" '+' 1)
 		     fom1aa=$(expr "$prepAVAaa" '*' -$dojo1)
-			  move2=$(echo $(lineOrColumn "$fom2" "$oldXM1" "$fom1")) # "$foMidle22")) # "$fom2" "0" "$fom1"))	  
+			  move2=$(echo $(lineOrColumn "$fom1aa" "$oldYM1" "$fom1aa")) # "$foMidle22")) # "$fom2" "0" "$fom1"))	  
                           echo "$headD" "$move2" >> unique7.sh
 		          echo "$place2" "maximum Xrank:" "2"
 		          echo "$place2" |  cut -d : -f 
                           echo "$move2"
 	              else 
-			    prepAVAaa=$(expr "$oneMinusAVA" '-' 3)
+			   foM1s=$(expr "$oneMinusAVA" '*' -$dojo2)
+	                   fofoM2s=$(expr "$foM1s" '*' -1) 
+	                   foM2s=$(expr "$fofoM2s" '+' "$foM1s")
+			   prepAVAaa=$(expr "$oneMinusAVA" '-' 1)
 		           fom1aa=$(expr "$prepAVAaa" '*' -$dojo1)  
-		           move2=$(echo $(lineOrColumn "$fom1aa" "$oldYM1" "$fom1aa"))    # oD2.sh, goal:"M 480 -492 L 480 -123"
+		           move2=$(echo $(lineOrColumn "$oldXM1" "$foM2s" "$fom1"))    # oD2.sh, goal:"M 480 -492 L 480 -123"
                            echo "$move2" >> unique7.sh  
-		           echo "$bC" "maximum X + Y rank:" "$jOne" 
+		           echo "$bC" "maximum Y rank:" "$jOne" 
 		           echo "$place2" "maximum X rank:" "$jOne" 	
 	                   echo "$move2"
+			   echo "$nextField"
+			   echo "$afterNext"
 	              fi		  
 		  fi
 	   done	  

@@ -26,7 +26,7 @@ function seriesTest () {
 	    then 
 		echo "$otP"
 	   else 
-                echo ""$otP 888 $co3""
+                echo ""$otP 888 $co3 ,""
 	    fi
       done
      }

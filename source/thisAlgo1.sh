@@ -38,7 +38,6 @@ function thisAlgo () {
 		       echo "$calcC" "$grot" >> unique6.sh
 		       echo "$grot"
 		       echo " line -----------------selected line XXX "
-		       echo "X" >> unique8.sh
 		       echo "$pingLine"
 	               echo " column ---------------" 
 		       echo "$pingColu" # "$xtrail2" | tail -$columnNumber # pingLine
@@ -49,6 +48,8 @@ function thisAlgo () {
 		       quer2=$(echo "$asd2" "$fout2") 
 		       echo "line: $quer2"
 		       echo "column: $quer"
+		       echo "$quer" >> unique9.sh  # column
+		       echo "X" "asd2" "$fout2" >> unique8.sh              # line Feld
                  elif [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ] && [ $toMatch '=' 0 ] # : if pingLMight <= pingColuMight not true
 		 then
 		       grot=$(echo "$pingLMight" "$pingColuMight")
@@ -56,7 +57,6 @@ function thisAlgo () {
 		       echo "$calcC" "$grot" >> unique6.sh
 		       echo "$grot"
 		       echo " line -----------------selected column YYY "
-		       echo "Y" >> unique8.sh
 		       echo "$pingLine"
 		       echo " column ---------------"
 		       echo "$pingColu"
@@ -67,15 +67,15 @@ function thisAlgo () {
 		       quer2=$(echo "$asd2" "$fout2")
                        echo "line: $quer2"
 		       echo "column: $quer" 
-	        
-	       elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` '=' 1 ] && [ $toMatch '=' 1 ] # : if iOne even number and match true 
+	               echo $(./seriesTest.sh "Feld1" unique4.sh) >> unique9.sh # line Feld
+		       echo "Y" "asd" "$fout" >> unique8.sh               # column
+	         elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` '=' 1 ] && [ $toMatch '=' 1 ] # : if iOne even number and match true 
 		 then
 		       grot=$(echo "$pingLMight" "$pingColuMight")
 		       calcC=$(expr "$pingLMight" '+' "$pingColuMight")
 		       echo "$calcC" "$grot" >> unique6.sh
-		        echo "$grot"
+		       echo "$grot"
 		       echo " line -----------------selected line XXX "
-		       echo "X" >> unique8.sh
 	               echo "$pingLine"
 		       echo " column ---------------"
 		       echo "$pingColu"
@@ -86,14 +86,15 @@ function thisAlgo () {
 		       quer2=$(echo "$asd2" "$fout2")
 		       echo "line: $quer2"
 		       echo "column: $quer"
-	          elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` '=' 1 ] && [ $toMatch '=' 0 ] # : if line number even and match not true
-		  then
+		       echo $(./seriesTest.sh ""_1$"" unique4.sh) >> unique9.sh  # column
+		       echo "X" "asd2" "$fout2" >> unique8.sh              # line Feld
+	         elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` '=' 1 ] && [ $toMatch '=' 0 ] # : if line number even and match not true
+		 then
 		       grot=$(echo "$pingLMight" "$pingColuMight")
                        echo "$grot"
 		       calcC=$(expr "$pingLMight" '+' "$pingColuMight")
 		       echo "$calcC" "$grot" >> unique6.sh
 		       echo " line -----------------selected column YYY "
-		     echo "Y" >> unique8.sh
 		       echo "$pingLine"
 		       echo " column ---------------"
 		       echo "$pingColu"
@@ -104,6 +105,8 @@ function thisAlgo () {
 		       quer2=$(echo "$asd2" "$fout2")
 		       echo "line: $quer2"
 		       echo "column: $quer"
+		       echo $(./seriesTest.sh "Feld$iOne" unique4.sh) >> unique9.sh # line Feld
+		       echo "Y" "asd" "$fout" >> unique8.sh               # column
 	         elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` '=' 0 ] && [ $toMatch '=' 1 ] # : if iOne odd number and match true
 		 then
 		      grot=$(echo "$pingLMight" "$pingColuMight")
@@ -111,7 +114,6 @@ function thisAlgo () {
 		      calcC=$(expr "$pingLMight" '+' "$pingColuMight")
 		      echo "$calcC" "$grot" >> unique6.sh
 		      echo " line -----------------selected line XXX "
-		      echo "X" >> unique8.sh
 	              echo "$pingLine"
 		      echo " column ---------------"
 		      echo "$pingColu"
@@ -122,6 +124,8 @@ function thisAlgo () {
 		      quer2=$(echo "$asd2" "$fout2")
 		      echo "line: $quer2"
 		      echo "column: $quer"
+		      echo $(./seriesTest.sh ""_$iOne$"" unique4.sh) >> unique9.sh  # column
+		      echo "X" "asd2" "$fout2" >> unique8.sh              # line Feld
 	         elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` '=' 0 ] && [ $toMatch '=' 0 ] # : if iOne odd number and match not true
 	         then
 		      grot=$(echo "$pingLMight" "$pingColuMight")
@@ -129,7 +133,6 @@ function thisAlgo () {
 		      calcC=$(expr "$pingLMight" '+' "$pingColuMight")
 		      echo "$calcC" "$grot" >> unique6.sh
 		      echo " line -----------------selected column YYY "
-		      echo "Y" >> unique8.sh
 		      echo "$pingLine"
                       echo " column ---------------"
 		      echo "$pingColu"
@@ -140,6 +143,8 @@ function thisAlgo () {
 		      quer2=$(echo "$asd2" "$fout2")
 	              echo "line: $quer2"
 		      echo "column: $quer"
+		      echo $(./seriesTest.sh "Feld1" unique4.sh) >> unique9.sh # line Feld
+		      echo "Y" "asd" "$fout" >> unique8.sh               # column
 		 fi
        }
 thisAlgo
