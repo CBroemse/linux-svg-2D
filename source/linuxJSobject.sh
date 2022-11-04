@@ -515,7 +515,7 @@ function moveToWeaks() {
 			  echo "bo----------------------------bo tree"
 		     echo "$nextField"
 		   echo "$afterNext"
-		   reas1=$(expr "$afterNext" '-' "$nextField") # unique8.sh the last two digits ,test for ascending+1  
+		   reas1=$(expr "$afterNext" '-' "$nextField") # unique8.sh the last digits of fst two lines ,test for ascending+1  
 		     if [ "$reas1" '==' "1" ] && [ "$jOne" '==' "2" ]
 		     then
 			  prepAVAaa=$(expr "$oneMinusAVA" '+' 1)
