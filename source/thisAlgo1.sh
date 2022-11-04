@@ -38,6 +38,7 @@ function thisAlgo () {
 		       echo "$calcC" "$grot" >> unique6.sh
 		       echo "$grot"
 		       echo " line -----------------selected line XXX "
+		       echo "X" >> unique8.sh
 		       echo "$pingLine"
 	               echo " column ---------------" 
 		       echo "$pingColu" # "$xtrail2" | tail -$columnNumber # pingLine
@@ -55,6 +56,7 @@ function thisAlgo () {
 		       echo "$calcC" "$grot" >> unique6.sh
 		       echo "$grot"
 		       echo " line -----------------selected column YYY "
+		       echo "Y" >> unique8.sh
 		       echo "$pingLine"
 		       echo " column ---------------"
 		       echo "$pingColu"
@@ -73,6 +75,7 @@ function thisAlgo () {
 		       echo "$calcC" "$grot" >> unique6.sh
 		        echo "$grot"
 		       echo " line -----------------selected line XXX "
+		       echo "X" >> unique8.sh
 	               echo "$pingLine"
 		       echo " column ---------------"
 		       echo "$pingColu"
@@ -90,6 +93,7 @@ function thisAlgo () {
 		       calcC=$(expr "$pingLMight" '+' "$pingColuMight")
 		       echo "$calcC" "$grot" >> unique6.sh
 		       echo " line -----------------selected column YYY "
+		     echo "Y" >> unique8.sh
 		       echo "$pingLine"
 		       echo " column ---------------"
 		       echo "$pingColu"
@@ -107,6 +111,7 @@ function thisAlgo () {
 		      calcC=$(expr "$pingLMight" '+' "$pingColuMight")
 		      echo "$calcC" "$grot" >> unique6.sh
 		      echo " line -----------------selected line XXX "
+		      echo "X" >> unique8.sh
 	              echo "$pingLine"
 		      echo " column ---------------"
 		      echo "$pingColu"
@@ -124,6 +129,7 @@ function thisAlgo () {
 		      calcC=$(expr "$pingLMight" '+' "$pingColuMight")
 		      echo "$calcC" "$grot" >> unique6.sh
 		      echo " line -----------------selected column YYY "
+		      echo "Y" >> unique8.sh
 		      echo "$pingLine"
                       echo " column ---------------"
 		      echo "$pingColu"

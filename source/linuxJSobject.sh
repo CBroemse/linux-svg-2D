@@ -514,8 +514,8 @@ function moveToWeaks() {
 		          echo "$place2" |  cut -d : -f 
                           echo "$move2"
 	              else 
-			   prepAVAaa=$(expr "$oneMinusAVA" '-' 4)
-		           fom1aa=$(expr "$prepAVAaa" '*' -$dojo2)  
+			    prepAVAaa=$(expr "$oneMinusAVA" '-' 3)
+		           fom1aa=$(expr "$prepAVAaa" '*' -$dojo1)  
 		           move2=$(echo $(lineOrColumn "$fom1aa" "$oldYM1" "$fom1aa"))    # oD2.sh, goal:"M 480 -492 L 480 -123"
                            echo "$move2" >> unique7.sh  
 		           echo "$bC" "maximum X + Y rank:" "$jOne" 
