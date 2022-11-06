@@ -41,7 +41,7 @@ h1 {
   display: none; /* Hide all elements by default */
 }
 
-/* Clear floats after rows */
+/* Clear floats after rows */ 
 .row:after {
   content: "";
   display: table;
@@ -103,12 +103,12 @@ a:hover, a:active {
 
 </style>
 </head>
-<body>
+<body>	
 
 <!-- MAIN (Center website) -->
 <div class="main">
 
-<p><img src="source/wrap-up/logoBg.png" style="width:23%" ></p>
+<p><img src="wrap-up\logoBg.png" style="width:23%" ></p>
 <hr>
 
 <h2>general overview</h2>
@@ -119,7 +119,7 @@ a:hover, a:active {
   <button class="btn" onclick="filterSelection('softMQ3')"> detail</button>
   <button class="btn" onclick="filterSelection('hardMQ3')"> outcome</button>
   <button class="btn" onclick="filterSelection('solution')"> solution</button>
-
+ 
 
 </div>
 
@@ -127,81 +127,67 @@ a:hover, a:active {
 <div class="row">
   <div class="column softmax">
     <div class="content">
-          <h4>input matrix</h4>
+	  <h4>input matrix</h4>
       <p> oD1.sh , od2.sh</p>
-      <img src="source/wrap-up/pic1_1.png" alt="Mountains" style="width:100%">
+      <img src="wrap-up/pic1_1.png" alt="Mountains" style="width:100%">
     </div>
   </div>
   <div class="column softmax">
     <div class="content">
-    <img src="source/wrap-up/pic1_2.png" alt="Mountains" style="width:100%">
+    <img src="wrap-up/pic1_2.png" alt="Mountains" style="width:100%">
     </div>
   </div>
   <div class="column softmax">
     <div class="content">
-             <h4>Forest</h4>
-      <p>Lorem ipsum dolor..</p>
-    <img src="source/wrap-up/pic1_3.png" alt="Mountains" style="width:100%">
+	     <h4>Forest</h4>
+    <img src="wrap-up/pic1_3.png" alt="Mountains" style="width:100%">
     </div>
   </div>
    <div class="column softMQ3">
-    <div class="content">
-            <h4>Forest</h4>
+	   <div class="content">
+	    <h4>Forest</h4>
       <p>Lorem ipsum dolor..</p>
-    <img src="source/wrap-up/pic2_1.png" alt="Car" style="width:100%">
+    <img src="wrap-up/pic2_1.png" alt="Car" style="width:100%">
     </div>
   </div>
    <div class="column softMQ3">
     <div class="content"
-            <h4>a solution 1</h4>
+	    <h4>a solution 1</h4>
       <p>move1 ; move2 ; move3 ;</p>
-    <img src="source/wrap-up/pic2_2.png" alt="Car" style="width:70%">
+    <img src="wrap-up/pic2_2.png" alt="Car" style="width:100%">
     </div>
-  </div>
+  </div> 
    <div class="column softMQ3">
-           <h4>Forest</h4>
-           <p><br><br></p>
+	   <h4>Forest</h4>
+	   <p><br><br></p>
     <div class="content">
-    <img src="source/wrap-up/pic2_3.png" alt="Car" style="width:30%">
-
+    <img src="wrap-up/pic2_3.png" alt="Car" style="width:100%">
+      
     </div>
   </div>
 
-  <div class="column hardMQ3">
-    <div class="content">
-      <img src="wrap-up\pic2_2.png" alt="Car" style="width:100%">
-      <h4>Retro</h4>
-      <p>Lorem ipsum dolor..</p>
-    </div>
-  </div>
-  <div class="column hardMQ3">
-    <div class="content">
-    <img src="wrap-up\pic2_3.png" alt="Car" style="width:80%">
-    </div>
-  </div>
-
-    <div class="column hardtMQ3">
-    <div class="content">
-    <img src="wrap-up\pic2_4.png"  alt="Car" style="width:20%">
-      <h4>Man</h4>
-      <p>Lorem ipsum dolor..</p>
-    </div>
-  </div>
   <div class="column solution">
     <div class="content">
-    <img src="wrap-up\pic3_1.png"  alt="Nature" style="width:100%">
+    <img src="wrap-up/pic3_1.png"  alt="Nature" style="width:100%">
+      <h4>Woman</h4>
+      <p>Lorem ipsum dolor..</p>
+    </div>
+  </div>  <div class="column solution">
+    <div class="content">
+    <img src="wrap-up/pic3_2.png"  alt="Nature" style="width:100%">
       <h4>Woman</h4>
       <p>Lorem ipsum dolor..</p>
     </div>
   </div>
   <div class="column solution">
     <div class="content">
-    <img src="wrap-up\pic3_2.png"  alt="Nature" style="width:100%">
+    <img src="wrap-up/pic3_3.png"  alt="Nature" style="width:100%">
       <h4>Woman</h4>
       <p>Lorem ipsum dolor..</p>
     </div>
   </div>
-<!-- END GRID -->
+
+  <!-- END GRID -->
 </div>
 
 <!-- END MAIN -->
@@ -234,7 +220,7 @@ function w3RemoveClass(element, name) {
   arr2 = name.split(" ");
   for (i = 0; i < arr2.length; i++) {
     while (arr1.indexOf(arr2[i]) > -1) {
-      arr1.splice(arr1.indexOf(arr2[i]), 1);
+      arr1.splice(arr1.indexOf(arr2[i]), 1);     
     }
   }
   element.className = arr1.join(" ");
@@ -255,3 +241,4 @@ for (var i = 0; i < btns.length; i++) {
 
 </body>
 </html>
+
