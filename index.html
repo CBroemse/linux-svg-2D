@@ -54,5 +54,204 @@ h1 {
   padding: 10px;
 }
 .content:hover {
-index.html[+] [dos] (02:54 06/11/2022)                                                                                                                                                                    1,16 Top
--- INSERT --
+  background-color: #333333ff; /* white; */
+  padding: 10px;
+}
+/* The "show" class is added to the filtered elements */
+.show {
+  display: block;
+}
+
+/* Style the buttons */
+.btn {
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #ddd;
+}
+
+.btn.active {
+  background-color: #666;
+  color: white;
+}
+.cont{
+  border: none;
+  outline: none;
+  padding: 0px 0px;
+  background-color:#333333ff;
+  cursor: pointer;
+}
+a:link, a:visited {
+  background-color: white;
+  color: black;
+  border: 2px solid green;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: green;
+  color: white;
+}
+
+</style>
+</head>
+<body>
+
+<!-- MAIN (Center website) -->
+<div class="main">
+
+<p><img src="source/wrap-up/logoBg.png" style="width:23%" ></p>
+<hr>
+
+<h2>general overview</h2>
+
+<div id="myBtnContainer">
+  <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+  <button class="btn" onclick="filterSelection('softmax')"> start2Finish</button>
+  <button class="btn" onclick="filterSelection('softMQ3')"> detail</button>
+  <button class="btn" onclick="filterSelection('hardMQ3')"> outcome</button>
+  <button class="btn" onclick="filterSelection('solution')"> solution</button>
+
+
+</div>
+
+<!-- Portfolio Gallery Grid -->
+<div class="row">
+  <div class="column softmax">
+    <div class="content">
+          <h4>input matrix</h4>
+      <p> oD1.sh , od2.sh</p>
+      <img src="source/wrap-up/pic1_1.png" alt="Mountains" style="width:100%">
+    </div>
+  </div>
+  <div class="column softmax">
+    <div class="content">
+    <img src="source/wrap-up/pic1_2.png" alt="Mountains" style="width:100%">
+    </div>
+  </div>
+  <div class="column softmax">
+    <div class="content">
+             <h4>Forest</h4>
+      <p>Lorem ipsum dolor..</p>
+    <img src="source/wrap-up/pic1_3.png" alt="Mountains" style="width:100%">
+    </div>
+  </div>
+   <div class="column softMQ3">
+    <div class="content">
+            <h4>Forest</h4>
+      <p>Lorem ipsum dolor..</p>
+    <img src="source/wrap-up/pic2_1.png" alt="Car" style="width:100%">
+    </div>
+  </div>
+   <div class="column softMQ3">
+    <div class="content"
+            <h4>a solution 1</h4>
+      <p>move1 ; move2 ; move3 ;</p>
+    <img src="source/wrap-up/pic2_2.png" alt="Car" style="width:70%">
+    </div>
+  </div>
+   <div class="column softMQ3">
+           <h4>Forest</h4>
+           <p><br><br></p>
+    <div class="content">
+    <img src="source/wrap-up/pic2_3.png" alt="Car" style="width:30%">
+
+    </div>
+  </div>
+
+  <div class="column hardMQ3">
+    <div class="content">
+      <img src="wrap-up\pic2_2.png" alt="Car" style="width:100%">
+      <h4>Retro</h4>
+      <p>Lorem ipsum dolor..</p>
+    </div>
+  </div>
+  <div class="column hardMQ3">
+    <div class="content">
+    <img src="wrap-up\pic2_3.png" alt="Car" style="width:80%">
+    </div>
+  </div>
+
+    <div class="column hardtMQ3">
+    <div class="content">
+    <img src="wrap-up\pic2_4.png"  alt="Car" style="width:20%">
+      <h4>Man</h4>
+      <p>Lorem ipsum dolor..</p>
+    </div>
+  </div>
+  <div class="column solution">
+    <div class="content">
+    <img src="wrap-up\pic3_1.png"  alt="Nature" style="width:100%">
+      <h4>Woman</h4>
+      <p>Lorem ipsum dolor..</p>
+    </div>
+  </div>
+  <div class="column solution">
+    <div class="content">
+    <img src="wrap-up\pic3_2.png"  alt="Nature" style="width:100%">
+      <h4>Woman</h4>
+      <p>Lorem ipsum dolor..</p>
+    </div>
+  </div>
+<!-- END GRID -->
+</div>
+
+<!-- END MAIN -->
+</div>
+
+<script>
+filterSelection("all")
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("column");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
+}
+
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
+}
+
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);
+    }
+  }
+  element.className = arr1.join(" ");
+}
+
+
+// Add active class to the current button (highlight it)
+var btnContainer = document.getElementById("myBtnContainer");
+var btns = btnContainer.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+</script>
+
+</body>
+</html>
