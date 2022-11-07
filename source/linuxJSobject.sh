@@ -11,7 +11,7 @@ USAGE
    "node" :: String ; search lines in aDict1.sh
                          and write to unique4.sh
 
-./linuxJSobject.sh "grobi" object 4 2 "node" oD1.sh 
+./linuxJSobject.sh "Type" object 2 1 "node" oD1.sh 
 
 OVERVIEW
   mapping functions to read out of file
@@ -26,7 +26,7 @@ js/ svg: mapUniques      via functions:  changeSVGanim , write js objects
      weakesLink      write 2 moves
 needs two computations still to realise changes in code in browser.
 Due to the early use of 'unique7.sh' - under development
-js   :	
+js   :	./writeJSraw.sh "TYPE" object 2 1 "TYPE" oD2.sh
           
 
 # usage e.g *>  ./linuxJSobject.sh "Feld" svg 3 3 "Feld" oD1.sh
@@ -84,24 +84,17 @@ rm unique1.sh                     #clear to use files just as 'Zwischenspeicher'
 touch unique1.sh                  #write fst file
 list2Object() { 
     for ((i=0;i<$kob;++i)) do
-#	    tX=$(echo $(awk '{ print($2) }' <<< $(head -n "$i" $6 | tail -1))) #get fst word of each lne of $6 e.g $edger
-#	    tY=$(echo $(awk '{ print($4) }' <<< $(head -n "$i" $6 | tail -1))) #get 3rd word ..
             myGrep=$(grep -n "Feld" $edger) #get X coordinate o field
-           # takeSteps=$(echo $(grep -n "$parS" $edger | cut -d : -f1))   # just line numbers of
-           # bak=$(echo "$takeSteps" | wc -w)
-
-           # tX=$(echo "$myGrep" | awk '{ print($5) }') # <<< $(head -n "$i" $6 | tail -1)) #get fst word of each lne of $6 e.g $edger
-         #  tY=$(awk '{ print($4) }' <<< $(head -n "$i" $6 | tail -1)) #get 3rd word ..
-
         if [ "$i" '==' "0" ]
         then
-
-         #  tY=$(awk '{ print($4) }' <<< $(head -n "$i" $6 | tail -1)) #get 3rd word ..
-
            echo "got s.th"
-           echo "searchin TYPE vs WALL ?"
-           echo " check column in DICTIONARY"
-	   echo "$bebob" > "unique1.sh"  # search $5 
+           if [ "$readOp" '==' "svg" ] 
+           then
+		 echo "building svg; searchin TYPE vs WALL ?"
+	   else
+                echo "building JS object.js ; check column in DICTIONARY $poe"
+	        echo "$bebob" > "unique1.sh"  # search $5
+           fi
         else
 	   foXY=5 # select collum in DICTIONARY e.g $edger COLUMN 5
 	   foTYPE=2
@@ -110,7 +103,6 @@ list2Object() {
 
            echo " "$i" \"fl$i\" "$tKi" "$tKii" "NOTHING"" >> "unique1.sh"
         fi
-
     done
 }
 
@@ -119,8 +111,7 @@ vart1= list2Object >> unique1.sh #parse
 rm unique2.sh                     #clear
 $vart1
 
-# --------------------------------------------------- Cache op Nederlands
-touch unique2.sh                  #write 2nd file
+touch unique2.sh                  #write 'Cache' 2nd file
 grip=$3 #input e.g 1
 function takefstCollumnOfWordsFile {
     while read input;
@@ -130,7 +121,6 @@ function takefstCollumnOfWordsFile {
 	   echo "$pog" >> "unique2.sh"
         done
 } < "$edger"
-
 
 takefstCollumnOfWordsFile
 mp=$4
@@ -230,48 +220,12 @@ mapUniques() {
 	if [ "$zeroplus" '==' "1" ] && [ "$zeropl2" '==' "1" ] #&& [ "$ups" '==' "1" ]
         then
            #echo " writn OBJECT [[[ at fst line of INPUT"
-	   aInpu0=$(echo "var dBLitoSolu = ") 
-	   foinput=$(echo "[[[ " $getInput ", " \"$getInput2\" "] , ")
-           echo "$aInpu0" "$foinput" > "object.js"
            drama
-        elif [ "$ups" '==' "1" ]
-        then
-           echo " writn OBJECT [[ at fst line "
-           #foinput=$(echo "[[ " $getInput ", " $getInput2 "] , ")
-           #echo "$foinput" > "object.sh"
-
-        elif [ "$zeroplus" '>' "1" ] && [ "$i" '==' "1" ]
-        then
-           #echo " writn OBJECT [[[ at fst line "
-           foinput=$(echo "[[ " $getInput ", " \"$getInput2\" "] , ")
-           echo "$foinput" >> "object.js"
-
-        elif [ "$i" '==' "$kbt" ]    ################### printing object in terminal
-        then
-           echo " writn OBJECT ]]] at last line "
-          # foinput=$(echo "[ " $getInput ", " $getInput2 "]]] ")
-       
 
         elif [ "$zeropl2" '==' "$bak" ] && [ "$zeroplus" '==' "$lengde" ]    ######################## Writing object to file
         then
-           echo " writn OBJECT ]]] at VERy last line "
-           foinput=$(echo "[ " $getInput ", " \"$getInput2\" "]]]; ")
-
-           echo "$foinput" >> "object.js"
            drama
-
-           
-	elif [ "$zeropl2" '==' "$bak" ]    ######################## Writing object to last line of file
-        then
-           echo " writn OBJECT ]] at WITHIN last line "
-           foinput=$(echo "[ " $getInput ", " \"$getInput2\" "]] , ")
-
-           echo "$foinput" >> "object.js"  
-
         else
-	   echo " writn OBJECT normal line "
-           foinput=$(echo "[ " $getInput ", " \"$getInput2\" "] , ")
-           echo "$foinput" >> "object.js"
 	   drama
 	fi
     done
@@ -305,7 +259,7 @@ function weakesLink() {
      done
        
 }
-# type: vim -O unique8.sh unique5.sh unique6.sh unique4.sh
+# type: vim -O unique9.sh unique8.sh unique5.sh unique6.sh unique4.sh
 TARGET="Feld6_6"
 function moveToWeaks() {
              foAVA=$(grep -n "AVA" $edger)
@@ -404,7 +358,7 @@ function moveToWeaks() {
 		     afterNext=$(echo "$rawYorX" | awk '{print($8)}')
 		     YorkofGroup=$(grep -nr "$YorX" unique8.sh | tail -1 | cut -d : -f1) # last of every group
                      YorXGr=$(head -n $YorkofGroup unique8.sh | tail -1) # eiter shows if X or y last or snd last line
-		     YorXFst=$(head -n 1 unique8.sh | tail -1) # shows fst step eiter X or Y
+		     YorXFst=$(head -n 1 unique8.sh | tail -1 | awk '{print($1)}') # shows fst step eiter X or Y
 		     function dojo() { 
 			if [ "$YorX" '==' "X" ] 
 	                then
@@ -494,7 +448,10 @@ function moveToWeaks() {
 		     then
 			     prepAVAaa=$(expr "$oneMinusAVA" '+' 3)
 		fom1aa=$(expr "$prepAVAaa" '*' "$dojo2")
-		move3=$(echo $(lineOrColumn "-$fom1aa" "$oldYM1" "3 2")) # "$dojo1")) # oD2.sh
+		fkos=$(expr "$oneMinusAVA" '+' 4)
+		kos=$(expr "$fkos" '*' "$dojo2")
+		stepPs=$(expr "$oldYM1" '+' "$kos")
+		move3=$(echo $(lineOrColumn "-$fom1aa" "$oldYM1" "$stepPs")) # "$dojo1")) # oD2.sh
                      echo "$move3" >> unique7.sh
 		     echo "$bC" "maximum X + Y rank:" "$jOne"  
 		     echo "$place" "maximum X  rank:" "$iii" 
@@ -515,13 +472,15 @@ function moveToWeaks() {
 			  echo "bo----------------------------bo tree"
 		     echo "$nextField"
 		   echo "$afterNext"
-		   reas1=$(expr "$afterNext" '-' "$nextField") # unique8.sh the last digits of fst two lines ,test for ascending+1  
-		     if [ "$reas1" '==' "1" ] && [ "$jOne" '==' "2" ]
+		     if [ "$YorXFst" '==' "Y" ] && [ "$jOne" '==' "2" ]
 		     then
-			  prepAVAaa=$(expr "$oneMinusAVA" '+' 1)
-		     fom1aa=$(expr "$prepAVAaa" '*' -$dojo1)
-			  move2=$(echo $(lineOrColumn "$fom1aa" "$oldYM1" "$fom1aa")) # "$foMidle22")) # "$fom2" "0" "$fom1"))	  
-                          echo "$headD" "$move2" >> unique7.sh
+			  placec=$(grep -n "$bestConnect" unique6.sh | tail -$iii | head -1) # counter + 1)
+			  itsLinec=$(echo "$placec" | cut -f1 -d:)
+		          oneMinusAVAc=$(expr "$itsLinec")
+		          foM1s=$(expr "$oneMinusAVAc" '-' 3)
+	                  fofoM2s=$(expr "$foM1s" '*' -$dojo1) 
+			  move2=$(echo $(lineOrColumn "$fofoM2s" "$oldYM1" "$fom1")) # "$foMidle22")) # "$fom2" "0" "$fom1"))	  
+                          echo "$headD" "$move2" >> unique7.sh   # oD2.sh, goal:"M 480 -492 L 480 -123"
 		          echo "$place2" "maximum Xrank:" "2"
 		          echo "$place2" |  cut -d : -f 
                           echo "$move2"
@@ -531,7 +490,7 @@ function moveToWeaks() {
 	                   foM2s=$(expr "$fofoM2s" '+' "$foM1s")
 			   prepAVAaa=$(expr "$oneMinusAVA" '-' 1)
 		           fom1aa=$(expr "$prepAVAaa" '*' -$dojo1)  
-		           move2=$(echo $(lineOrColumn "$oldXM1" "$foM2s" "$fom1"))    # oD2.sh, goal:"M 480 -492 L 480 -123"
+		           move2=$(echo $(lineOrColumn "$oldXM1" "$foM2s" "$fom1"))    # oD1.sh, goal:"M 0 0 L 480 0#"
                            echo "$move2" >> unique7.sh  
 		           echo "$bC" "maximum Y rank:" "$jOne" 
 		           echo "$place2" "maximum X rank:" "$jOne" 	
@@ -773,18 +732,22 @@ function stride() {
       
 # write javascript objects or svg file
 function tk1() {
-   if [ $readOp '==' "object" ] || [ "$readOp" '==' "svg" ]
+   if [ $readOp '==' "svg" ]
    then
       rm object.sh
-      rm object.js
-      touch object.js
-      echo "wrote object.js"
       rm object.svg
       touch object.svg
       echo "wrote object.svg"
       mapUniques #paste unique3.sh unique2.sh >> object.sh
      # stride
       moveToWeaks
+   elif [ "$readOp" '==' "object" ] 
+   then 
+        rm object.js
+        touch object.js
+        echo "wrote object.js"
+	./writeJSraw.sh "$poe" "$readOp" "$grip" "$mp" "$pok" "$edger"
+	# e.g ./writeJSraw.sh "TYPE" object 2 1 "TYPE" oD2.sh
    else
       echo "did not write object.js"
    fi
@@ -798,11 +761,7 @@ function tk1() {
 #
 rm unique4.sh
 touch unique4.sh
-nomen="word"
-blomen=$5
-solong2=$(grep -o "$5" $edger | wc -l)
 
-cout="1"
 ####################################################################### 2 similar things
 ### the MATCHES and their position in PREDECESSOR
 whole=$(grep -n "$5" $edger)
@@ -813,7 +772,6 @@ whole=$(grep -n "$5" $edger)
 tofile4=$(echo "$whole" >> unique4.sh) #object1.sh)
 $tofile4
 tel=$(echo $(grep -n "$5" $edger | cut -d : -f1))   # just line numbers of 
-matchNames= read one _ <<< $tel
 
 paste unique3.sh unique2.sh
 tk1
