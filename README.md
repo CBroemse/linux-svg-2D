@@ -24,8 +24,10 @@ check currant position   ------------------> need a write/replace new AVA into D
 
 #### USAGE:
 
-    *> ./linuxJSobject.sh "Feld" svg 3 3 "Feld" oD1.sh
-
+    *> ./linuxJSobject.sh "Feld" svg 4 3 "Feld" oD1.sh
+    *> ./linuxJSobject.sh "Feld" svgSolution 1 3 "Feld" oD1.sh
+    *> ./linuxJSobject.sh "TYPE" object 3 3 "TYPE" oD1.sh
+    
       Types: DICTIONARY,RAND,VERTEX,AVA,TYPE,WALL,MOVE,TARGET
                 |        |    |      |   |    |    |        |
                oD1.sh    R   VR  avatar  T    W  f(mov())  TA        
