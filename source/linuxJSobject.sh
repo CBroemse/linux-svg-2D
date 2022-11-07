@@ -792,14 +792,15 @@ function tk1() {
       rm object.sh
       rm object.svg
       touch object.svg
-      echo "wrote object.svg"
+      echo "wrote $edger to object.svg"
       mapUniques #paste unique3.sh unique2.sh >> object.sh
    elif [ "$readOp" '==' "svgSolution" ]
    then
       rm object.sh
       rm object.svg
       touch object.svg
-      echo "wrote object.svg"
+      echo "wrote $edger AND Maybe solution to object.svg"
+      echo "write JS of computation #########!!!!!!!!!"
       mapUniques #paste unique3.sh unique2.sh >> object.sh
      # stride
       moveToWeaks   
