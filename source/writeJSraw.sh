@@ -110,7 +110,7 @@ grip=$3 #input e.g 1
 function takefstCollumnOfWordsFile {
     while read input;
         do
-           echio "$input"
+           echo "$input"
 	   pog=$(awk '{print($'$grip')}')
 	   echo "$pog" >> "unique2.sh"
         done
