@@ -91,6 +91,7 @@ list2Object() {
            if [ "$readOp" '==' "svg" ] 
            then
 		 echo "building svg; searchin TYPE vs WALL ?"
+		 echo "$bebob" > "unique1.sh" 
 	   else
                 echo "building JS object.js ; check column in DICTIONARY $poe"
 	        echo "$bebob" > "unique1.sh"  # search $5
