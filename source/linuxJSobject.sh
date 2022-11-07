@@ -118,8 +118,14 @@ function takefstCollumnOfWordsFile {
     while read input;
         do
            echo "$input"
-	   pog=$(awk '{print($'$grip')}')
-	   echo "$pog" >> "unique2.sh"
+	   if [ "$readOp" '==' "svg" ]
+           then
+		pog=$(awk '{print($3)}')
+		echo "$pog" >> "unique2.sh"
+	   else
+	       pog=$(awk '{print($'$grip')}')
+	       echo "$pog" >> "unique2.sh"
+	   fi
         done
 } < "$edger"
 
@@ -129,8 +135,15 @@ function fstCol {
     while read input;
         do
            echo "$input"
-           pog=$(awk '{print($'$mp')}')
-           echo "$pog" >> "unique3.sh"
+           
+           if [ "$readOp" '==' "svg" ]
+           then
+		pog=$(awk '{print($3)}')
+		echo "$pog" >> "unique3.sh"
+           else
+		pog=$(awk '{print($'$mp')}')
+		echo "$pog" >> "unique3.sh"
+	 fi	
         done
 } < "unique1.sh"
 
@@ -221,12 +234,48 @@ mapUniques() {
 	if [ "$zeroplus" '==' "1" ] && [ "$zeropl2" '==' "1" ] #&& [ "$ups" '==' "1" ]
         then
            #echo " writn OBJECT [[[ at fst line of INPUT"
+	   aInpu0=$(echo "var dBLitoSolu = ") 
+	   foinput=$(echo "[[[ " $getInputX ", " \"$getInputY\" "] , ")
+           echo "$aInpu0" "$foinput" > "object.js"
            drama
+        elif [ "$ups" '==' "1" ]
+        then
+           echo " writn OBJECT [[ at fst line "
+           #foinput=$(echo "[[ " $getInput ", " $getInput2 "] , ")
+           #echo "$foinput" > "object.sh"
+
+        elif [ "$zeroplus" '>' "1" ] && [ "$i" '==' "1" ]
+        then
+           #echo " writn OBJECT [[[ at fst line "
+           foinput=$(echo "[[ " $getInputX ", " \"$getInputY\" "] , ")
+           echo "$foinput" >> "object.js"
+
+        elif [ "$i" '==' "$kbt" ]    ################### printing object in terminal
+        then
+           echo " writn OBJECT ]]] at last line "
+          # foinput=$(echo "[ " $getInput ", " $getInput2 "]]] ")
+       
 
         elif [ "$zeropl2" '==' "$bak" ] && [ "$zeroplus" '==' "$lengde" ]    ######################## Writing object to file
         then
+           echo " writn OBJECT ]]] at VERy last line "
+           foinput=$(echo "[ " $getInputX ", " \"$getInputY\" "]]]; ")
+
+           echo "$foinput" >> "object.js"
            drama
+
+           
+	elif [ "$zeropl2" '==' "$bak" ]    ######################## Writing object to last line of file
+        then
+           echo " writn OBJECT ]] at WITHIN last line "
+           foinput=$(echo "[ " $getInputX ", " \"$getInputY\" "]] , ")
+
+           echo "$foinput" >> "object.js"  
+
         else
+	   echo " writn OBJECT normal line "
+           foinput=$(echo "[ " $getInputX ", " \"$getInputY\" "] , ")
+           echo "$foinput" >> "object.js"
 	   drama
 	fi
     done
