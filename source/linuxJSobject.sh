@@ -6,7 +6,7 @@ USAGE
 #e.g *>  ./linuxJSobject.sh "Feld" svg 1 3 "Feld" oD1.sh
 #    *>  ./linuxJSobject.sh "Feld" svgSolution 2 3 "Feld" oD1.sh
 # or
-#    *>  # usage e.g *>  ./linuxJSobject.sh "TYPE" object 2 1 "TYPE" oD1.sh
+#    *>  ./linuxJSobject.sh "TYPE" object 2 1 "TYPE" oD1.sh
 
    grobi :: String ; give new NAME(s) unique1.sh fst line
    object :: String ; if object then
@@ -123,7 +123,7 @@ function takefstCollumnOfWordsFile {
     while read input;
         do
            echo "$input"
-	   if [ "$readOp" '==' "svg" ]
+	   if [ "$readOp" '==' "svg" ] || [ "$readOp" '==' "svgSolution" ] 
            then
 		pog=$(awk '{print($3)}')
 		echo "$pog" >> "unique2.sh"
@@ -141,7 +141,7 @@ function fstCol {
         do
            echo "$input"
            
-           if [ "$readOp" '==' "svg" ]
+           if [ "$readOp" '==' "svg" ] || [ "$readOp" '==' "svgSolution" ]
            then
 		pog=$(awk '{print($3)}')
 		echo "$pog" >> "unique3.sh"
@@ -212,7 +212,7 @@ mapUniques() {
                  fi
                  }
 
-	    if [ "$readOp" '==' "svg" ]
+	    if [ "$readOp" '==' "svg" ] || [ "$readOp" '==' "svgSolution" ]
             then
                  if [ "$i" '==' "0" ]
                  then
@@ -787,14 +787,14 @@ function stride() {
       
 # write javascript objects or svg file
 function tk1() {
-   if [ $readOp '==' "svg" ]
+   if [ "$readOp" '==' "svg" ]
    then
       rm object.sh
       rm object.svg
       touch object.svg
       echo "wrote object.svg"
       mapUniques #paste unique3.sh unique2.sh >> object.sh
-   elif [ $readOp '==' "svgSolution" ]
+   elif [ "$readOp" '==' "svgSolution" ]
    then
       rm object.sh
       rm object.svg
