@@ -1,6 +1,6 @@
 ### linux-svg-2D
 #### write a routine to determine where to move
-###### a working example of the 3S3T repo that uses linux in a browser
+###### a working example of a JS object and a SVG witer repo that uses linux in a browser
 
 ##### check -dictionary
 
