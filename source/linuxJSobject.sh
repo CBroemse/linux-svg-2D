@@ -3,6 +3,11 @@
 
 <<COMMENT
 USAGE
+#e.g *>  ./linuxJSobject.sh "Feld" svg 1 3 "Feld" oD1.sh
+#    *>  ./linuxJSobject.sh "Feld" svgSolution 2 3 "Feld" oD1.sh
+# or
+#    *>  # usage e.g *>  ./linuxJSobject.sh "TYPE" object 2 1 "TYPE" oD1.sh
+
    grobi :: String ; give new NAME(s) unique1.sh fst line
    object :: String ; if object then
                               write object.sh
@@ -29,7 +34,7 @@ Due to the early use of 'unique7.sh' - under development
 js   :	./writeJSraw.sh "TYPE" object 2 1 "TYPE" oD2.sh
           
 
-# usage e.g *>  ./linuxJSobject.sh "Feld" svg 3 3 "Feld" oD1.sh
+
 COMMENT
 #read fst word
 poe=$1
@@ -789,8 +794,15 @@ function tk1() {
       touch object.svg
       echo "wrote object.svg"
       mapUniques #paste unique3.sh unique2.sh >> object.sh
+   elif [ $readOp '==' "svgSolution" ]
+   then
+      rm object.sh
+      rm object.svg
+      touch object.svg
+      echo "wrote object.svg"
+      mapUniques #paste unique3.sh unique2.sh >> object.sh
      # stride
-      moveToWeaks
+      moveToWeaks   
    elif [ "$readOp" '==' "object" ] 
    then 
         rm object.js
