@@ -30,7 +30,7 @@ check currant position   ------------------> need a write/replace new AVA into D
     
       Types: DICTIONARY,RAND,VERTEX,AVA,TYPE,WALL,MOVE,TARGET,OPTION                 *1 '*' any INT(NTest) 1 to 9
                 |        |    |      |   |    |    |        |    |
-               oD1.sh    R   VR  avatar  T    W  f(mov())  TA   OP     
+               oD1.sh    R   VR  avatar  T    W  f(mov())  TA   OPT     
 
 In this example each field has two vectors and four degrees of liberty(back and forward on each axis)
 fields that are at the RAND do have three degrees of liberty
