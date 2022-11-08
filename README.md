@@ -38,7 +38,7 @@ vertices have two degrees of liberty. Only horizontal and vertical moves, no dia
 
               a map 6 x 6 fields     a 6 x 6 with
                                      walls and
-                                     avatar (AVA)     (x,y)
+                                     avatar (AVA)     (x,y)     1     2    3    4    5    6
       column 1     VR R R R R VR    T  T  W W T AVA     (-222, 91) -317 -412 -507 -602 -697     X
              2     R  T T T T  R    T  T  W T W T        .. 215)
              3     R  T T T T  R    T  T  W T W T           339)
