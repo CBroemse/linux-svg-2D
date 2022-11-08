@@ -23,14 +23,14 @@ check currant position   ------------------> need a write/replace new AVA into D
          :                            |   :
 
 #### USAGE:
-                             -T  OPT * *   T      D     
+                            T    OPT * *   T      D     
     *> ./linuxJSobject.sh "Feld" svg 4 3 "Feld" oD1.sh
     *> ./linuxJSobject.sh "Feld" svgSolution 1 3 "Feld" oD1.sh
     *> ./linuxJSobject.sh "TYPE" object 3 3 "TYPE" oD1.sh
     
-      Types: DICTIONARY,RAND,VERTEX,AVA,TYPE,WALL,MOVE,TARGET                             *1 '*' any INT(NTest) 1 to 9
-                |        |    |      |   |    |    |        |
-               oD1.sh    R   VR  avatar  T    W  f(mov())  TA        
+      Types: DICTIONARY,RAND,VERTEX,AVA,TYPE,WALL,MOVE,TARGET,OPTION                 *1 '*' any INT(NTest) 1 to 9
+                |        |    |      |   |    |    |        |    |
+               oD1.sh    R   VR  avatar  T    W  f(mov())  TA   OP     
 
 In this example each field has two vectors and four degrees of liberty(back and forward on each axis)
 fields that are at the RAND do have three degrees of liberty
