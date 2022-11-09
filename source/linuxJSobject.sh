@@ -239,9 +239,9 @@ mapUniques() {
 	if [ "$zeroplus" '==' "1" ] && [ "$zeropl2" '==' "1" ] #&& [ "$ups" '==' "1" ]
         then
            #echo " writn OBJECT [[[ at fst line of INPUT"
-	   aInpu0=$(echo "var dBLitoSolu = ") 
-	   foinput=$(echo "[[[ " $getInputX ", " \"$getInputY\" "] , ")
-           echo "$aInpu0" "$foinput" > "object.js"
+	 #  aInpu0=$(echo "var dBLitoSolu = ") 
+	  # foinput=$(echo "[[[ " $getInputX ", " \"$getInputY\" "] , ")
+          # echo "$aInpu0" "$foinput" > "object.js"
            drama
         elif [ "$ups" '==' "1" ]
         then
@@ -809,7 +809,7 @@ function tk1() {
         rm object.js
         touch object.js
         echo "wrote object.js"
-	./writeJSraw.sh "$poe" "$readOp" "$grip" "$mp" "$pok" "$edger"
+	./writeJSraw.sh "$poe" "$readOp" "$grip" "$mp" "$pok" $unique4.sh
 	# e.g ./writeJSraw.sh "TYPE" object 2 1 "TYPE" oD2.sh
    else
       echo "did not write object.js"
@@ -822,6 +822,7 @@ function tk1() {
 # 3.  rm & touch unique4.sh
 # 4. run a [grep NAME object.js]
 #
+<<COMMENT
 rm unique4.sh
 touch unique4.sh
 
@@ -834,6 +835,7 @@ whole=$(grep -n "$5" $edger)
 #touch "object1.sh"
 tofile4=$(echo "$whole" >> unique4.sh) #object1.sh)
 $tofile4
+COMMENT
 tel=$(echo $(grep -n "$5" $edger | cut -d : -f1))   # just line numbers of 
 
 paste unique3.sh unique2.sh

@@ -50,6 +50,8 @@ function thisAlgo () {
 		       echo "column: $quer"
 		       echo "$quer" >> unique9.sh  # column
 		       echo "X" "asd2" "$fout2" >> unique8.sh              # line Feld
+		       foinput=$(echo "[[[ " \"taget$iOne'_'$iiOne\ ", " \"$quer\" "] , ")
+                       echo "$aInpu0" "$foinput" > "object.js"
                  elif [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ] && [ $toMatch '=' 0 ] # : if pingLMight <= pingColuMight not true
 		 then
 		       grot=$(echo "$pingLMight" "$pingColuMight")
