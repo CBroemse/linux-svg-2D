@@ -53,16 +53,37 @@ function seriesTest () {
 	   then
 		 echo ""[  \"ntest"$iOne"_"$iiOne\", " " \"$otP\" "]] , "" >> "object.js"
 		 echo ""[  \"ntest"$iOne"_"$iiOne"\", " \"$otP\" "]] , ""
-	   else 
-                notNseri=$(echo ""$otP 888 ,"")
-		foInt=$(echo "$notNseri" | wc -w)
-		tosInt=$(expr $foInt '/' 2)
-		 for ((qq=0;qq<$tosInt;++qq)) do
+	   else # ########################################################## writing two objects into a [object]
+                notNseri=$(echo ""$otP 888 ,"")                   #### into a file e.g unique8.js        
+		foInt=$(echo "$notNseri" | wc -w)   ## there can be only one object per file/[object] if it is an ascending series
+		tosInt=$(expr $foInt '/' 2)         ## otherwise it will be more then one object written to that file/[object]
+		 for ((qq=0;qq<$tosInt;++qq)) do    ## 
 		   qqOne=$(expr $qq '+' 1)
-		   taker=$(expr $qqOne '*' 1) 
+		   taker=$(expr $qqOne '*' 1) # 2 to get 2nd column of $notNseri
 		   seritP=$(echo "$notNseri" | awk '{print($'$taker')}')
                    # echo $seritP
-		   echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] , ""
+		   biN2calc=$(expr $tocalc '>' 1)
+		   biN2qqOne=$(expr $qqOne '>' 1)
+		   bin2iOne=$(expr $inP3 '>' 1)
+		   biN2iiOne=$(expr $inP4 '>' 1)
+		   if  [ "$tocalc" '==' "1" ] && [ "$qqOne" '==' "1" ] &&  [ "$inP3" '==' "1" ]
+		   then
+		      echo ""[[[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] , ""
+		   elif  [ "$tocalc" '==' "1" ] && [ "$qqOne" '==' "$1" ] && [ "$qqOne" '==' "$solOng" ] # length qqOne = 1 ?   
+                   then 
+		      echo ""[[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "] , ""
+		   elif  [ "$biN2calc" '=' "1" ] && [ "$biN2qqOne" '=' "1" ]  && [ "$biN2iOne" '=' "1" ] # all criteria > 1   
+                   then 
+		      echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "] , ""
+		  elif  [ "$biN2calc" '=' "1" ] && [ "$biN2qqOne" '=' "1" ]  && [ "$biiN2iOne" '=' "$solOng" ] # all criteria > 1   
+                   then 
+		      echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] , ""
+		  elif  [ "$biN2calc" '=' "1" ] && [ "$biN2qqOne" '=' "1" ]  && [ "$biiN2iOne" '=' "$solOng" ] # all criteria > 1   
+                   then 
+		      echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] , ""
+		  else 
+		     echo $notNseri
+		  fi 
 	   done   
 	    fi
       done
