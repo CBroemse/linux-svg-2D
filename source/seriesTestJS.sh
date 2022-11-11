@@ -31,8 +31,8 @@ function seriesTest () {
             biN2iiOne=$(expr $inP4 '>' 1)
 	     if  [ "$tocalc" '==' "1" ] && [ "$fromList" '==' "$calc1" ] &&  [ "$inP3" '==' "1" ] # e.g 10 == 10   
             then 
-		 echo ""[[  \"ntest"$iOne"_"$iiOne\", " " \"$otP\" "] , "" >> "object.js"
-		 echo ""[[  \"ntest"$iOne"_"$iiOne"\", " \"$otP\" "] , ""
+		 echo ""[[[  \"ntest"$iOne"_"$iiOne\", " " \"$otP\" "]] , "" >> "object.js"
+		 echo ""[[[  \"ntest"$iOne"_"$iiOne"\", " \"$otP\" "]] , ""
          #   elif  [ "$biN" '=' "1" ] && [ "$fromList" '==' "$calc1" ] && [ "$biNderiv1" '=' "1" ] # &&  [ "$inP3" '==' "1" ] # e.g 10 == 10   
           #  then 
 	#	 echo ""[[  \"ntest"$iOne"_"$iiOne\", " " \"$otP\" "] , "" >> "object.js"
@@ -59,8 +59,8 @@ function seriesTest () {
 		 echo ""[  \"ntest"$iOne"_"$iiOne"\", " \"$otP\" "]] , ""
            elif [ "$fromList" '==' "$calc1" ] || [ "$inP4" '==' "$solOng" ]
 	   then
-		 echo ""[  \"ntest"$iOne"_"$iiOne\", " " \"$otP\" "]] , "" >> "object.js"
-		 echo ""[  \"ntest"$iOne"_"$iiOne"\", " \"$otP\" "]] , ""
+		 echo ""[  \"ntest"$iOne"_"$iiOne\", " " \"$otP\" "]]] , "" >> "object.js"
+		 echo ""[  \"ntest"$iOne"_"$iiOne"\", " \"$otP\" "]]] , ""
 	   else # ########################################################## writing two objects into a [object]
                 notNseri=$(echo ""$otP 888 ,"")                   #### into a file e.g unique8.js        
 		foInt=$(echo "$notNseri" | wc -w)   ## there can be only one object per file/[object] if it is an ascending series
@@ -74,12 +74,12 @@ function seriesTest () {
 		   biN2qqOne=$(expr $qqOne '>' 1)
 		   if  [ "$tocalc" '==' "1" ] && [ "$qqOne" '==' "1" ] &&  [ "$inP3" '==' "1" ]
 		   then
-		      echo ""[[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "] , "" >> "object.js"
-		      echo ""[[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "] , ""
+		      echo ""[[[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] , "" >> "object.js"
+		      echo ""[[[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] , ""
 		   elif  [ "$tocalc" '==' "1" ] && [ "$qqOne" '==' "$1" ] && [ "$qqOne" '==' "$solOng" ] # length qqOne = 1 ?   
                    then 
-		      echo ""[[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "] , "" >> "object.js"
-		       echo ""[[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "] , ""
+		      echo ""[[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] , "" >> "object.js"
+		       echo ""[[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] , ""
 		   elif  [ "$biN2calc" '=' "1" ] && [ "$biN2qqOne" '=' "1" ]  && [ "$biN2iOne" '=' "1" ] # all criteria > 1   
                    then 
 		      echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "] , "" >> "object.js"
@@ -88,14 +88,19 @@ function seriesTest () {
                    then 
 		      echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] , "" >> "object.js"
 		      echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] , ""
-		  elif  [ "$biN2calc" '=' "1" ] && [ "$biN2qqOne" '=' "1" ]  && [ "$biiN2iOne" '=' "$solOng" ] # all criteria > 1   
-                   then 
-		      echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] , "" >> "object.js"
-		      echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] , ""
-		  elif [ "$tocalc" '==' "$solOng" ] # #  && [ "$qqOne" '==' "1" ] &&  [ "$inP3" '==' "1" ]
+      		 # elif  [ "$biN2calc" '=' "1" ] && [ "$biN2qqOne" '=' "1" ]  && [ "$biiN2iOne" '=' "$solOng" ] # all criteria > 1   
+                 #  then 
+		  #    echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] , "" >> "object.js"
+		   #   echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] , ""
+		  
+		  elif [ "$tocalc" '==' "$solOng" ] && [ "$inP3" '==' "$solOng" ] # # #  && [ "$qqOne" '==' "1" ] &&  [ "$inP3" '==' "1" ]
 		   then
-		      echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] "" >> "object.js"
-		      echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] ""
+		      echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]]] "" >> "object.js"
+		      echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]]] ""
+		  elif [ "$tocalc" '==' "$solOng" ] # # #  && [ "$qqOne" '==' "1" ] &&  [ "$inP3" '==' "1" ]
+		   then
+		      echo ""[[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] "" >> "object.js"
+		      echo ""[[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] , ""
 		  else 
 		     echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "] , "" >> "object.js"
 		     echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "] , ""
