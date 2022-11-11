@@ -11,6 +11,17 @@ pingLine=$7
 pingColu=$8
 pingLMight=$9
 pingColuMight=$10
+readOp=$11
+
+function jsOrNot () {
+	dodat1=$1 ; dodat2=$2 ; dodat3=$3 ; dodat4=$4 ; dodat5=$5   
+  if [ "$readOp" '==' "js" ] 
+  then
+	  aOtp=$(echo $(./seriesTestJS.sh "$dodat1" $dodat2 "$dodat3" "$dodat4"))
+          echo "$aOtp" >> "$dodat5"
+  fi	  
+  }
+
 # function below has two purposes    a) add avatar if ava = Feld1_1
   #                                    b) from 1_1 decide which is more mighty
   #                                       pingLine vs pingColuLine
@@ -51,7 +62,10 @@ function thisAlgo () {
 		       echo "$quer" >> unique9.sh  # column
 		       echo "X" "asd2" "$fout2" >> unique8.sh              # line Feld
 		       foinput=$(echo "[[[ " \"taget$iOne'_'$iiOne\ ", " \"$quer\" "] , ")
-                       echo "$aInpu0" "$foinput" > "object.js"
+                      
+		       wertA8=$(echo $(./seriesTestJS.sh ""_1$"" unique4.sh "1" "1"))
+		     # jsOrNot ""_1$"" "unique4.sh" "1" "1" "jsObjects/uniquej8.js"
+		      echo "$wertA8" > "jsObjects/uniquej8.js"
                  elif [ "$iOne" '==' "1" ] && [ "$iiOne" '==' "1" ] && [ $toMatch '=' 0 ] # : if pingLMight <= pingColuMight not true
 		 then
 		       grot=$(echo "$pingLMight" "$pingColuMight")
@@ -71,6 +85,7 @@ function thisAlgo () {
 		       echo "column: $quer" 
 	               echo $(./seriesTest.sh "Feld1" unique4.sh) >> unique9.sh # line Feld
 		       echo "Y" "asd" "$fout" >> unique8.sh               # column
+		       wertA8=$(echo $(./seriesTestJS.sh "Feld1" unique4.sh "1" "1"))
 	         elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` '=' 1 ] && [ $toMatch '=' 1 ] # : if iOne even number and match true 
 		 then
 		       grot=$(echo "$pingLMight" "$pingColuMight")
@@ -90,6 +105,7 @@ function thisAlgo () {
 		       echo "column: $quer"
 		       echo $(./seriesTest.sh ""_1$"" unique4.sh) >> unique9.sh  # column
 		       echo "X" "asd2" "$fout2" >> unique8.sh              # line Feld
+		       wertA8=$(echo $(./seriesTestJS.sh ""_$iOne$"" unique4.sh "1" "1"))
 	         elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` '=' 1 ] && [ $toMatch '=' 0 ] # : if line number even and match not true
 		 then
 		       grot=$(echo "$pingLMight" "$pingColuMight")
@@ -109,6 +125,7 @@ function thisAlgo () {
 		       echo "column: $quer"
 		       echo $(./seriesTest.sh "Feld$iOne" unique4.sh) >> unique9.sh # line Feld
 		       echo "Y" "asd" "$fout" >> unique8.sh               # column
+		       wertA8=$(echo $(./seriesTestJS.sh ""_$iOne$"" unique4.sh "1" "1"))
 	         elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` '=' 0 ] && [ $toMatch '=' 1 ] # : if iOne odd number and match true
 		 then
 		      grot=$(echo "$pingLMight" "$pingColuMight")
@@ -128,6 +145,7 @@ function thisAlgo () {
 		      echo "column: $quer"
 		      echo $(./seriesTest.sh ""_$iOne$"" unique4.sh) >> unique9.sh  # column
 		      echo "X" "asd2" "$fout2" >> unique8.sh              # line Feld
+		      wertA8=$(echo $(./seriesTestJS.sh ""_$iOne$"" unique4.sh "1" "1"))
 	         elif [ "$iiOne" '==' "1" ] && [ `expr $iOne % 2` '=' 0 ] && [ $toMatch '=' 0 ] # : if iOne odd number and match not true
 	         then
 		      grot=$(echo "$pingLMight" "$pingColuMight")
@@ -147,6 +165,7 @@ function thisAlgo () {
 		      echo "column: $quer"
 		      echo $(./seriesTest.sh "Feld1" unique4.sh) >> unique9.sh # line Feld
 		      echo "Y" "asd" "$fout" >> unique8.sh               # column
+		      wertA8=$(echo $(./seriesTestJS.sh ""_$iOne$"" unique4.sh "1" "1"))
 		 fi
        }
 thisAlgo

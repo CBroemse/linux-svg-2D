@@ -24,19 +24,27 @@ function seriesTest () {
 	    co2=$(expr "$coli" '/' 6) 
 	    co3=$(expr "$co2" '+' 1)
 	    otP=$(grep "$inP" $inP2 | head -$tocalc | tail -1 | cut -f1 -d:)
-	    biN=$(expr $tocalc '>' 1) # to match with binary operator
+	    biN=$(expr $tocalc '>' 1) # to match with binary operator of this function
+	    biNderiv1=$(expr $tocalc2 '=' 3) # to match with binary operator of q+1
+	    biNderiv2=$(expr $tocalc2 '>' 4) # to match with binary operator of q+1
+	    bin2iOne=$(expr $inP3 '>' 1)
+            biN2iiOne=$(expr $inP4 '>' 1)
 	     if  [ "$tocalc" '==' "1" ] && [ "$fromList" '==' "$calc1" ] &&  [ "$inP3" '==' "1" ] # e.g 10 == 10   
-            then 
-		 echo ""[[[  \"ntest"$iOne"_"$iiOne\", " " \"$otP\" "] , "" >> "object.js"
-		 echo ""[[[  \"ntest"$iOne"_"$iiOne"\", " \"$otP\" "] , ""
-	    elif  [ "$tocalc" '==' "1" ] && [ "$fromList" '==' "$calc1" ] # e.g 10 == 10   
             then 
 		 echo ""[[  \"ntest"$iOne"_"$iiOne\", " " \"$otP\" "] , "" >> "object.js"
 		 echo ""[[  \"ntest"$iOne"_"$iiOne"\", " \"$otP\" "] , ""
-       #     elif [ "$fromList" '==' "$calc1" ] && [ "$iiOne" '==' "1" ]
-	#    then
+         #   elif  [ "$biN" '=' "1" ] && [ "$fromList" '==' "$calc1" ] && [ "$biNderiv1" '=' "1" ] # &&  [ "$inP3" '==' "1" ] # e.g 10 == 10   
+          #  then 
 	#	 echo ""[[  \"ntest"$iOne"_"$iiOne\", " " \"$otP\" "] , "" >> "object.js"
-	#	 echo ""[[  \"ntest"$iOne"_"$iiOne"\", " \"$otP\" "] , "" 
+	#	 echo ""[[  \"ntest"$iOne"_"$iiOne"\", " \"$otP\" "] , ""
+	#    elif  [ "$tocalc" '==' "1" ] && [ "$fromList" '==' "$calc1" ] && [ "$biNderiv2" '=' "1" ]# && [ "$biNderiv2" '=' "1" ] # try to be be a [ ntest, "number" ]  
+         #   then 
+	#	 echo ""[  \"ntest"$iOne"_"$iiOne\", " " \"$otP\" "] , "" >> "object.js"
+	#	 echo ""[  \"ntest"$iOne"_"$iiOne"\", " \"$otP\" "] , ""
+     #   elif  [ "$tocalc" '==' "1" ] && [ "$fromList" '==' "$calc1" ] && [ "$tocalc2" '=' "3" ] # try to be be a [ ntest, "number" ]  
+      #      then 
+#		 echo ""[  \"ntest"$iOne"_"$iiOne\", " " \"$otP\" "] , "" >> "object.js"
+#		 echo ""[  \"ntest"$iOne"_"$iiOne"\", " \"$otP\" "] , ""
            elif [ "$fromList" '==' "$calc1" ] && [ "$biN" '=' "1" ] # e.g 10 == 10
 	    then
 		 echo ""[  \"ntest"$iOne"_"$iiOne\", " " \"$otP\" "] , "" >> "object.js"
@@ -64,25 +72,33 @@ function seriesTest () {
                    # echo $seritP
 		   biN2calc=$(expr $tocalc '>' 1)
 		   biN2qqOne=$(expr $qqOne '>' 1)
-		   bin2iOne=$(expr $inP3 '>' 1)
-		   biN2iiOne=$(expr $inP4 '>' 1)
 		   if  [ "$tocalc" '==' "1" ] && [ "$qqOne" '==' "1" ] &&  [ "$inP3" '==' "1" ]
 		   then
-		      echo ""[[[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] , ""
+		      echo ""[[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "] , "" >> "object.js"
+		      echo ""[[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "] , ""
 		   elif  [ "$tocalc" '==' "1" ] && [ "$qqOne" '==' "$1" ] && [ "$qqOne" '==' "$solOng" ] # length qqOne = 1 ?   
                    then 
-		      echo ""[[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "] , ""
+		      echo ""[[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "] , "" >> "object.js"
+		       echo ""[[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "] , ""
 		   elif  [ "$biN2calc" '=' "1" ] && [ "$biN2qqOne" '=' "1" ]  && [ "$biN2iOne" '=' "1" ] # all criteria > 1   
                    then 
+		      echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "] , "" >> "object.js"
 		      echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "] , ""
 		  elif  [ "$biN2calc" '=' "1" ] && [ "$biN2qqOne" '=' "1" ]  && [ "$biiN2iOne" '=' "$solOng" ] # all criteria > 1   
                    then 
+		      echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] , "" >> "object.js"
 		      echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] , ""
 		  elif  [ "$biN2calc" '=' "1" ] && [ "$biN2qqOne" '=' "1" ]  && [ "$biiN2iOne" '=' "$solOng" ] # all criteria > 1   
                    then 
+		      echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] , "" >> "object.js"
 		      echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] , ""
+		  elif [ "$tocalc" '==' "$solOng" ] # #  && [ "$qqOne" '==' "1" ] &&  [ "$inP3" '==' "1" ]
+		   then
+		      echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] "" >> "object.js"
+		      echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] ""
 		  else 
-		     echo $notNseri
+		     echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "] , "" >> "object.js"
+		     echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "] , ""
 		  fi 
 	   done   
 	    fi

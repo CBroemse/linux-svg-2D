@@ -327,9 +327,16 @@ function moveToWeaks() {
               echo "    II. decide PATH from"
   	      echo "        a) AVA to weakesLink"
               echo "        b) weakesLink to TARGET"    
-	    rm unique5.sh ; touch unique5.sH ; weakesLink ; weakesLink >>  unique5.sh
+	    rm unique5.sh ; touch unique5.sh ; weakesLink ; weakesLink >>  unique5.sh
        	    rm unique6.sh ; touch unique6.sh ; rm unique7.sh ; touch unique7.sh
-	    rm unique8.sh ; touch unique8.sh ; rm unique9.sh ; touch unique9.sh 
+	    rm unique8.sh ; touch unique8.sh ; rm unique9.sh ; touch unique9.sh
+	    if [ "$readOp" '==' "js" ]
+            then
+              rm jsObjects/uniquej5.js ; touch jsObjects/uniquej5.js ; weakesLink ; weakesLink >>  jsObjects/uniquej5.js
+       	    rm jsObjects/uniquej6.js ; touch jsObjects/uniquej6.js ; rm jsObjects/uniquej7.js ; touch jsObjects/uniquej7.js
+	    rm jsObjects/uniquej8.js ; touch jsObjects/uniquej8.js ; rm jsObjects/uniquej9.js ; touch jsObjects/uniquej9.js
+	    fi 
+
          for ((i=0;i<6;++i)) do
 	     iOne=$(echo | expr $i + 1)
 	     selters=$(echo | sort -nr unique5.sh | tail -$iOne | head -1) # out of columns filter WEAKEST link line number
@@ -379,8 +386,8 @@ function moveToWeaks() {
 		 iOneff=$(echo | expr $iOne + 2)
 		 xtrail2=$(grep ""Feld$iOne"" unique4.sh) # set to find TARGET -> show line number
 
-          # iOne. iiOne. toMatch. xtrail2. 14.1s. columnNumber. pingLine. pingColu. pingLMight. pingColuMight. 
-                 ./thisAlgo1.sh "$iOne" "$iiOne" "$toMatch" "$xtrail2" "$begin" "$columnNumber" "$pingLine" "$pingColu" "$pingLMight" "$pingColuMight"
+          # iOne. iiOne. toMatch. xtrail2. 14.1s. columnNumber. pingLine. pingColu. pingLMight. pingColuMight. readOp.
+                 ./thisAlgo1.sh "$iOne" "$iiOne" "$toMatch" "$xtrail2" "$begin" "$columnNumber" "$pingLine" "$pingColu" "$pingLMight" "$pingColuMight" "$readOp"
 	      done
 	     done
  # thisAlgo1 front-end -----------------------##################################### FRONT END: './thisAlgo1.sh'
@@ -794,7 +801,7 @@ function tk1() {
       touch object.svg
       echo "wrote $edger to object.svg"
       mapUniques #paste unique3.sh unique2.sh >> object.sh
-   elif [ "$readOp" '==' "svgSolution" ]
+   elif [ "$readOp" '==' "svgSolution" ] ||  [ "$readOp" '==' "js" ]
    then
       rm object.sh
       rm object.svg
