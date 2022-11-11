@@ -26,7 +26,7 @@ check currant position   ------------------> need a write/replace new AVA into D
                             T    OPT * *   T      D     
     *> ./linuxJSobject.sh "Feld" svg 4 3 "Feld" oD1.sh
     *> ./linuxJSobject.sh "Feld" svgSolution 1 3 "Feld" oD1.sh                 # only a "svgSolution" || "js" run writes the desired unique4.sh 
-    *> ./linuxJSobject.sh "TYPE" js 3 3 "TYPE" oD1.sh                          # a 6 x 6 see below with just TYPE without WALL
+    *> ./linuxJSobject.sh "Feld" js 3 3 "Feld" oD1.sh                          # a 6 x 6 see below with just TYPE without WALL
     *> ./linuxJSobject.sh "TYPE" object 3 3 "TYPE" oD1.sh
     
       Types: DICTIONARY,RAND,VERTEX,AVA,TYPE,WALL,MOVE,TARGET,OPTION                 *1 '*' any INT(NTest) 1 to 9
