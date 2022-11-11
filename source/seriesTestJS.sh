@@ -53,7 +53,7 @@ function seriesTest () {
 	    then
 		 echo ""[  \"ntest"$inP3"_"$q\", " " \"$otP\" "]] , "" >> "object.js"
 		 echo ""[  \"ntest"$inP3"_"$q\", " " \"$otP\" "]] , ""  
-           elif [ "$fromList" '==' "$calc1" ] || [ "$inP4" '==' "$solOng" ] && [ "$inP3" '==' "$solOng" ]
+           elif [ "$fromList" '==' "$calc1" ] || [ "$tocalc" '==' "$solOng" ] && [ "$inP4" '==' "6" ] && [ "$inP3" '==' "6" ]
 	   then
 		 echo ""[  \"ntest"$inP3"_"$q\", " " \"$otP\" "]] , "" >> "object.js"
 		 echo ""[  \"ntest"$inP3"_"$q\", " " \"$otP\" "]] , ""
@@ -75,37 +75,37 @@ function seriesTest () {
 		   biN2qqOne=$(expr $qqOne '>' 4)
 		   if  [ "$tocalc" '==' "1" ] && [ "$qqOne" '==' "1" ] &&  [ "$inP3" '==' "1" ] &&  [ "$inP4" '==' "1" ]
 		   then
-		      echo ""[[[  \"nint"$inP3"_"$inP4"\", " \"$seritP\" "] , "" >> "object.js"
-		      echo ""[[[  \"nint"$inP3"_"$inP4"\", " \"$seritP\" "] , ""
+		      echo ""[[[ \"nint"$inP3"_"$q"\", " \"$seritP\" "] , "" >> "object.js"
+		      echo ""[[[ \"nint"$inP3"_"$q"\", " \"$seritP\" "] , ""
 		   
 		   elif  [ "$tocalc" '==' "1" ] && [ "$qqOne" '==' "1" ] && [ "$inP4" '==' "1" ]
 		   then
-		      echo ""[[   \"nint"$inP3"_"$inP4"\", " \"$seritP\" "] , "" >> "object.js"
-		      echo ""[[  \"nint"$inP3"_"$inP4"\", " \"$seritP\" "] , ""
+		      echo ""[[ \"nint"$inP3"_"$q"\", " \"$seritP\" "] , "" >> "object.js"
+		      echo ""[[ \"nint"$inP3"_"$q"\", " \"$seritP\" "] , ""
 		   elif  [ "$tocalc" '==' "1" ] && [ "$qqOne" '==' "$1" ] && [ "$qqOne" '==' "$solOng" ] # length qqOne = 1 ?   
                    then 
-		      echo ""[[   \"nint"$inP3"_"$inP4"\", " \"$seritP\" "] , "" >> "object.js"
-		       echo ""[[   \"nint"$inP3"_"$inP4"\", " \"$seritP\" "] , ""
+		      echo ""[[ \"nint"$inP3"_"$q"\", " \"$seritP\" "] , "" >> "object.js"
+		       echo ""[[ \"nint"$inP3"_"$q"\", " \"$seritP\" "] , ""
 		   elif  [ "$biN2calc" '=' "1" ] && [ "$qqOne" '=' "1" ]  && [ "$biN2iOne" '=' "1" ] # all criteria > 1   
                    then 
-		      echo ""[[   \"nint"$inP3"_"$inP4"\", " \"$seritP\" "] , "" >> "object.js"
-		      echo ""[[   \"nint"$inP3"_"$inP4"\", " \"$seritP\" "] , ""
+		      echo ""[[ \"nint"$inP3"_"$q"\", " \"$seritP\" "] , "" >> "object.js"
+		      echo ""[[ \"nint"$inP3"_"$q"\", " \"$seritP\" "] , ""
 		   elif  [ "$biN2calc" '=' "1" ] && [ "$biN2qqOne" '=' "1" ]  && [ "$biN2iOne" '=' "1" ] # all criteria > 1   
                    then 
-		      echo ""[   \"nint"$inP3"_"$inP4"\", " \"$seritP\" "] , "" >> "object.js"
-		      echo ""[   \"nint"$inP3"_"$inP4"\", " \"$seritP\" "] , ""
+		      echo ""[ \"nint"$inP3"_"$q"\", " \"$seritP\" "] , "" >> "object.js"
+		      echo ""[ \"nint"$inP3"_"$q"\", " \"$seritP\" "] , ""
 		   elif  [ "$biN2calc" '=' "1" ] && [ "$tocalc" '=' "1" ]     
                    then 
-		      echo ""[[   \"nint"$inP3"_"$inP4"\", " \"$seritP\" "] , "" >> "object.js"
-		      echo ""[[   \"nint"$inP3"_"$inP4"\", " \"$seritP\" "] , "" 
+		      echo ""[[ \"nint"$inP3"_"$q"\", " \"$seritP\" "] , "" >> "object.js"
+		      echo ""[[ \"nint"$inP3"_"$q"\", " \"$seritP\" "] , "" 
                    elif  [ "$tocalc" '==' "$solOng" ] && [ "$qqOne" '==' "$solOng" ] &&  [ "$inP3" '==' "6" ] &&  [ "$inP4" '==' "6" ]
 		   then	
-	              echo ""[   \"nint"$inP3"_"$inP4"\", " \"$seritP\" "]]] "" >> "object.js"
-		      echo ""[   \"nint"$inP3"_"$inP4"\", " \"$seritP\" "]]] ""		   
+	              echo ""[ \"nint"$inP3"_"$q"\", " \"$seritP\" "]]] "" >> "object.js"
+		      echo ""[ \"nint"$inP3"_"$q"\", " \"$seritP\" "]]] ""		   
 		  elif  [ "$biN2calc" '=' "1" ] && [ "$biN2qqOne" '=' "1" ]  && [ "$biiN2iOne" '=' "$solOng" ] # all criteria > 1   
                    then 
-		      echo ""[   \"nint"$inP3"_"$inP4"\", " \"$seritP\" "]] , "" >> "object.js"
-		      echo ""[   \"nint"$inP3"_"$inP4"\", " \"$seritP\" "]] , ""
+		      echo ""[ \"nint"$inP3"_"$q"\", " \"$seritP\" "]] , "" >> "object.js"
+		      echo ""[ \"nint"$inP3"_"$q"\", " \"$seritP\" "]] , ""
       		 # elif  [ "$biN2calc" '=' "1" ] && [ "$biN2qqOne" '=' "1" ]  && [ "$biiN2iOne" '=' "$solOng" ] # all criteria > 1   
                  #  then 
 		  #    echo ""[  \"nint"$iOne"_"$iiOne"\", " \"$seritP\" "]] , "" >> "object.js"
@@ -113,15 +113,15 @@ function seriesTest () {
 		  
 		  elif [ "$tocalc" '==' "$solOng" ] && [ "$inP3" '==' "$solOng" ] # # #  && [ "$qqOne" '==' "1" ] &&  [ "$inP3" '==' "1" ]
 		   then
-		      echo ""[   \"nint"$inP3"_"$inP4"\", " \"$seritP\" "]]] "" >> "object.js"
-		      echo ""[   \"nint"$inP3"_"$inP4"\", " \"$seritP\" "]]] ""
+		      echo ""[ \"nint"$inP3"_"$q"\", " \"$seritP\" "]]] "" >> "object.js"
+		      echo ""[ \"nint"$inP3"_"$q"\", " \"$seritP\" "]]] ""
 		  elif [ "$tocalc" '==' "$solOng" ] # # #  && [ "$qqOne" '==' "1" ] &&  [ "$inP3" '==' "1" ]
 		   then
-		      echo ""[[   \"nint"$inP3"_"$inP4"\", " \"$seritP\" "]] "" >> "object.js"
-		      echo ""[[   \"nint"$inP3"_"$inP4"\", " \"$seritP\" "]] , ""
+		      echo ""[[ \"nint"$inP3"_"$q"\", " \"$seritP\" "]] "" >> "object.js"
+		      echo ""[[ \"nint"$inP3"_"$q"\", " \"$seritP\" "]] , ""
 		  else 
-		     echo ""[   \"nint"$inP3"_"$inP4"\", " \"$seritP\" "] , "" >> "object.js"
-		     echo ""[   \"nint"$inP3"_"$inP4"\", " \"$seritP\" "] , ""
+		     echo ""[   \"nint"$inP3"_"$q"\", " \"$seritP\" "] , "" >> "object.js"
+		     echo ""[   \"nint"$inP3"_"$q"\", " \"$seritP\" "] , ""
 		  fi 
 	   done   
 	    fi
