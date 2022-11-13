@@ -847,6 +847,7 @@ tel=$(echo $(grep -n "$5" $edger | cut -d : -f1))   # just line numbers of
 
 paste unique3.sh unique2.sh
 tk1
-echo "done wrote: unique1.sh unique2.sh unique3.sh unique4.sh unique5.sh unique6.sh object.sh"
+echo "done wrote: unique1.sh unique2.sh unique3.sh"
+echo "unique4.sh unique5.sh unique6.sh unique7.sh(svg) unique8.sh unique9.sh object.sh"
 echo "posis of" $5 : $tel
 echo "its length" $lengde
