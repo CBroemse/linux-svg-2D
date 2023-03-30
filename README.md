@@ -11,15 +11,15 @@
 ##### write routine to determine where to move
 check currant position   ------------------> need a write/replace new AVA into DICTIONARY
 
-     e.g *> grep "AVA" oD1.sh
+     e.g *> grep "AVA" source/oD1.sh
      =>  *> Feld1_1RV AVA -222 10 91 -444 0
-         *> grep -n ""E$"" oD1.sh
+         *> grep -n ""E$"" source/oD1.sh
          => all open MOVES on TYPES 
-         *> grep -n ""L$"" oD1.sh
-                  columns             |       rows
-         *> grep -n ""_1$"" oD1.sh    |   *> grep "Feld1_" oD1.sh
-         :                            |   : 
-         *> grep ""_6$"" oD1.sh       |   *> grep "Feld6_" oD1.sh
+         *> grep -n ""L$"" source/oD1.sh
+                  columns                    |       rows
+         *> grep -n ""_1$"" source/oD1.sh    |   *> grep "Feld1_" source/oD1.sh
+         :                                   |   : 
+         *> grep ""_6$"" source/oD1.sh       |   *> grep "Feld6_" source/oD1.sh
          :                            |   :
 
 #### USAGE:
